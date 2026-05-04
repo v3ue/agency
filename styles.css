@@ -2220,7 +2220,7 @@ button, input, select, textarea {
 .nav-menu-link {
   display: block;
   padding: 1rem 1rem;
-  [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif];
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.25rem;
   line-height: 1.2;
   text-align: center;
@@ -2241,7 +2241,7 @@ button, input, select, textarea {
 .nav-menu-email {
   display: flex;
   align-items: center;
-  [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif];
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.5rem;
   padding: 0.2rem 1rem;
   font-weight: 500;
@@ -2261,7 +2261,7 @@ button, input, select, textarea {
   padding: 1rem;
   background: #151515;
   color: #f8f8f8;
-  [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif];
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1rem;
   border-radius: 8px;
   text-decoration: none;

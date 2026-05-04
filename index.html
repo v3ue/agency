@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Студия 12/20</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div id="app">
+    <main class="relative bg-[#f7f7f7] overflow-x-hidden w-full" aria-label="Студия 12/20">
+      <header class="relative z-50">
+        <!-- DESKTOP NAV -->
+        <div class="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
+          <div class="nav-left-wrapper relative">
+            <div id="desktop-nav-pill" class="header-left-pill h-[65px] px-7 flex items-center rounded-lg gap-63">
+              <div class="nav-menu-trigger flex items-center gap-4">
+                <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
+                <button id="nav-menu-open-desktop" aria-expanded="false" aria-haspopup="true" class="nav-menu-open-button">
+                  <span class="nav-menu-open-label">Меню</span>
+                  <span class="nav-menu-open-dot" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div id="nav-menu-panel-desktop" class="nav-menu-panel nav-menu-panel--desktop" aria-hidden="true">
+              <div class="nav-menu-panel-inner">
+                <nav class="nav-menu-links" aria-label="Навигация по сайту">
+                  <a class="nav-menu-link" href="#about">О нас</a>
+                  <a class="nav-menu-link" href="#projects-heading">Проекты</a>
+                  <a class="nav-menu-link" href="#process-heading">Процесс</a>
+                  <a class="nav-menu-link" href="#cta">Контакты</a>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <div id="header-right-pill" class="header-right-pill h-[65px] px-6 flex items-center gap-6 rounded-lg backdrop-blur-md">
+            <a href="mailto:hi@1220.ru" class="flex items-center gap-1.5 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">hi@1220.ru</a>
+            <a href="tel:+79169950270" class="flex items-center gap-1.5 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">+7 (916) 995 02 70</a>
+            <a href="#cta" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Helvetica_Neue-Medium',Helvetica] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+          </div>
+        </div>
+
+        <!-- MOBILE NAV -->
+        <div class="md:hidden fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[400px]">
+          <div class="mobile-header-bar h-[65px] px-7 flex items-center justify-between rounded-lg">
+            <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
+            <button id="nav-menu-open-mobile" aria-expanded="false" aria-haspopup="true" class="nav-menu-open-button mobile-menu-btn">
+              <span class="mobile-menu-btn-text">Меню</span>
+              <span class="menu-dot" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Мобильная панель меню -->
+        <div id="nav-menu-panel" class="nav-menu-panel nav-menu-panel--mobile" aria-hidden="true">
+          <div class="nav-menu-panel-inner">
+            <nav class="nav-menu-links" aria-label="Навигация по сайту">
+              <a class="nav-menu-link" href="#about">О нас</a>
+              <a class="nav-menu-link" href="#projects-heading">Проекты</a>
+              <a class="nav-menu-link" href="#process-heading">Процесс</a>
+              <a class="nav-menu-link" href="#cta">Контакты</a>
+            </nav>
+            <div class="nav-menu-contacts">
+              <a href="tel:+79169950270" class="nav-menu-phone">+7 (916) 995 02 70</a>
+              <a href="mailto:hi@1220.ru" class="nav-menu-email">hi@1220.ru</a>
+            </div>
+            <a href="#cta" class="nav-menu-cta-btn">Обсудить проект</a>
+          </div>
+        </div>
+      </header>
+
+       <!-- Остальной контент без изменений (только удалены data-uid) -->
+        <section style="padding: 220px 20px 40px 20px; max-width: 1600px; margin: 0 auto;">
+         <div>
+           <h1 class="h1 text-display tracking-display text-[#151515] text-center max-w-[1100px] mx-auto animate-blur-reveal" style="--animation-delay: 0.1s">
+             Создаем контент, которому доверяют бренды и&nbsp;их аудитория
+           </h1>
+         </div>
+         <div>
+           <div class="mt-10 rounded-2xl overflow-hidden relative animate-fade-in" style="--animation-delay: 0.2s">
+             <img class="w-full h-[40vw] min-h-[520px] max-h-[745px] object-cover" alt="Главный баннер" src="./static/images/4lg5t-2.png">
+             <div class="absolute inset-0 bg-black/32 rounded-2xl"></div>
+           </div>
+         </div>
+
+       </section>
+
+       <section class="logos-strip animate-fade-in" style="--animation-delay: 0.35s;">
+         <div class="logos-track">
+              <img src="./static/icons/logo-1.svg" alt="Клиент 1" class="logo-img">
+              <img src="./static/icons/logo-2.svg" alt="Клиент 2" class="logo-img">
+              <img src="./static/icons/logo-3.svg" alt="Клиент 3" class="logo-img">
+              <img src="./static/icons/logo-4.svg" alt="Клиент 4" class="logo-img">
+              <img src="./static/icons/logo-5.svg" alt="Клиент 5" class="logo-img">
+              <img src="./static/icons/logo-6.svg" alt="Клиент 6" class="logo-img">
+              <img src="./static/icons/logo-7.svg" alt="Клиент 7" class="logo-img">
+              <img src="./static/icons/logo-8.svg" alt="Клиент 8" class="logo-img">
+              <img src="./static/icons/logo-1.svg" alt="Клиент 1" class="logo-img">
+              <img src="./static/icons/logo-2.svg" alt="Клиент 2" class="logo-img">
+              <img src="./static/icons/logo-3.svg" alt="Клиент 3" class="logo-img">
+              <img src="./static/icons/logo-4.svg" alt="Клиент 4" class="logo-img">
+              <img src="./static/icons/logo-5.svg" alt="Клиент 5" class="logo-img">
+              <img src="./static/icons/logo-6.svg" alt="Клиент 6" class="logo-img">
+              <img src="./static/icons/logo-7.svg" alt="Клиент 7" class="logo-img">
+              <img src="./static/icons/logo-8.svg" alt="Клиент 8" class="logo-img">
+           </div>
+       </section>
+
+        <section id="about" aria-label="О студии"
+            style="padding: 230px 20px 200px 20px; max-width: 1600px; margin: 0 auto;">
+         <div class=""
+           >
+           <p id="about-animated-text"
+             class="text-body text-transparent text-xl tracking-tight leading-[1.4] max-w-[780px]" style="font-size: 32px; line-height: 1.4;">
+             <span data-animate-part class="text-[#151515]">В Студии 12/20 создают видео для брендов, продуктов и рекламных кампаний.</span>
+             <span data-animate-part class="text-[#b4b4b4]">Идея, визуальный стиль и современные AI-инструменты</span>
+             <span data-animate-part class="text-[#151515]">объединяются в цельный ролик.</span>
+           </p>
+         </div>
+       </section>
+       <section aria-labelledby="projects-heading"
+           style="padding: 120px 20px 100px 20px; max-width: 1600px; margin: 0 auto;">
+        <div class=""
+          >
+          <h2 id="projects-heading" class="h2 text-heading text-[#151515] mb-12">
+            Проекты</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <div class="col-span-1 max-sm:col-span-1"
+            >
+              <article class="group cursor-pointer relative">
+                <div class="rounded-2xl overflow-hidden" style="height: 320px;"><img src="./static/images/4lg5t-1.png" alt="Янта"
+                    class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]">
+                  <div
+                     class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out bg-black/28 rounded-2xl">
+                  </div>
+                  <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
+                    <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
+                    <span style="font-family: 'Helvetica Neue-Medium', Helvetica, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                  </div>
+                </div>
+                <div class="mt-4 px-1">
+                  <h3
+                    class="text-body text-2xl md:text-[28px] tracking-tight">
+                    Янта</h3>
+                  <p
+                    class="mt-1 opacity-55 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                    Рекламный ролик про кетчуп от производителя «Янта».</p>
+                </div>
+              </article>
+          </div>
+          <div class="col-span-2 max-sm:col-span-1"
+            >
+               <article class="group cursor-pointer relative">
+                 <div class="rounded-2xl overflow-hidden" style="height: 540px;"><img src="./static/images/frame-12@2x.png" alt="Gussi Rem"
+                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]">
+                   <div
+                     class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out bg-black/28 rounded-2xl">
+                   </div>
+                   <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
+                     <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
+                     <span style="font-family: 'Helvetica Neue-Medium', Helvetica, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                   </div>
+                  </div>
+                 <div class="mt-4 px-1">
+                   <h3
+                     class="text-body text-2xl md:text-[28px] tracking-tight">
+                     Gussi Rem</h3>
+                  <p
+                    class="mt-1 opacity-55 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                    Ролик для Gussi Rem — компании, занимающейся ремонтом недвижимости.</p>
+                </div>
+              </article>
+          </div>
+          <div class="col-span-2 max-sm:col-span-1"
+            >
+              <article class="group cursor-pointer relative">
+                <div class="rounded-2xl overflow-hidden" style="height: 540px;"><img
+                    src="./static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png" alt="Изофом"
+                    class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]">
+                   <div
+                     class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out bg-black/28 rounded-2xl">
+                   </div>
+                  <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
+                    <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
+                    <span style="font-family: 'Helvetica Neue-Medium', Helvetica, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                  </div>
+                </div>
+                <div class="mt-4 px-1">
+                  <h3
+                    class="text-body text-2xl md:text-[28px] tracking-tight">
+                    Изофом</h3>
+                  <p
+                    class="mt-1 opacity-55 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                    Основная задача заключалась в том, чтобы донести мысль.</p>
+                </div>
+              </article>
+          </div>
+          <div class="col-span-1 max-sm:col-span-1"
+            >
+               <article class="group cursor-pointer relative">
+                 <div class="rounded-2xl overflow-hidden" style="height: 320px;"><img src="./static/images/6l06a-1.png" alt="Янта #2"
+                     class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]">
+                   <div
+                     class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out bg-black/28 rounded-2xl">
+                   </div>
+                   <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
+                     <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
+                     <span style="font-family: 'Helvetica Neue-Medium', Helvetica, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                   </div>
+                  </div>
+                 <div class="mt-4 px-1">
+                   <h3
+                     class="text-body text-2xl md:text-[28px] tracking-tight">
+                     Янта</h3>
+                   <p
+                     class="mt-1 opacity-55 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                     Рекламный ролик про кетчуп от производителя «Янта».</p>
+                 </div>
+               </article>
+          </div>
+        </div>
+        <div class=""
+          ><a href="#"
+            class="group inline-flex items-center gap-2 mt-[150px] border-b-2 border-black pb-1"><span
+              class="[font-family:'Helvetica_Neue-Bold',Helvetica] font-bold text-[#151515] text-3xl md:text-[40px] tracking-h2 transition-transform duration-300 group-hover:translate-x-1">→</span><span
+              class="text-body text-[#151515] text-xl md:text-[28px] tracking-normal leading-[1.0]">Смотреть
+              все проекты</span></a></div>
+      </section>
+       <section aria-labelledby="competencies-heading"
+         class="competencies-section pt-[120px] md:pt-[140px] pb-16 md:pb-28 px-5 md:px-10 max-w-[1600px] mx-auto">
+        <h2 id="competencies-heading" class="h2 text-heading text-[#151515] mb-12">
+          Компетенции</h2>
+
+        <div class="competencies-layout">
+          <!-- Левая колонка: визуальные карточки -->
+          <div class="competencies-visuals">
+            <!-- Сет 0: Персонажи по образу -->
+            <div class="card-set" data-set="0">
+              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+            </div>
+            <!-- Сет 1: Визуализация продукта -->
+            <div class="card-set" data-set="1">
+              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+            </div>
+            <!-- Сет 2: Рекламные ролики -->
+            <div class="card-set" data-set="2">
+              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+            </div>
+            <!-- Сет 3: Сценарий и раскадровка -->
+            <div class="card-set" data-set="3">
+              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+            </div>
+            <!-- Сет 4: Озвучивание -->
+            <div class="card-set" data-set="4">
+              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+            </div>
+            <!-- Сет 5: Контент для продвижения -->
+            <div class="card-set" data-set="5">
+              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+            </div>
+          </div>
+
+          <!-- Правая колонка: список компетенций -->
+          <div class="competencies-list-col">
+            <button class="competency-item active" data-index="0">
+              <span class="competency-item-line"></span>
+              <span class="competency-label">Персонажи по образу</span>
+            </button>
+            <button class="competency-item" data-index="1">
+              <span class="competency-item-line"></span>
+              <span class="competency-label">Визуализация продукта</span>
+            </button>
+            <button class="competency-item" data-index="2">
+              <span class="competency-item-line"></span>
+              <span class="competency-label">Рекламные ролики</span>
+            </button>
+            <button class="competency-item" data-index="3">
+              <span class="competency-item-line"></span>
+              <span class="competency-label">Сценарий и раскадровка</span>
+            </button>
+            <button class="competency-item" data-index="4">
+              <span class="competency-item-line"></span>
+              <span class="competency-label">Озвучивание</span>
+            </button>
+            <button class="competency-item" data-index="5">
+              <span class="competency-item-line"></span>
+              <span class="competency-label">Контент для продвижения</span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section aria-label="Серия контента">
+        <div
+          class="py-16 md:py-28 px-5 md:px-10 max-w-[1600px] mx-auto">
+          <p
+            class="text-body text-[#151515] text-center tracking-h1 leading-[1.05] max-w-[900px] mx-auto mb-14" style="font-size: 68px;">
+            От точечного ролика <br>до цельной серии контента <br>в едином визуальном стиле</p>
+        </div>
+        <div class="w-screen -ml-[calc(50vw-50%)]">
+          <img class="w-full h-auto object-cover" alt="Group"
+            src="./static/images/group-3.png">
+        </div>
+      </section>
+<section aria-labelledby="process-heading" class="py-20 md:py-28 px-5 md:px-10 max-w-[1600px] mx-auto">
+  <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
+    
+    <!-- Левая колонка -->
+    <div class="lg:w-[380px] shrink-0">
+      <h2 id="process-heading" class="h2 text-heading text-[#151515]">
+        Понятный путь ведения проекта
+      </h2>
+      <div class="mt-6 text-body text-[#151515] text-xl tracking-tight leading-[1.4] max-w-[340px] opacity-70">
+        Обсудим предложения и варианты,<br>чтобы выбрать лучший путь для вашего проекта.
+      </div>
+    </div>
+
+    <!-- Правая колонка с таймлайном -->
+    <div class="flex-1 relative">
+      <div class="space-y-8 process-steps">
+        
+        <!-- Карточка 1 -->
+        <article class="process-step" data-step="1">
+          <div class="process-step-dot"></div>
+          <div class="process-step-content">
+            <h3 class="process-step-title">Бриф</h3>
+            <p class="process-step-text">Собираем информацию о проекте, целевой аудитории и задачах, фиксируем цели.</p>
+          </div>
+        </article>
+
+        <!-- Карточка 2 -->
+        <article class="process-step" data-step="2">
+          <div class="process-step-dot"></div>
+          <div class="process-step-content">
+            <h3 class="process-step-title">Идея</h3>
+            <p class="process-step-text">Предлагаем концепции и визуальные направления для сильного первого впечатления.</p>
+          </div>
+        </article>
+
+        <!-- Карточка 3 -->
+        <article class="process-step" data-step="3">
+          <div class="process-step-dot"></div>
+          <div class="process-step-content">
+            <h3 class="process-step-title">Сценарий</h3>
+            <p class="process-step-text">Готовим сценарий, раскадровку и структуру ролика в соответствии с задачей.</p>
+          </div>
+        </article>
+
+        <!-- Карточка 4 -->
+        <article class="process-step" data-step="4">
+          <div class="process-step-dot"></div>
+          <div class="process-step-content">
+            <h3 class="process-step-title">Производство</h3>
+            <p class="process-step-text">Съёмка, монтаж и постпродакшн — всё быстро, с понятным контролем на каждом этапе.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section><section aria-label="Ценность бренда"
+         style="padding: 20px;">
+         <div style="max-width: 1600px; margin: 0 auto;">
+           <div style="border-radius: 1rem; overflow: hidden; background-image: url('./static/images/image-value.png'); background-size: cover; background-position: center; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+             <div style="text-align: center; padding: 100px 20px;">
+                <h2 style="font-size: 3rem; color: white; margin-bottom: 3rem;">
+                  Ценность бренда <br>— в первом впечатлении</h2>
+                <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; margin-bottom: 6rem; line-height: 1.5;">
+                  Видео помогает эффективно раскрыть продукт,<br>создать эмоцию и остаться в
+                  памяти.</p>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem; color: white; font-size: 1.25rem;">
+                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                    <img src="./static/icons/icon-rabbit.svg" alt="" style="width: 3rem; height: 3rem;">
+                    <span>Быстрый запуск</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                    <img src="./static/icons/icon-content.svg" alt="" style="width: 3rem; height: 3rem;">
+                    <span>Контент для рекламы и соцсетей</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                    <img src="./static/icons/icon-series.svg" alt="" style="width: 3rem; height: 3rem;">
+                    <span>Серии роликов</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                    <img src="./static/icons/icon-star.svg" alt="" style="width: 3rem; height: 3rem;">
+                    <span>Яркая подача</span>
+                  </div>
+                </div>
+             </div>
+           </div>
+         </div>
+       </section>
+      <section aria-labelledby="reviews-heading"
+        class="py-16 md:py-28 px-5 md:px-10 max-w-[1600px] mx-auto">
+        <div class=""
+          >
+          <h2 id="reviews-heading" class="h2 text-heading text-[#151515] mb-12">
+            Что говорят о нас</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class=""
+            >
+            <article
+              class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
+              <div
+                class="text-[#151515] text-lg [font-family:'Helvetica_Neue-Medium',Helvetica] tracking-normal mb-4">
+                Astra</div>
+              <p
+                class="text-body text-[#151515] text-xl md:text-[28px] tracking-tight leading-[1.2] flex-1 mb-8">
+                <span>За Simple Agency стоит небольшой творческий состав с вниманием к идее,
+                  визуалу и смыслу.<br></span><span><br></span><span>Каждый ролик собирается как
+                  законченная история: от первого кадра до финального звука.</span></p>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-[50px] h-[50px] rounded-full bg-[#622e2e] overflow-hidden shrink-0"><img class="w-full h-full object-cover" alt="Павел Стрижевский"
+                    src="./static/images/image-2-1@2x.png"></div>
+                <div>
+                  <div
+                    class="text-body text-[#151515] text-base tracking-normal">
+                    Павел Стрижевский</div>
+                  <div
+                    class="opacity-50 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#151515] text-sm tracking-normal">
+                    Директ развития продукта</div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class=""
+            >
+            <article
+              class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
+              <div
+                class="text-[#151515] text-lg [font-family:'Helvetica_Neue-Medium',Helvetica] tracking-normal mb-4">
+                Изофом</div>
+              <p
+                class="text-body text-[#151515] text-xl md:text-[28px] tracking-tight leading-[1.2] flex-1 mb-8">
+                <span>За Simple Agency стоит небольшой творческий состав с вниманием к идее,
+                  визуалу и смыслу.<br></span><span><br></span><span>Каждый ролик собирается как
+                  законченная история: от первого кадра до финального звука.</span></p>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-[50px] h-[50px] rounded-full bg-[#622e2e] overflow-hidden shrink-0"><img class="w-full h-full object-cover" alt="Павел Стрижевский"
+                    src="./static/images/image-2-1@2x.png"></div>
+                <div>
+                  <div
+                    class="text-body text-[#151515] text-base tracking-normal">
+                    Павел Стрижевский</div>
+                  <div
+                    class="opacity-50 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#151515] text-sm tracking-normal">
+                    Директ развития продукта</div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class=""
+            >
+            <article
+              class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
+              <div
+                class="text-[#151515] text-lg [font-family:'Helvetica_Neue-Medium',Helvetica] tracking-normal mb-4">
+                Simple</div>
+              <p
+                class="text-body text-[#151515] text-xl md:text-[28px] tracking-tight leading-[1.2] flex-1 mb-8">
+                <span>За Simple Agency стоит небольшой творческий состав с вниманием к идее,
+                  визуалу и смыслу.</span></p>
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-[50px] h-[50px] rounded-full bg-[#622e2e] overflow-hidden shrink-0"><img class="w-full h-full object-cover" alt="Павел Стрижевский"
+                    src="./static/images/image-2-2@2x.png"></div>
+                <div>
+                  <div
+                    class="text-body text-[#151515] text-base tracking-normal">
+                    Павел Стрижевский</div>
+                  <div
+                    class="opacity-50 [font-family:'Helvetica_Neue-Medium',Helvetica] text-[#151515] text-sm tracking-normal">
+                    Директ развития продукта</div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+        <section aria-labelledby="team-heading"
+           style="padding: 120px 20px 350px 20px; max-width: 1600px; margin: 0 auto;">
+        <div class=""
+          >
+          <h2 id="team-heading" class="h2 text-heading text-[#151515] text-center mb-6">
+            Кто стоит за студией</h2>
+        </div>
+        <div class=""
+          >
+           <p
+             class="text-[#151515ba] text-xl text-center tracking-tight leading-[1.3] text-body">
+             Студия 12/20 — это небольшой творческий состав с вниманием к идее, визуалу и смыслу.Каждый ролик собирается как законченная история: от первого кадра до финального звука.</p>
+           <div class="text-center mt-10">
+             <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] [font-family:'Helvetica_Neue-Medium',Helvetica] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+           </div>
+         </div>
+       </section>
+        <section id="cta" aria-labelledby="cta-heading"
+          style="background-color: #151515; padding: 120px 20px 80px 20px;">
+        <div class="max-w-[900px] mx-auto">
+          <div class=""
+            >
+            <h2 id="cta-heading" class="h2 text-heading text-white text-center mb-4">
+              Обсудим проект?</h2>
+          </div>
+          <div class=""
+            >
+            <p
+              class="text-center text-white/50 text-xl [font-family:'Helvetica_Neue-Medium',Helvetica] tracking-normal mb-14">
+              Оставьте контакты — мы свяжемся в течение дня</p>
+          </div>
+          <form class="flex flex-col gap-4">
+            <div class=""
+              >
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="relative"><input type="tel"
+                    placeholder="Номер телефона"
+                    class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Helvetica_Neue-Medium',Helvetica] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15"
+                    style="box-shadow: none;" value=""></div>
+                <div class="relative"><input type="email"
+                    placeholder="Электронная почта"
+                    class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Helvetica_Neue-Medium',Helvetica] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15"
+                    style="box-shadow: none;" value=""></div>
+              </div>
+            </div>
+            <div class=""
+              >
+              <textarea placeholder="Опишите ваш запрос..." rows="5"
+                class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Helvetica_Neue-Medium',Helvetica] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15 resize-none"
+                style="box-shadow: none;"></textarea></div>
+            <div class=""
+              >
+              <button type="submit"
+                class="group w-full sm:w-auto sm:self-center mt-2 bg-white text-[#151515] text-body text-lg tracking-normal px-12 py-5 rounded-[60px] transition-all duration-300 hover:bg-[#f0f0f0] hover:scale-[1.03] active:scale-[0.98]"><span class="inline-flex items-center gap-2">Отправить заявку<span
+                    class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></span></button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <footer class="bg-[#151515] border-t border-white/10 py-10 px-5 md:px-10">
+        <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+          <span class="text-display text-white text-xl tracking-normal">СТУДИЯ 12/20</span>
+          <span class="text-white/40 [font-family:'Helvetica_Neue-Medium',Helvetica] text-sm">© 2026 Simple Agency. Все права защищены.</span>
+        </div>
+      </footer>
+    </main>
+    <div class="page-bottom-blur" aria-hidden="true">
+      <div class="page-bottom-blur-inner">
+        <div class="gradual-blur-layer" style="mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 40%, transparent 60%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 40%, transparent 60%); backdrop-filter: blur(1.5px); -webkit-backdrop-filter: blur(1.5px);"></div>
+        <div class="gradual-blur-layer" style="mask-image: linear-gradient(to bottom, transparent 20%, black 40%, black 60%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, transparent 20%, black 40%, black 60%, transparent 80%); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);"></div>
+        <div class="gradual-blur-layer" style="mask-image: linear-gradient(to bottom, transparent 40%, black 60%, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 40%, black 60%, black 80%, transparent 100%); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);"></div>
+        <div class="gradual-blur-layer" style="mask-image: linear-gradient(to bottom, transparent 60%, black 80%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 60%, black 80%, black 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"></div>
+        <div class="gradual-blur-layer" style="mask-image: linear-gradient(to bottom, transparent 80%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 80%, black 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);"></div>
+      </div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Process timeline animation
+      const steps = Array.from(document.querySelectorAll('.process-step'));
+      const stepsContainer = document.querySelector('.process-steps');
+      if (steps.length && stepsContainer) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+          });
+          const lastVisibleIndex = steps.reduce((result, step, index) => {
+            return step.classList.contains('visible') ? index : result;
+          }, -1);
+          const pct = ((lastVisibleIndex + 1) / steps.length) * 100;
+          stepsContainer.style.setProperty('--fill-pct', `${pct}%`);
+        }, { threshold: 0.4, rootMargin: '0px 0px -20% 0px' });
+        steps.forEach((step) => observer.observe(step));
+      }
+
+      /* ==================== ДЕСКТОП МЕНЮ ==================== */
+      const desktopPill = document.getElementById('desktop-nav-pill');
+      const menuPanelDesktop = document.getElementById('nav-menu-panel-desktop');
+      const menuOpenDesktop = document.getElementById('nav-menu-open-desktop');
+      const desktopDot = document.querySelector('.nav-menu-open-dot');
+      let desktopCloseTimer = null;
+
+      const setDesktopMenuOpen = (open) => {
+        if (!menuPanelDesktop) return;
+        menuPanelDesktop.classList.toggle('open', open);
+        menuPanelDesktop.setAttribute('aria-hidden', String(!open));
+        if (menuOpenDesktop) menuOpenDesktop.setAttribute('aria-expanded', String(open));
+        if (desktopDot) desktopDot.style.opacity = open ? '0' : '1';
+        if (open) clearTimeout(desktopCloseTimer);
+      };
+
+      if (desktopPill) {
+        desktopPill.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
+        desktopPill.addEventListener('mouseleave', () => {
+          desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
+        });
+      }
+      if (menuPanelDesktop) {
+        menuPanelDesktop.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
+        menuPanelDesktop.addEventListener('mouseleave', () => {
+          desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
+        });
+      }
+
+      /* ==================== МОБИЛЬНОЕ МЕНЮ ==================== */
+      const menuPanelMobile = document.getElementById('nav-menu-panel');
+      const menuOpenMobile = document.getElementById('nav-menu-open-mobile');
+      const menuDotMobile = document.querySelector('.menu-dot');
+      const menuBtnText = document.querySelector('.mobile-menu-btn-text');
+      let mobileOpen = false;
+
+      const toggleMobileMenu = (open) => {
+        if (!menuPanelMobile) return;
+        mobileOpen = open;
+        menuPanelMobile.classList.toggle('open', open);
+        menuPanelMobile.setAttribute('aria-hidden', String(!open));
+        if (menuOpenMobile) menuOpenMobile.setAttribute('aria-expanded', String(open));
+        if (menuDotMobile) menuDotMobile.style.opacity = open ? '0' : '1';
+        if (menuBtnText) menuBtnText.textContent = open ? 'Закрыть' : 'Меню';
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+
+      if (menuOpenMobile) {
+        menuOpenMobile.addEventListener('click', () => toggleMobileMenu(!mobileOpen));
+      }
+      if (menuPanelMobile) {
+        menuPanelMobile.addEventListener('click', (e) => {
+          if (e.target === menuPanelMobile) toggleMobileMenu(false);
+        });
+      }
+
+      // Закрытие при клике вне панели
+      document.addEventListener('click', (e) => {
+        if (mobileOpen && !menuPanelMobile.contains(e.target) && !menuOpenMobile.contains(e.target)) {
+          toggleMobileMenu(false);
+        }
+      });
+
+      // Закрытие меню при клике по ссылкам
+      const menuLinks = Array.from(document.querySelectorAll('.nav-menu-link'));
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          toggleMobileMenu(false);
+          setDesktopMenuOpen(false);
+        });
+      });
+
+      /* ==================== СКРОЛЛ ХЕДЕРА ==================== */
+      const leftPill = document.getElementById('desktop-nav-pill');
+      const rightPill = document.getElementById('header-right-pill');
+      let lastScrollY = 0;
+      let scrollThreshold = window.innerHeight * 0.6;
+      let ticking = false;
+
+      const updateHeader = () => {
+        const scrollY = window.scrollY;
+
+        // Левая и правая плашки: фон при скролле ниже порога
+        if (leftPill) {
+          leftPill.classList.toggle('has-bg', scrollY > scrollThreshold);
+        }
+        if (rightPill) {
+          rightPill.classList.toggle('has-bg', scrollY > scrollThreshold);
+        }
+
+        // Правая плашка: прячется при скролле вниз, появляется при скролле вверх
+        if (rightPill && scrollY > scrollThreshold) {
+          if (scrollY > lastScrollY) {
+            rightPill.classList.add('scroll-hidden');
+          } else {
+            rightPill.classList.remove('scroll-hidden');
+          }
+        } else if (rightPill) {
+          rightPill.classList.remove('scroll-hidden');
+        }
+
+        lastScrollY = scrollY;
+        ticking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        scrollThreshold = window.innerHeight * 0.6;
+      });
+
+      // Правая плашка: ховер только после скролла
+      if (rightPill) {
+        rightPill.addEventListener('mouseenter', () => {
+          if (window.scrollY > scrollThreshold) {
+            rightPill.classList.add('has-bg');
+          }
+        });
+        rightPill.addEventListener('mouseleave', () => {
+          if (window.scrollY <= scrollThreshold) return;
+          // Если скролл прошёл порог, но не в состоянии scroll-hidden — вернуть фон
+          if (!rightPill.classList.contains('scroll-hidden')) {
+            rightPill.classList.remove('has-bg');
+          }
+        });
+      }
+
+      /* ==================== КОМПЕТЕНЦИИ ==================== */
+      const competencyItems = Array.from(document.querySelectorAll('.competency-item'));
+      const cardSets = Array.from(document.querySelectorAll('.card-set'));
+      const totalSets = cardSets.length;
+      let currentIndex = 0;
+      let autoTimer = null;
+      let userInteracting = false;
+      const AUTO_DELAY = 4000;
+
+      const switchSet = (index) => {
+        if (index === currentIndex) return;
+
+        const oldSet = cardSets[currentIndex];
+        const newSet = cardSets[index];
+
+        if (oldSet) oldSet.classList.remove('active');
+        newSet.classList.add('active');
+
+        // Обновляем активный пункт
+        competencyItems.forEach((item, i) => {
+          item.classList.toggle('active', i === index);
+        });
+
+        currentIndex = index;
+
+        // Перезапускаем авто-таймер
+        if (!userInteracting) {
+          resetAutoTimer();
+        }
+      };
+
+      const nextSet = () => {
+        switchSet((currentIndex + 1) % totalSets);
+      };
+
+      const resetAutoTimer = () => {
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(nextSet, AUTO_DELAY);
+      };
+
+      // Инициализация
+      cardSets[0].classList.add('active');
+      resetAutoTimer();
+
+      competencyItems.forEach((item) => {
+        const index = parseInt(item.dataset.index, 10);
+
+        item.addEventListener('mouseenter', () => {
+          userInteracting = true;
+          clearTimeout(autoTimer);
+
+          clearTimeout(item._hoverTimer);
+          item._hoverTimer = setTimeout(() => {
+            switchSet(index);
+          }, 200);
+        });
+
+        item.addEventListener('mouseleave', () => {
+          clearTimeout(item._hoverTimer);
+          userInteracting = false;
+          resetAutoTimer();
+        });
+
+        item.addEventListener('click', () => {
+          switchSet(index);
+          userInteracting = true;
+          clearTimeout(autoTimer);
+
+          // Возобновляем авто-прокрутку через 8 секунд после клика
+          clearTimeout(item._resumeTimer);
+          item._resumeTimer = setTimeout(() => {
+            userInteracting = false;
+            resetAutoTimer();
+          }, 8000);
+        });
+      });
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script>
+    // Храним размеры кнопки после первого появления
+    const btnSizes = new Map();
+
+    document.querySelectorAll('article.group').forEach(card => {
+      const videoBtn = card.querySelector('.video-btn');
+      if (!videoBtn) return;
+
+      card.addEventListener('mouseenter', () => {
+        // Скрываем все кнопки мгновенно
+        document.querySelectorAll('.video-btn').forEach(btn => {
+          btn.style.display = 'none';
+          btn.style.opacity = '0';
+        });
+
+        card.style.cursor = 'none';
+        videoBtn.style.display = 'flex';
+        
+        // После отображения получаем размеры кнопки
+        requestAnimationFrame(() => {
+          if (!btnSizes.has(videoBtn)) {
+            btnSizes.set(videoBtn, {
+              width: videoBtn.offsetWidth,
+              height: videoBtn.offsetHeight
+            });
+          }
+          videoBtn.style.opacity = '1';
+        });
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        
+        // Получаем размеры кнопки
+        const size = btnSizes.get(videoBtn) || { width: 100, height: 30 };
+        const btnW = size.width;
+        const btnH = size.height;
+        
+        // Ограничиваем позицию, чтобы кнопка не выходила за пределы карточки
+        const minX = btnW / 2;
+        const maxX = rect.width - btnW / 2;
+        const minY = btnH / 2;
+        const maxY = rect.height - btnH / 2;
+        
+        x = Math.max(minX, Math.min(maxX, x));
+        y = Math.max(minY, Math.min(maxY, y));
+        
+        videoBtn.style.left = x + 'px';
+        videoBtn.style.top = y + 'px';
+        videoBtn.style.transform = 'translate(-50%, -50%)';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.cursor = 'pointer';
+        videoBtn.style.display = 'none';
+      });
+    });
+  </script>
+  <script src="./word-anim.js" defer></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f4a94323af61fad',t:'MTc3NzU5NDM5MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

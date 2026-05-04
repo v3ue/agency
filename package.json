@@ -1,0 +1,16 @@
+{
+  "name": "simple-agency",
+  "version": "1.0.0",
+  "description": "Студия 12/20 - Agency Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "animejs": "^4.4.1"
+  }
+}

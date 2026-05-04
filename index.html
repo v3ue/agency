@@ -142,9 +142,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           <div class="col-span-1 max-sm:col-span-1"
             >
-              <article class="group cursor-pointer relative">
-                <div class="rounded-2xl overflow-hidden" style="height: 320px;"><img src="./static/images/4lg5t-1.png" alt="Янта"
-                    class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]">
+               <article class="group cursor-pointer relative">
+                 <div id="hero-video" class="rounded-2xl overflow-hidden" style="height: 320px; transition: border-radius 0.5s ease, transform 0.5s ease;" data-expanded="false"><img src="./static/images/4lg5t-1.png" alt="Янта"
+                       class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]" id="hero-video-img">
                   <div
                      class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 ease-out bg-black/28 rounded-2xl">
                   </div>
@@ -902,22 +902,50 @@
          loopDelay: 500,
        });
 
-       // Team text: words animation
-       const { words } = splitText('#team-text', {
-         words: { wrap: 'clip' }
-       });
+    // Team text: words animation
+        const { words } = splitText('#team-text', {
+          words: { wrap: 'clip' }
+        });
 
-       animate(words, {
-         y: [
-           { to: ['100%', '0%'] },
-           { to: '-100%', delay: 750, ease: 'in(3)' }
-         ],
-         duration: 750,
-         ease: 'out(3)',
-         delay: stagger(100),
-         loop: true,
-       });
-     });
+        animate(words, {
+          y: [
+            { to: ['100%', '0%'] },
+            { to: '-100%', delay: 750, ease: 'in(3)' }
+          ],
+          duration: 750,
+          ease: 'out(3)',
+          delay: stagger(100),
+          loop: true,
+        });
+      });
+
+      // Hero video: expand on scroll
+      const heroVideo = document.getElementById('hero-video');
+      const heroVideoImg = document.getElementById('hero-video-img');
+      if (heroVideo && heroVideoImg) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const rect = heroVideo.getBoundingClientRect();
+              const viewportHeight = window.innerHeight;
+              const isInView = rect.top < viewportHeight && rect.bottom > 0;
+              
+              if (isInView) {
+                const scrollProgress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
+                const scale = 0.9968 + (scrollProgress * (1 - 0.9968));
+                const borderRadius = Math.max(0, 0.204 - (scrollProgress * 0.204));
+                
+                heroVideo.style.transform = `translate3d(0px, 0px, 0px) scale(${scale})`;
+                heroVideo.style.borderRadius = `${borderRadius}rem`;
+              }
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+    </script>
    </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f4a94323af61fad',t:'MTc3NzU5NDM5MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

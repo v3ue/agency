@@ -875,26 +875,23 @@
     });
   </script>
    <script src="./word-anim.js" defer></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Hero text: split into lines, fade + slide up (one-time)
+      // Hero text: fade + slide up (one-time, on load)
       const heroText = document.querySelector('#hero-text');
       if (heroText && typeof anime !== 'undefined') {
-        const lines = heroText.innerHTML.split('<br>');
-        heroText.innerHTML = lines.map(line => `<span class="line-wrap" style="display:block;overflow:hidden;"><span class="line" style="display:block;transform:translateY(100%);opacity:0;">${line}</span></span>`).join('');
-
-        anime({
-          targets: '#hero-text .line',
-          translateY: ['100%', '0%'],
-          opacity: [0, 1],
-          duration: 750,
-          delay: anime.stagger(200),
-          easing: 'easeOutExpo'
-        });
+        heroText.style.opacity = '0';
+        heroText.style.transform = 'translateY(30px)';
+        heroText.style.transition = 'opacity 0.75s ease, transform 0.75s ease';
+        
+        setTimeout(() => {
+          heroText.style.opacity = '1';
+          heroText.style.transform = 'translateY(0)';
+        }, 100);
       }
 
-      // Team text: words animation (one-time)
+      // Team text: words animation (one-time) - leave as is
       const teamText = document.querySelector('#team-text');
       if (teamText && typeof anime !== 'undefined') {
         const words = teamText.textContent.split(' ');
@@ -904,23 +901,6 @@
           targets: '#team-text .word',
           translateY: ['100%', '0%'],
           opacity: [0, 1],
-          duration: 750,
-          delay: anime.stagger(100),
-          easing: 'easeOutExpo'
-        });
-      }
-    });
-      }
-
-      // Team text: words animation (one-time)
-      const teamText = document.querySelector('#team-text');
-      if (teamText && typeof anime !== 'undefined') {
-        const words = teamText.textContent.split(' ');
-        teamText.innerHTML = words.map(word => `<span class="word-wrap" style="display:inline-block;overflow:hidden;"><span class="word" style="display:inline-block;transform:translateY(100%);">${word} </span></span>`).join('');
-
-        anime({
-          targets: '#team-text .word',
-          translateY: ['100%', '0%'],
           duration: 750,
           delay: anime.stagger(100),
           easing: 'easeOutExpo'

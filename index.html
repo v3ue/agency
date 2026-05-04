@@ -513,9 +513,9 @@
               Кто стоит за студией</h2>
           </div>
           <div style="max-width: 800px; margin: 0 auto;">
-            <p
-               class="text-[#151515ba] text-xl text-center tracking-tight leading-[1.3] text-body">
-              Студия 12/20 — это небольшой творческий состав с вниманием к идее, визуалу и смыслу. Каждый ролик собирается как законченная история: от первого кадра до финального звука.</p>
+             <p id="team-text"
+                class="text-[#151515ba] text-xl text-center tracking-tight leading-[1.3] text-body">
+               Студия 12/20 — это небольшой творческий состав с вниманием к идее, визуалу и смыслу. Каждый ролик собирается как законченная история: от первого кадра до финального звука.</p>
             <div class="text-center mt-10">
               <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
             </div>
@@ -874,6 +874,26 @@
       });
     });
   </script>
-  <script src="./word-anim.js" defer></script>
+   <script src="./word-anim.js" defer></script>
+   <script type="module">
+     import { animate, splitText, stagger } from 'https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.esm.js';
+
+     document.addEventListener('DOMContentLoaded', () => {
+       const { words } = splitText('#team-text', {
+         words: { wrap: 'clip' }
+       });
+
+       animate(words, {
+         y: [
+           { to: ['100%', '0%'] },
+           { to: '-100%', delay: 750, ease: 'in(3)' }
+         ],
+         duration: 750,
+         ease: 'out(3)',
+         delay: stagger(100),
+         loop: true,
+       });
+     });
+   </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f4a94323af61fad',t:'MTc3NzU5NDM5MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -2306,14 +2306,19 @@ button, input, select, textarea {
 }
 
 /* Hero text animation */
-.animate-hero {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.animate-hero.show {
-  opacity: 1;
-  transform: translateY(0);
+.animate-hero {
+  animation: heroFadeIn 0.75s ease forwards;
+  animation-delay: 0.1s;
 }
 .header-right-pill.has-bg {
   background: rgba(232, 232, 232, 0.92);

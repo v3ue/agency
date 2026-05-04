@@ -675,38 +675,38 @@
         });
       });
 
-      /* ==================== СКРОЛЛ ХЕДЕРА ==================== */
-      const leftPill = document.getElementById('desktop-nav-pill');
-      const rightPill = document.getElementById('header-right-pill');
-      let lastScrollY = 0;
-      let scrollThreshold = window.innerHeight * 0.6;
-      let ticking = false;
+       /* ==================== СКРОЛЛ ХЕДЕРА ==================== */
+       const leftPill = document.getElementById('desktop-nav-pill');
+       const rightPill = document.getElementById('header-right-pill');
+       let lastScrollY = 0;
+       let scrollThreshold = window.innerHeight * 0.8;
+       let ticking = false;
 
-      const updateHeader = () => {
-        const scrollY = window.scrollY;
+       const updateHeader = () => {
+         const scrollY = window.scrollY;
 
-        // Левая и правая плашки: фон при скролле ниже порога
-        if (leftPill) {
-          leftPill.classList.toggle('has-bg', scrollY > scrollThreshold);
-        }
-        if (rightPill) {
-          rightPill.classList.toggle('has-bg', scrollY > scrollThreshold);
-        }
+         // Левая и правая плашки: фон при скролле ниже порога
+         if (leftPill) {
+           leftPill.classList.toggle('has-bg', scrollY > scrollThreshold);
+         }
+         if (rightPill) {
+           rightPill.classList.toggle('has-bg', scrollY > scrollThreshold);
+         }
 
-        // Правая плашка: прячется при скролле вниз, появляется при скролле вверх
-        if (rightPill && scrollY > scrollThreshold) {
-          if (scrollY > lastScrollY) {
-            rightPill.classList.add('scroll-hidden');
-          } else {
-            rightPill.classList.remove('scroll-hidden');
-          }
-        } else if (rightPill) {
-          rightPill.classList.remove('scroll-hidden');
-        }
+         // Правая плашка: прячется при скролле вниз, появляется при скролле вверх (только после первого экрана)
+         if (rightPill && scrollY > scrollThreshold) {
+           if (scrollY > lastScrollY) {
+             rightPill.classList.add('scroll-hidden');
+           } else {
+             rightPill.classList.remove('scroll-hidden');
+           }
+         } else if (rightPill) {
+           rightPill.classList.remove('scroll-hidden');
+         }
 
-        lastScrollY = scrollY;
-        ticking = false;
-      };
+         lastScrollY = scrollY;
+         ticking = false;
+       };
 
       window.addEventListener('scroll', () => {
         if (!ticking) {

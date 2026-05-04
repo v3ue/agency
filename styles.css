@@ -2320,6 +2320,11 @@ button, input, select, textarea {
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.header-right-pill {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 */
 

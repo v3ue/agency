@@ -92,7 +92,9 @@
          </div>
          <div>
            <div class="mt-10 rounded-2xl overflow-hidden relative animate-fade-in" style="--animation-delay: 0.2s">
-             <img class="w-full h-[40vw] min-h-[520px] max-h-[745px] object-cover" alt="Главный баннер" src="./static/images/4lg5t-2.png">
+             <div id="hero-banner" style="transition: border-radius 0.5s ease, transform 0.5s ease;">
+               <img id="hero-banner-img" class="w-full h-[40vw] min-h-[520px] max-h-[745px] object-cover" alt="Главный баннер" src="./static/images/4lg5t-2.png" style="transition: border-radius 0.5s ease, transform 0.5s ease;">
+             </div>
              <div class="absolute inset-0 bg-black/32 rounded-2xl"></div>
            </div>
          </div>
@@ -918,6 +920,33 @@
           loop: true,
         });
       });
+
+      // Hero banner: expand on scroll
+      const heroBanner = document.getElementById('hero-banner');
+      const heroBannerImg = document.getElementById('hero-banner-img');
+      if (heroBanner && heroBannerImg) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const rect = heroBanner.getBoundingClientRect();
+              const viewportHeight = window.innerHeight;
+              const isInView = rect.top < viewportHeight && rect.bottom > 0;
+              
+              if (isInView) {
+                const scrollProgress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
+                const scale = 0.9968 + (scrollProgress * (1 - 0.9968));
+                const borderRadius = Math.max(0, 0.204 - (scrollProgress * 0.204));
+                
+                heroBanner.style.transform = `translate3d(0px, 0px, 0px) scale(${scale})`;
+                heroBanner.style.borderRadius = `${borderRadius}rem`;
+              }
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
 
       // Hero video: expand on scroll
       const heroVideo = document.getElementById('hero-video');

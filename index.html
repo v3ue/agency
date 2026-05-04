@@ -86,9 +86,9 @@
        <!-- Остальной контент без изменений (только удалены data-uid) -->
         <section style="padding: 220px 20px 40px 20px; max-width: 1600px; margin: 0 auto;">
          <div>
-           <h1 class="h1 text-display tracking-display text-[#151515] text-center max-w-[1100px] mx-auto animate-blur-reveal" style="--animation-delay: 0.1s">
-             Создаем контент, которому доверяют бренды и&nbsp;их аудитория
-           </h1>
+            <h1 id="hero-text" class="h1 text-display tracking-display text-[#151515] text-center max-w-[1100px] mx-auto">
+              Создаем контент, которому доверяют бренды и&nbsp;их аудитория
+            </h1>
          </div>
          <div>
            <div class="mt-10 rounded-2xl overflow-hidden relative animate-fade-in" style="--animation-delay: 0.2s">
@@ -879,6 +879,24 @@
      import { animate, splitText, stagger } from 'https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.esm.js';
 
      document.addEventListener('DOMContentLoaded', () => {
+       // Hero text: lines animation
+       const { lines } = splitText('#hero-text', {
+         lines: { wrap: 'clip' }
+       });
+
+       animate(lines, {
+         y: [
+           { to: ['100%', '0%'] },
+           { to: '-100%', delay: 750, ease: 'in(3)' }
+         ],
+         duration: 750,
+         ease: 'out(3)',
+         delay: stagger(200),
+         loop: true,
+         loopDelay: 500,
+       });
+
+       // Team text: words animation
        const { words } = splitText('#team-text', {
          words: { wrap: 'clip' }
        });

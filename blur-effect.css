@@ -1,0 +1,45 @@
+/* Gradual blur effect at the bottom of the page */
+.gradual-blur-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px; /* Adjust as needed */
+  pointer-events: none;
+  z-index: 50;
+}
+
+.gradual-blur-layer:nth-child(1) {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 40%, transparent 60%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 40%, transparent 60%);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+.gradual-blur-layer:nth-child(2) {
+  mask-image: linear-gradient(to bottom, transparent 20%, black 40%, black 60%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 20%, black 40%, black 60%, transparent 80%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.gradual-blur-layer:nth-child(3) {
+  mask-image: linear-gradient(to bottom, transparent 40%, black 60%, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 40%, black 60%, black 80%, transparent 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.gradual-blur-layer:nth-child(4) {
+  mask-image: linear-gradient(to bottom, transparent 60%, black 80%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 60%, black 80%, black 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gradual-blur-layer:nth-child(5) {
+  mask-image: linear-gradient(to bottom, transparent 80%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 80%, black 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}

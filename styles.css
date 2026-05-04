@@ -2239,7 +2239,8 @@ button, input, select, textarea {
 
 .nav-menu-phone,
 .nav-menu-email {
-  display: block;
+  display: flex;
+  align-items: center;
   [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif];
   font-size: 1.5rem;
   padding: 0.2rem 1rem;

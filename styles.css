@@ -2314,39 +2314,6 @@ button, input, select, textarea {
   -webkit-backdrop-filter: none;
 }
 
-/* ==================== DESKTOP NAV - HIDE ON MOBILE ==================== */
-@media (max-width: 1023px) {
-  .desktop-nav-wrapper,
-  #desktop-nav-pill,
-  #header-right-pill {
-    display: none !important;
-  }
-}
-
-/* ==================== DESKTOP NAV - SHOW ON DESKTOP ==================== */
-@media (min-width: 1024px) {
-  .desktop-nav-wrapper {
-    display: flex !important;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 40px);
-    max-width: 1560px;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 9999;
-  }
-}
-
-/* ==================== MOBILE NAV - HIDE ON DESKTOP ==================== */
-@media (min-width: 1024px) {
-  .mobile-header-bar,
-  #nav-menu-panel {
-    display: none !important;
-  }
-}
-
 /* ==================== MOBILE NAV - SHOW ON MOBILE ==================== */
 
 /* Hero text animation */

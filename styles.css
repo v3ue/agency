@@ -2301,6 +2301,8 @@ button, input, select, textarea {
   -webkit-backdrop-filter: none;
   border-radius: 8px;
   opacity: 1;
+  padding-left: 2rem;
+  padding-right: 2rem;
   transform: translateY(0);
   transition: background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, opacity 0.35s ease, transform 0.35s ease;
   pointer-events: auto;

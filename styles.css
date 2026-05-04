@@ -2177,12 +2177,12 @@ button, input, select, textarea {
 }
 
 .mobile-menu-btn {
-  display: flex;
-  background: rgba(232, 232, 232, 0.92);
+  display: flex !important;
+  background: rgba(232, 232, 232, 0.92) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transition: background 0.3s ease;
-  border-radius: 8px;
+  border-radius: 8px !important;
   width: 130px;
   height: 56px;
   justify-content: center;
@@ -2190,6 +2190,19 @@ button, input, select, textarea {
 }
 .mobile-menu-btn:active {
   background: rgba(220, 220, 220, 0.95);
+}
+.mobile-menu-btn-text {
+  color: #6b6b6b;
+  font-family: 'Helvetica Neue-Medium', Helvetica, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.menu-dot {
+  width: 8px;
+  height: 8px;
+  background: #151515;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 /* ====================== MOBILE MENU PANEL ====================== */

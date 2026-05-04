@@ -50,7 +50,6 @@ button, input, select, textarea {
       --color-white:       #ffffff;
 
       /* ============== ТИПОГРАФИКА ============== */
-      --font-display: 'Gramatika Trial-Bold', Helvetica, sans-serif;
     --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-body:    'Helvetica Neue', Helvetica, Arial, sans-serif;
       --font-mono:    ui-monospace, monospace;

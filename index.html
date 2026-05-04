@@ -815,64 +815,69 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
   <script>
-    // Храним размеры кнопки после первого появления
-    const btnSizes = new Map();
+     // Храним размеры кнопки после первого появления
+     const btnSizes = new Map();
 
-    document.querySelectorAll('article.group').forEach(card => {
-      const videoBtn = card.querySelector('.video-btn');
-      if (!videoBtn) return;
+     document.querySelectorAll('article.group').forEach(card => {
+       const videoBtn = card.querySelector('.video-btn');
+       if (!videoBtn) return;
 
-      card.addEventListener('mouseenter', () => {
-        // Скрываем все кнопки мгновенно
-        document.querySelectorAll('.video-btn').forEach(btn => {
-          btn.style.display = 'none';
-          btn.style.opacity = '0';
-        });
+       // Только область кнопки триггерит появление
+       videoBtn.addEventListener('mouseenter', () => {
+         // Скрываем все кнопки мгновенно
+         document.querySelectorAll('.video-btn').forEach(btn => {
+           btn.style.display = 'none';
+           btn.style.opacity = '0';
+         });
 
-        card.style.cursor = 'none';
-        videoBtn.style.display = 'flex';
-        
-        // После отображения получаем размеры кнопки
-        requestAnimationFrame(() => {
-          if (!btnSizes.has(videoBtn)) {
-            btnSizes.set(videoBtn, {
-              width: videoBtn.offsetWidth,
-              height: videoBtn.offsetHeight
-            });
-          }
-          videoBtn.style.opacity = '1';
-        });
-      });
+         videoBtn.style.display = 'flex';
+         
+         // После отображения получаем размеры кнопки
+         requestAnimationFrame(() => {
+           if (!btnSizes.has(videoBtn)) {
+             btnSizes.set(videoBtn, {
+               width: videoBtn.offsetWidth,
+               height: videoBtn.offsetHeight
+             });
+           }
+           videoBtn.style.opacity = '1';
+         });
+       });
 
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
-        
-        // Получаем размеры кнопки
-        const size = btnSizes.get(videoBtn) || { width: 100, height: 30 };
-        const btnW = size.width;
-        const btnH = size.height;
-        
-        // Ограничиваем позицию, чтобы кнопка не выходила за пределы карточки
-        const minX = btnW / 2;
-        const maxX = rect.width - btnW / 2;
-        const minY = btnH / 2;
-        const maxY = rect.height - btnH / 2;
-        
-        x = Math.max(minX, Math.min(maxX, x));
-        y = Math.max(minY, Math.min(maxY, y));
-        
-        videoBtn.style.left = x + 'px';
-        videoBtn.style.top = y + 'px';
-        videoBtn.style.transform = 'translate(-50%, -50%)';
-      });
+       // Кнопка следует за курсором только внутри карточки
+       card.addEventListener('mousemove', (e) => {
+         const rect = card.getBoundingClientRect();
+         let x = e.clientX - rect.left;
+         let y = e.clientY - rect.top;
+         
+         // Получаем размеры кнопки
+         const size = btnSizes.get(videoBtn) || { width: 100, height: 30 };
+         const btnW = size.width;
+         const btnH = size.height;
+         
+         // Ограничиваем позицию, чтобы кнопка не выходила за пределы карточки
+         const minX = btnW / 2;
+         const maxX = rect.width - btnW / 2;
+         const minY = btnH / 2;
+         const maxY = rect.height - btnH / 2;
+         
+         x = Math.max(minX, Math.min(maxX, x));
+         y = Math.max(minY, Math.min(maxY, y));
+         
+         videoBtn.style.left = x + 'px';
+         videoBtn.style.top = y + 'px';
+         videoBtn.style.transform = 'translate(-50%, -50%)';
+       });
 
-      card.addEventListener('mouseleave', () => {
-        card.style.cursor = 'pointer';
-        videoBtn.style.display = 'none';
-      });
-    });
+       videoBtn.addEventListener('mouseleave', () => {
+         videoBtn.style.display = 'none';
+       });
+
+       // Скрываем кнопку, если курсор ушёл с карточки
+       card.addEventListener('mouseleave', () => {
+         videoBtn.style.display = 'none';
+       });
+     });
   </script>
    <script src="./word-anim.js" defer></script>
    <script type="module">

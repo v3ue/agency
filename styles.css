@@ -1557,14 +1557,6 @@ button, input, select, textarea {
       animation-timing-function: cubic-bezier(0, 0, 0.2, 1)
     }
 
-    .\[font-family\:\'Gramatika_Trial-Bold\'\2c Helvetica\] {
-      font-family: 'Gramatika Trial-Bold', Helvetica
-    }
-
-    .\[font-family\:\'Helvetica\ Neue\'\,\ Helvetica\,Arial\,sans-serif\] {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
-    }
-
     .hover\:scale-\[1\.03\]:hover {
       --tw-scale-x: 1.03;
       --tw-scale-y: 1.03;

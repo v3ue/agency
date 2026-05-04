@@ -87,17 +87,17 @@
       background: #151515;
       transition: background-color 0.8s ease;
     }
-    .video-placeholder { 
-      width: 90%; 
-      height: 60%; 
-      background: #333; 
-      border-radius: 12px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      color: white; 
-      font-size: 2rem; 
-      transition: all 0.5s ease; 
+    .video-placeholder {
+      width: 90%;
+      height: 60%;
+      background: transparent;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      transition: all 0.5s ease;
       overflow: hidden;
     }
 
@@ -279,9 +279,9 @@
 <body>
   <div id="app">
     <main style="position: relative; background: #f7f7f7; overflow-x: hidden; width: 100%;" aria-label="Студия 12/20">
-       <header class="relative z-50">
-         <!-- DESKTOP NAV -->
-         <div class="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
+     <header class="relative z-50">
+        <!-- DESKTOP NAV -->
+        <div class="desktop-nav-wrapper desktop-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
            <div class="nav-left-wrapper relative">
              <div id="desktop-nav-pill" class="header-left-pill h-[65px] flex items-center rounded-lg gap-63" style="padding-left: 20px; padding-right: 20px;">
                <div class="nav-menu-trigger flex items-center gap-4">
@@ -318,7 +318,7 @@
          </div>
 
         <!-- MOBILE NAV -->
-        <div class="md:hidden fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[400px]">
+        <div class="mobile-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[400px]">
           <div class="mobile-header-bar h-[65px] flex items-center justify-between">
             <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
             <button id="nav-menu-open-mobile" aria-expanded="false" aria-haspopup="true" class="mobile-menu-btn">
@@ -425,136 +425,120 @@
     </main>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      /* ==================== ДЕСКТОП МЕНЮ ==================== */
-      const desktopPill = document.getElementById('desktop-nav-pill');
-      const menuPanelDesktop = document.getElementById('nav-menu-panel-desktop');
-      const menuOpenDesktop = document.getElementById('nav-menu-open-desktop');
-      const desktopDot = document.querySelector('.nav-menu-open-dot');
-      let desktopCloseTimer = null;
+   <script>
+    /* ==================== ДЕСКТОП МЕНЮ ==================== */
+    const desktopPill = document.getElementById('desktop-nav-pill');
+    const menuPanelDesktop = document.getElementById('nav-menu-panel-desktop');
+    const menuOpenDesktop = document.getElementById('nav-menu-open-desktop');
+    const desktopDot = document.querySelector('.nav-menu-open-dot');
+    let desktopCloseTimer = null;
 
-      const setDesktopMenuOpen = (open) => {
-        if (!menuPanelDesktop) return;
-        menuPanelDesktop.classList.toggle('open', open);
-        menuPanelDesktop.setAttribute('aria-hidden', String(!open));
-        if (menuOpenDesktop) menuOpenDesktop.setAttribute('aria-expanded', String(open));
-        if (desktopDot) desktopDot.style.opacity = open ? '0' : '1';
-        if (open) clearTimeout(desktopCloseTimer);
-      };
+    const setDesktopMenuOpen = (open) => {
+      if (!menuPanelDesktop) return;
+      menuPanelDesktop.classList.toggle('open', open);
+      menuPanelDesktop.setAttribute('aria-hidden', String(!open));
+      if (menuOpenDesktop) menuOpenDesktop.setAttribute('aria-expanded', String(open));
+      if (desktopDot) desktopDot.style.opacity = open ? '0' : '1';
+      if (open) clearTimeout(desktopCloseTimer);
+    };
 
-      if (desktopPill) {
-        desktopPill.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
-        desktopPill.addEventListener('mouseleave', () => {
-          desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
-        });
-      }
-      if (menuPanelDesktop) {
-        menuPanelDesktop.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
-        menuPanelDesktop.addEventListener('mouseleave', () => {
-          desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
-        });
-      }
-
-      /* ==================== МОБИЛЬНОЕ МЕНЮ ==================== */
-      const menuPanelMobile = document.getElementById('nav-menu-panel');
-      const menuOpenMobile = document.getElementById('nav-menu-open-mobile');
-      const menuDotMobile = document.querySelector('.menu-dot');
-      const menuBtnText = document.querySelector('.mobile-menu-btn-text');
-      let mobileOpen = false;
-
-      const toggleMobileMenu = (open) => {
-        if (!menuPanelMobile) return;
-        mobileOpen = open;
-        menuPanelMobile.classList.toggle('open', open);
-        menuPanelMobile.setAttribute('aria-hidden', String(!open));
-        if (menuOpenMobile) menuOpenMobile.setAttribute('aria-expanded', String(open));
-        if (menuDotMobile) menuDotMobile.style.opacity = open ? '0' : '1';
-        if (menuBtnText) menuBtnText.textContent = open ? 'Закрыть' : 'Меню';
-        document.body.style.overflow = open ? 'hidden' : '';
-      };
-
-      if (menuOpenMobile) {
-        menuOpenMobile.addEventListener('click', () => toggleMobileMenu(!mobileOpen));
-      }
-      if (menuPanelMobile) {
-        menuPanelMobile.addEventListener('click', (e) => {
-          if (e.target === menuPanelMobile) toggleMobileMenu(false);
-        });
-      }
-
-      // Закрытие при клике вне панели
-      document.addEventListener('click', (e) => {
-        if (mobileOpen && !menuPanelMobile.contains(e.target) && !menuOpenMobile.contains(e.target)) {
-          toggleMobileMenu(false);
-        }
+    if (desktopPill) {
+      desktopPill.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
+      desktopPill.addEventListener('mouseleave', () => {
+        desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
       });
-
-      // Закрытие меню при клике по ссылкам
-      const menuLinks = Array.from(document.querySelectorAll('.nav-menu-link'));
-      menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          toggleMobileMenu(false);
-          setDesktopMenuOpen(false);
-        });
+    }
+    if (menuPanelDesktop) {
+      menuPanelDesktop.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
+      menuPanelDesktop.addEventListener('mouseleave', () => {
+        desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
       });
+    }
 
-       /* ==================== СКРОЛЛ ХЕДЕРА ==================== */
-       const leftPill = document.getElementById('desktop-nav-pill');
-       const rightPill = document.getElementById('header-right-pill');
-       let lastScrollY = 0;
-       let scrollThreshold = window.innerHeight * 0.8;
-       let ticking = false;
+    /* ==================== МОБИЛЬНОЕ МЕНЮ ==================== */
+    const menuPanelMobile = document.getElementById('nav-menu-panel');
+    const menuOpenMobile = document.getElementById('nav-menu-open-mobile');
+    const menuDotMobile = document.querySelector('.menu-dot');
+    const menuBtnText = document.querySelector('.mobile-menu-btn-text');
+    let mobileOpen = false;
 
-       const updateHeader = () => {
-         const scrollY = window.scrollY;
+    const toggleMobileMenu = (open) => {
+      if (!menuPanelMobile) return;
+      mobileOpen = open;
+      menuPanelMobile.classList.toggle('open', open);
+      menuPanelMobile.setAttribute('aria-hidden', String(!open));
+      if (menuOpenMobile) menuOpenMobile.setAttribute('aria-expanded', String(open));
+      if (menuDotMobile) menuDotMobile.style.opacity = open ? '0' : '1';
+      if (menuBtnText) menuBtnText.textContent = open ? 'Закрыть' : 'Меню';
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
 
-         // Левая и правая плашки: фон при скролле ниже порога
-         if (leftPill) {
-           leftPill.classList.toggle('has-bg', scrollY > scrollThreshold);
-         }
-         if (rightPill) {
-           rightPill.classList.toggle('has-bg', scrollY > scrollThreshold);
-         }
+    if (menuOpenMobile) {
+      menuOpenMobile.addEventListener('click', () => toggleMobileMenu(!mobileOpen));
+    }
+    if (menuPanelMobile) {
+      menuPanelMobile.addEventListener('click', (e) => {
+        if (e.target === menuPanelMobile) toggleMobileMenu(false);
+      });
+    }
 
-         // Правая плашка: прячется при скролле вниз, появляется при скролле вверх (только после первого экрана)
-         if (rightPill && scrollY > scrollThreshold) {
-           if (scrollY > lastScrollY) {
-             rightPill.classList.add('scroll-hidden');
-           } else {
-             rightPill.classList.remove('scroll-hidden');
-           }
-         } else if (rightPill) {
-           rightPill.classList.remove('scroll-hidden');
-         }
-
-         lastScrollY = scrollY;
-         ticking = false;
-       };
-
-        window.addEventListener('scroll', () => {
-          if (!ticking) {
-            window.requestAnimationFrame(updateHeader);
-            ticking = true;
-          }
-        }, { passive: true });
-
-        window.addEventListener('resize', () => {
-          scrollThreshold = window.innerHeight * 0.8;
-        });
-
-        updateHeader();
+    document.addEventListener('click', (e) => {
+      if (mobileOpen && !menuPanelMobile.contains(e.target) && !menuOpenMobile.contains(e.target)) {
+        toggleMobileMenu(false);
       }
     });
 
-    // ===== ПРОЕКТЫ (только для десктопа) =====
-    var isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent);
-    
+    const menuLinks = Array.from(document.querySelectorAll('.nav-menu-link'));
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        toggleMobileMenu(false);
+        setDesktopMenuOpen(false);
+      });
+    });
+
+    /* ==================== СКРОЛЛ ХЕДЕРА ==================== */
+    const leftPill = document.getElementById('desktop-nav-pill');
+    const rightPill = document.getElementById('header-right-pill');
+    let lastScrollY = 0;
+    let scrollThreshold = window.innerHeight * 0.6;
+    let ticking = false;
+
+    const updateHeader = () => {
+      const scrollY = window.scrollY;
+      if (leftPill) {
+        leftPill.classList.toggle('has-bg', scrollY > scrollThreshold);
+      }
+      if (rightPill) {
+        rightPill.classList.toggle('has-bg', scrollY > scrollThreshold);
+      }
+      if (rightPill && scrollY > scrollThreshold) {
+        if (scrollY > lastScrollY) {
+          rightPill.classList.add('scroll-hidden');
+        } else {
+          rightPill.classList.remove('scroll-hidden');
+        }
+      } else {
+        if (rightPill) rightPill.classList.remove('scroll-hidden');
+      }
+      lastScrollY = scrollY;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    });
+    updateHeader();
+
+    // --- Данные проектов ---
+    var isMobile = window.innerWidth < 768;
     var projects = [
-      { id: 'proj-yanta', title: 'Янта', video: './static/images/4lg5t-1.png', color: '#8B4513' },
-      { id: 'proj-gussi', title: 'Gussi Rem', video: './static/images/frame-12@2x.png', color: '#2F4F4F' },
-      { id: 'proj-isoform', title: 'Изофом', video: './static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png', color: '#4682B4' },
-      { id: 'proj-yanta2', title: 'Янта #2', video: './static/images/6l06a-1.png', color: '#556B2F' }
+      { id: 'proj-yanta', title: 'Янта', video: './static/images/4lg5t-1.png', color: '#F5DEB3' },
+      { id: 'proj-gussi', title: 'Gussi Rem', video: './static/images/frame-12@2x.png', color: '#E0E6E6' },
+      { id: 'proj-isoform', title: 'Изофом', video: './static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png', color: '#B0C4DE' },
+      { id: 'proj-yanta2', title: 'Янта #2', video: './static/images/6l06a-1.png', color: '#E6E8D6' }
     ];
 
     var currentIndex = 0;
@@ -567,10 +551,10 @@
 
     function updateProject(index) {
       if (isMobile) return;
-      if (index < 0 || index >= projects.length) return;
+      if (index <0 || index >= projects.length) return;
       currentIndex = index;
       var proj = projects[currentIndex];
-      currentVideo.textContent = proj.title;
+      currentVideo.innerHTML = '<img src="' + proj.video + '" alt="' + proj.title + '" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">';
       videoContainer.style.backgroundColor = proj.color || '#151515';
       var targetSection = document.getElementById(proj.id);
       if (targetSection && !isScrolling) {
@@ -597,11 +581,14 @@
       document.getElementById('nextBtn').onclick = function() { updateProject(currentIndex + 1); };
 
       if (projectList) {
+        var wheelTimeout = false;
         projectList.addEventListener('wheel', function(e) {
           e.preventDefault();
-          if (isScrolling) return;
+          if (isScrolling || wheelTimeout) return;
+          wheelTimeout = true;
           if (e.deltaY > 0) updateProject(currentIndex + 1);
           else updateProject(currentIndex - 1);
+          setTimeout(function() { wheelTimeout = false; }, 800);
         }, { passive: false });
       }
       updateProject(0);

@@ -878,50 +878,34 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Hero text: lines animation using anime.js v3
+      // Hero text: split into lines, animate once
       const heroText = document.querySelector('#hero-text');
       if (heroText && typeof anime !== 'undefined') {
         const lines = heroText.innerHTML.split('<br>');
         heroText.innerHTML = lines.map(line => `<span class="line-wrap" style="display:block;overflow:hidden;"><span class="line" style="display:block;transform:translateY(100%);">${line}</span></span>`).join('');
 
-        anime.timeline({loop: true})
-          .add({
-            targets: '#hero-text .line',
-            translateY: ['100%', '0%'],
-            duration: 750,
-            delay: anime.stagger(200),
-            easing: 'easeOutExpo'
-          })
-          .add({
-            targets: '#hero-text .line',
-            translateY: ['0%', '-100%'],
-            duration: 750,
-            delay: anime.stagger(200),
-            easing: 'easeInExpo'
-          }, '+=750');
+        anime({
+          targets: '#hero-text .line',
+          translateY: ['100%', '0%'],
+          duration: 750,
+          delay: anime.stagger(200),
+          easing: 'easeOutExpo'
+        });
       }
 
-      // Team text: words animation
+      // Team text: words animation (one-time)
       const teamText = document.querySelector('#team-text');
       if (teamText && typeof anime !== 'undefined') {
         const words = teamText.textContent.split(' ');
         teamText.innerHTML = words.map(word => `<span class="word-wrap" style="display:inline-block;overflow:hidden;"><span class="word" style="display:inline-block;transform:translateY(100%);">${word} </span></span>`).join('');
 
-        anime.timeline({loop: true})
-          .add({
-            targets: '#team-text .word',
-            translateY: ['100%', '0%'],
-            duration: 750,
-            delay: anime.stagger(100),
-            easing: 'easeOutExpo'
-          })
-          .add({
-            targets: '#team-text .word',
-            translateY: ['0%', '-100%'],
-            duration: 750,
-            delay: anime.stagger(100),
-            easing: 'easeInExpo'
-          }, '+=750');
+        anime({
+          targets: '#team-text .word',
+          translateY: ['100%', '0%'],
+          duration: 750,
+          delay: anime.stagger(100),
+          easing: 'easeOutExpo'
+        });
       }
     });
   </script>

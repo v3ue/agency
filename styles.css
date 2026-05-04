@@ -2316,6 +2316,10 @@ button, input, select, textarea {
     transform: translateY(0);
   }
 }
+/* Hero text line height */
+.hero-line-height {
+  line-height: 98%;
+}
 .animate-hero {
   animation: heroFadeIn 0.75s ease forwards;
   animation-delay: 0.1s;

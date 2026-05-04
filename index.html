@@ -875,43 +875,55 @@
     });
   </script>
    <script src="./word-anim.js" defer></script>
-   <script type="module">
-     import { animate, splitText, stagger } from 'https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.esm.js';
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hero text: lines animation using anime.js v3
+      const heroText = document.querySelector('#hero-text');
+      if (heroText && typeof anime !== 'undefined') {
+        const lines = heroText.innerHTML.split('<br>');
+        heroText.innerHTML = lines.map(line => `<span class="line-wrap" style="display:block;overflow:hidden;"><span class="line" style="display:block;transform:translateY(100%);">${line}</span></span>`).join('');
 
-     document.addEventListener('DOMContentLoaded', () => {
-       // Hero text: lines animation
-       const { lines } = splitText('#hero-text', {
-         lines: { wrap: 'clip' }
-       });
+        anime.timeline({loop: true})
+          .add({
+            targets: '#hero-text .line',
+            translateY: ['100%', '0%'],
+            duration: 750,
+            delay: anime.stagger(200),
+            easing: 'easeOutExpo'
+          })
+          .add({
+            targets: '#hero-text .line',
+            translateY: ['0%', '-100%'],
+            duration: 750,
+            delay: anime.stagger(200),
+            easing: 'easeInExpo'
+          }, '+=750');
+      }
 
-       animate(lines, {
-         y: [
-           { to: ['100%', '0%'] },
-           { to: '-100%', delay: 750, ease: 'in(3)' }
-         ],
-         duration: 750,
-         ease: 'out(3)',
-         delay: stagger(200),
-         loop: true,
-         loopDelay: 500,
-       });
+      // Team text: words animation
+      const teamText = document.querySelector('#team-text');
+      if (teamText && typeof anime !== 'undefined') {
+        const words = teamText.textContent.split(' ');
+        teamText.innerHTML = words.map(word => `<span class="word-wrap" style="display:inline-block;overflow:hidden;"><span class="word" style="display:inline-block;transform:translateY(100%);">${word} </span></span>`).join('');
 
-       // Team text: words animation
-       const { words } = splitText('#team-text', {
-         words: { wrap: 'clip' }
-       });
-
-       animate(words, {
-         y: [
-           { to: ['100%', '0%'] },
-           { to: '-100%', delay: 750, ease: 'in(3)' }
-         ],
-         duration: 750,
-         ease: 'out(3)',
-         delay: stagger(100),
-         loop: true,
-       });
-     });
-   </script>
+        anime.timeline({loop: true})
+          .add({
+            targets: '#team-text .word',
+            translateY: ['100%', '0%'],
+            duration: 750,
+            delay: anime.stagger(100),
+            easing: 'easeOutExpo'
+          })
+          .add({
+            targets: '#team-text .word',
+            translateY: ['0%', '-100%'],
+            duration: 750,
+            delay: anime.stagger(100),
+            easing: 'easeInExpo'
+          }, '+=750');
+      }
+    });
+  </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f4a94323af61fad',t:'MTc3NzU5NDM5MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

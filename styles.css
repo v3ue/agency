@@ -2305,35 +2305,7 @@ button, input, select, textarea {
   }
   }
 }
-
-/* ==================== DESKTOP NAV - HIDE ON MOBILE ==================== */
-@media (max-width: 1023px) {
-  .desktop-nav-wrapper,
-  .desktop-nav-wrapper *,
-  #desktop-nav-pill,
-  #header-right-pill {
-    display: none !important;
-  }
-  div[class*="desktop"] {
-    display: none !important;
-  }
-}
-
-/* ==================== DESKTOP NAV - SHOW ON DESKTOP ==================== */
-@media (min-width: 1024px) {
-  .desktop-nav-wrapper {
-    display: flex !important;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 40px);
-    max-width: 1560px;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 9999;
-  }
-}
+ 
 
 /* Мобильная шапка — прозрачная по умолчанию */
 .mobile-header-bar {

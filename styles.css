@@ -2314,6 +2314,18 @@ button, input, select, textarea {
   -webkit-backdrop-filter: none;
 }
 
+/* Десктопное меню: скрыто на мобильных, показано на десктопе */
+@media (max-width: 1023px) {
+  .desktop-nav-wrapper {
+    display: none !important;
+  }
+}
+@media (min-width: 1024px) {
+  .desktop-nav-wrapper {
+    display: flex !important;
+  }
+}
+
 /* ==================== MOBILE NAV - SHOW ON MOBILE ==================== */
 
 /* Hero text animation */

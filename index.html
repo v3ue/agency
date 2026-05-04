@@ -5,13 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Студия 12/20</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
   <div id="app">
-    <main class="relative bg-[#f7f7f7] overflow-x-hidden w-full" aria-label="Студия 12/20">
-      <header class="relative z-50">
+    <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 9999;">
+    <main style="position: relative; background: #F8F8F8; overflow-x: hidden; width: 100%; margin-top: 85px;" aria-label="Студия 12/20">
         <!-- DESKTOP NAV -->
         <div class="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
           <div class="nav-left-wrapper relative">
@@ -36,16 +39,16 @@
             </div>
           </div>
           <div id="header-right-pill" class="header-right-pill h-[65px] flex items-center gap-6 rounded-lg backdrop-blur-md" style="padding-left: 16px; padding-right: 16px;">
-            <a href="mailto:hi@1220.ru" class="flex items-center gap-2 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="mailto:hi@1220.ru" class="flex items-center gap-2 [font-family:'Open Sans', sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-mail.svg" alt="" class="w-7 h-7">
               hi@1220.ru
             </a>
-            <a href="tel:+79169950270" class="flex items-center gap-2 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="tel:+79169950270" class="flex items-center gap-2 [font-family:'Open Sans', sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-phone.svg" alt="" class="w-7 h-7">
               +7 (916) 995 02 70
             </a>
             <div class="w-8"></div>
-            <a href="#cta" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+            <a href="#cta" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
           </div>
         </div>
 
@@ -81,6 +84,7 @@
             <a href="#cta" class="nav-menu-cta-btn">Обсудить проект</a>
           </div>
         </div>
+
       </header>
 
        <!-- Остальной контент без изменений (только удалены data-uid) -->
@@ -90,18 +94,36 @@
               Создаем контент, которому доверяют бренды и&nbsp;их аудитория
             </h1>
          </div>
-         <div>
-           <div class="mt-10 rounded-2xl overflow-hidden relative animate-fade-in" style="--animation-delay: 0.2s">
-             <div id="hero-banner" style="transition: border-radius 0.5s ease, transform 0.5s ease;">
-               <img id="hero-banner-img" class="w-full h-[40vw] min-h-[520px] max-h-[745px] object-cover" alt="Главный баннер" src="./static/images/4lg5t-2.png" style="transition: border-radius 0.5s ease, transform 0.5s ease;">
-             </div>
-             <div class="absolute inset-0 bg-black/32 rounded-2xl"></div>
-           </div>
-         </div>
+          <div>
+            <div class="mt-10 animate-fade-in" style="--animation-delay: 0.2s; background: transparent;">
+              <div id="hero-banner" style="width: 100%; height: 100vh; overflow: hidden; border-radius: 1rem; will-change: transform, border-radius; z-index: 1;">
+                <video id="hero-banner-video" class="w-full h-full object-cover" autoplay muted loop playsinline src="./static/videos/gussi rem.mp4"></video>
+                <!-- Video Controls -->
+                <div id="video-controls" style="position: absolute; bottom: 16px; left: 16px; right: 16px; display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); border-radius: 8px; padding: 12px 16px; z-index: 10; box-sizing: border-box;">
+                  <button id="play-pause-btn" style="background: none; border: none; color: white; cursor: pointer; padding: 4px;">
+                    <svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24">
+                      <path id="play-icon" d="M8 5v14l11-7z"/>
+                      <path id="pause-icon" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" style="display: none;"/>
+                    </svg>
+                  </button>
+                  <div style="flex: 1;">
+                    <input type="range" id="progress-bar" min="0" max="100" value="0" style="width: 100%; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; outline: none; cursor: pointer;">
+                  </div>
+                  <button id="mute-btn" style="background: none; border: none; color: white; cursor: pointer; padding: 4px;">
+                    <svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24">
+                      <path id="volume-on" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                      <path id="volume-off" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" style="display: none;"/>
+                    </svg>
+                  </button>
+                  <input type="range" id="volume-bar" min="0" max="100" value="50" style="width: 80px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; outline: none; cursor: pointer;">
+                </div>
+              </div>
+            </div>
+          </div>
 
-       </section>
+        </section>
 
-       <section class="logos-strip animate-fade-in" style="--animation-delay: 0.35s;">
+        <section class="logos-strip animate-fade-in" style="--animation-delay: 0.35s; margin-top: 2rem;">
          <div class="logos-track">
               <img src="./static/icons/logo-1.svg" alt="Клиент 1" class="logo-img">
               <img src="./static/icons/logo-2.svg" alt="Клиент 2" class="logo-img">
@@ -126,11 +148,11 @@
             style="padding: 230px 20px 200px 20px; max-width: 1600px; margin: 0 auto;">
          <div class=""
            >
-           <p id="about-animated-text"
-             class="text-body text-transparent text-xl tracking-tight leading-[1.4] max-w-[780px]" style="font-size: 32px; line-height: 1.4;">
-             <span data-animate-part class="text-[#151515]">В Студии 12/20 создают видео для брендов, продуктов и рекламных кампаний.</span>
-             <span data-animate-part class="text-[#b4b4b4]">Идея, визуальный стиль и современные AI-инструменты</span>
-             <span data-animate-part class="text-[#151515]">объединяются в цельный ролик.</span>
+            <p id="about-animated-text"
+              class="text-body text-xl tracking-tight leading-[1.4] max-w-[780px]" style="font-size: 32px; line-height: 1.4;">
+              <span data-animate-part>В Студии 12/20 создают видео для брендов, продуктов и рекламных кампаний.</span>
+              <span data-animate-part>Идея, визуальный стиль и современные AI-инструменты</span>
+              <span data-animate-part>объединяются в цельный ролик.</span>
            </p>
          </div>
        </section>
@@ -152,16 +174,16 @@
                   </div>
                   <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
                     <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
-                    <span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                    <span style="font-family: 'Open Sans', sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
                   </div>
                 </div>
                 <div class="mt-4 px-1">
                   <h3
                     class="text-body text-2xl md:text-[28px] tracking-tight">
-                    Янта</h3>
+                    Изофом</h3>
                   <p
-                    class="mt-1 opacity-55 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
-                    Рекламный ролик про кетчуп от производителя «Янта».</p>
+                    class="mt-1 opacity-55 [font-family:'Open Sans', sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                    Серия объясняющих роликов для производителя строительного материала.</p>
                 </div>
               </article>
           </div>
@@ -175,16 +197,16 @@
                    </div>
                    <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
                      <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
-                     <span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                     <span style="font-family: 'Open Sans', sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
                    </div>
                   </div>
                  <div class="mt-4 px-1">
                    <h3
                      class="text-body text-2xl md:text-[28px] tracking-tight">
-                     Gussi Rem</h3>
+                     C-Tea</h3>
                   <p
-                    class="mt-1 opacity-55 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
-                    Ролик для Gussi Rem — компании, занимающейся ремонтом недвижимости.</p>
+                    class="mt-1 opacity-55 [font-family:'Open Sans', sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                    Серия маркетинговых роликов для продуктовой линейки локального заведения.</p>
                 </div>
               </article>
           </div>
@@ -199,16 +221,16 @@
                    </div>
                   <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
                     <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
-                    <span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                    <span style="font-family: 'Open Sans', sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
                   </div>
                 </div>
                 <div class="mt-4 px-1">
                   <h3
                     class="text-body text-2xl md:text-[28px] tracking-tight">
-                    Изофом</h3>
+                    Янта</h3>
                   <p
-                    class="mt-1 opacity-55 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
-                    Основная задача заключалась в том, чтобы донести мысль.</p>
+                    class="mt-1 opacity-55 [font-family:'Open Sans', sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                    Рекламный ролик для FMCG-бренда с точной передачей упаковки.</p>
                 </div>
               </article>
           </div>
@@ -222,16 +244,16 @@
                    </div>
                    <div class="video-btn hidden absolute items-center" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform;">
                      <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
-                     <span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                     <span style="font-family: 'Open Sans', sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
                    </div>
                   </div>
                  <div class="mt-4 px-1">
                    <h3
                      class="text-body text-2xl md:text-[28px] tracking-tight">
-                     Янта</h3>
+                     Особый ремонт</h3>
                    <p
-                     class="mt-1 opacity-55 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
-                     Рекламный ролик про кетчуп от производителя «Янта».</p>
+                     class="mt-1 opacity-55 [font-family:'Open Sans', sans-serif] text-[#151515] text-base md:text-lg tracking-normal leading-[1.4]">
+                     Брендовый ролик в стиле «Миссия невыполнима» для компании, занимающейся ремонтом недвижимости.</p>
                  </div>
                </article>
           </div>
@@ -239,7 +261,7 @@
         <div class=""
           ><a href="#"
             class="group inline-flex items-center gap-2 mt-[150px] border-b-2 border-black pb-1"><span
-              class="[font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] font-bold text-[#151515] text-3xl md:text-[40px] tracking-h2 transition-transform duration-300 group-hover:translate-x-1">→</span><span
+              class="[font-family:'Open Sans', sans-serif] font-bold text-[#151515] text-3xl md:text-[40px] tracking-h2 transition-transform duration-300 group-hover:translate-x-1">→</span><span
               class="text-body text-[#151515] text-xl md:text-[28px] tracking-normal leading-[1.0]">Смотреть
               все проекты</span></a></div>
       </section>
@@ -293,27 +315,27 @@
           <div class="competencies-list-col">
             <button class="competency-item active" data-index="0">
               <span class="competency-item-line"></span>
-              <span class="competency-label">Персонажи по образу</span>
+              <span class="competency-label">Контент под рекламные задачи</span>
             </button>
             <button class="competency-item" data-index="1">
               <span class="competency-item-line"></span>
-              <span class="competency-label">Визуализация продукта</span>
+              <span class="competency-label">Режиссерская постановка сцен</span>
             </button>
             <button class="competency-item" data-index="2">
               <span class="competency-item-line"></span>
-              <span class="competency-label">Рекламные ролики</span>
+              <span class="competency-label">Подбор и настройка звуковых эффектов</span>
             </button>
             <button class="competency-item" data-index="3">
               <span class="competency-item-line"></span>
-              <span class="competency-label">Сценарий и раскадровка</span>
+              <span class="competency-label">Единая визуальная система бренда</span>
             </button>
             <button class="competency-item" data-index="4">
               <span class="competency-item-line"></span>
-              <span class="competency-label">Озвучивание</span>
+              <span class="competency-label">Стабильный визуальный результат</span>
             </button>
             <button class="competency-item" data-index="5">
               <span class="competency-item-line"></span>
-              <span class="competency-label">Контент для продвижения</span>
+              <span class="competency-label">Быстрое тестирование креативов</span>
             </button>
           </div>
         </div>
@@ -431,7 +453,7 @@
             <article
               class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
               <div
-                class="text-[#151515] text-lg [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] tracking-normal mb-4">
+                class="text-[#151515] text-lg [font-family:'Open Sans', sans-serif] tracking-normal mb-4">
                 Astra</div>
               <p
                 class="text-body text-[#151515] text-xl md:text-[28px] tracking-tight leading-[1.2] flex-1 mb-8">
@@ -447,7 +469,7 @@
                     class="text-body text-[#151515] text-base tracking-normal">
                     Павел Стрижевский</div>
                   <div
-                    class="opacity-50 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#151515] text-sm tracking-normal">
+                    class="opacity-50 [font-family:'Open Sans', sans-serif] text-[#151515] text-sm tracking-normal">
                     Директ развития продукта</div>
                 </div>
               </div>
@@ -458,7 +480,7 @@
             <article
               class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
               <div
-                class="text-[#151515] text-lg [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] tracking-normal mb-4">
+                class="text-[#151515] text-lg [font-family:'Open Sans', sans-serif] tracking-normal mb-4">
                 Изофом</div>
               <p
                 class="text-body text-[#151515] text-xl md:text-[28px] tracking-tight leading-[1.2] flex-1 mb-8">
@@ -474,7 +496,7 @@
                     class="text-body text-[#151515] text-base tracking-normal">
                     Павел Стрижевский</div>
                   <div
-                    class="opacity-50 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#151515] text-sm tracking-normal">
+                    class="opacity-50 [font-family:'Open Sans', sans-serif] text-[#151515] text-sm tracking-normal">
                     Директ развития продукта</div>
                 </div>
               </div>
@@ -485,7 +507,7 @@
             <article
               class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
               <div
-                class="text-[#151515] text-lg [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] tracking-normal mb-4">
+                class="text-[#151515] text-lg [font-family:'Open Sans', sans-serif] tracking-normal mb-4">
                 Simple</div>
               <p
                 class="text-body text-[#151515] text-xl md:text-[28px] tracking-tight leading-[1.2] flex-1 mb-8">
@@ -500,7 +522,7 @@
                     class="text-body text-[#151515] text-base tracking-normal">
                     Павел Стрижевский</div>
                   <div
-                    class="opacity-50 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#151515] text-sm tracking-normal">
+                    class="opacity-50 [font-family:'Open Sans', sans-serif] text-[#151515] text-sm tracking-normal">
                     Директ развития продукта</div>
                 </div>
               </div>
@@ -519,7 +541,7 @@
                 class="text-[#151515ba] text-xl text-center tracking-tight leading-[1.3] text-body">
                Студия 12/20 — это небольшой творческий состав с вниманием к идее, визуалу и смыслу. Каждый ролик собирается как законченная история: от первого кадра до финального звука.</p>
             <div class="text-center mt-10">
-              <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+              <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
             </div>
           </div>
         </section>
@@ -534,7 +556,7 @@
           <div class=""
             >
             <p
-              class="text-center text-white/50 text-xl [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] tracking-normal mb-14">
+              class="text-center text-white/50 text-xl [font-family:'Open Sans', sans-serif] tracking-normal mb-14">
               Оставьте контакты — мы свяжемся в течение дня</p>
           </div>
           <form class="flex flex-col gap-4">
@@ -543,18 +565,18 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="relative"><input type="tel"
                     placeholder="Номер телефона"
-                    class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15"
+                    class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Open Sans', sans-serif] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15"
                     style="box-shadow: none;" value=""></div>
                 <div class="relative"><input type="email"
                     placeholder="Электронная почта"
-                    class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15"
+                    class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Open Sans', sans-serif] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15"
                     style="box-shadow: none;" value=""></div>
               </div>
             </div>
             <div class=""
               >
               <textarea placeholder="Опишите ваш запрос..." rows="5"
-                class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15 resize-none"
+                class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 text-white placeholder-white/40 [font-family:'Open Sans', sans-serif] text-lg tracking-normal outline-none transition-all duration-300 focus:border-white/60 focus:bg-white/15 resize-none"
                 style="box-shadow: none;"></textarea></div>
             <div class=""
               >
@@ -568,7 +590,7 @@
       <footer class="bg-[#151515] border-t border-white/10 py-10 px-5 md:px-10">
         <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <span class="text-display text-white text-xl tracking-normal">СТУДИЯ 12/20</span>
-          <span class="text-white/40 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-sm">© 2026 Simple Agency. Все права защищены.</span>
+          <span class="text-white/40 [font-family:'Open Sans', sans-serif] text-sm">© 2026 Simple Agency. Все права защищены.</span>
         </div>
       </footer>
      </main>
@@ -585,10 +607,11 @@
      -->
   </div>
 
-  <!-- <link rel="stylesheet" href="blur-effect.css">  DISABLED: blur effect -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Process timeline animation
+   <!-- <link rel="stylesheet" href="blur-effect.css">  DISABLED: blur effect -->
+   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+   <script>
+     document.addEventListener('DOMContentLoaded', () => {
+       // Process timeline animation
       const steps = Array.from(document.querySelectorAll('.process-step'));
       const stepsContainer = document.querySelector('.process-steps');
       if (steps.length && stepsContainer) {
@@ -681,7 +704,7 @@
        const leftPill = document.getElementById('desktop-nav-pill');
        const rightPill = document.getElementById('header-right-pill');
        let lastScrollY = 0;
-       let scrollThreshold = window.innerHeight * 0.8;
+        let scrollThreshold = window.innerHeight * 0.6;
        let ticking = false;
 
        const updateHeader = () => {
@@ -875,108 +898,129 @@
           videoBtn.style.transform = 'translate(-50%, -50%)';
         });
 
-        // Скрываем кнопку, если курсор ушёл с изображения
-        imgContainer.addEventListener('mouseleave', () => {
-          card.style.cursor = 'pointer';
-          videoBtn.style.display = 'none';
-        });
-      });
-  </script>
-   <script src="./word-anim.js" defer></script>
-   <script type="module">
-     import { animate, splitText, stagger } from 'https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.esm.js';
-
+         // Скрываем кнопку, если курсор ушёл с изображения
+         imgContainer.addEventListener('mouseleave', () => {
+           card.style.cursor = 'pointer';
+           videoBtn.style.display = 'none';
+         });
+       });
+    </script>
+  <script src="./word-anim.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
      document.addEventListener('DOMContentLoaded', () => {
-       // Hero text: lines animation
-       const { lines } = splitText('#hero-text', {
-         lines: { wrap: 'clip' }
-       });
+       // Hero text: lines animation using anime.js 3.2.1
+       if (window.anime) {
+         const heroText = document.querySelector('#hero-text');
+         if (heroText) {
+           // Simple fade-in animation as fallback
+           anime({
+             targets: '#hero-text',
+             opacity: [0, 1],
+             translateY: [20, 0],
+             duration: 1000,
+             easing: 'easeOutQuad'
+           });
+         }
 
-       animate(lines, {
-         y: [
-           { to: ['100%', '0%'] },
-           { to: '-100%', delay: 750, ease: 'in(3)' }
-         ],
-         duration: 750,
-         ease: 'out(3)',
-         delay: stagger(200),
-         loop: true,
-         loopDelay: 500,
-       });
-
-    // Team text: words animation
-        const { words } = splitText('#team-text', {
-          words: { wrap: 'clip' }
-        });
-
-        animate(words, {
-          y: [
-            { to: ['100%', '0%'] },
-            { to: '-100%', delay: 750, ease: 'in(3)' }
-          ],
-          duration: 750,
-          ease: 'out(3)',
-          delay: stagger(100),
-          loop: true,
-        });
+         // Team text animation
+         const teamText = document.querySelector('#team-text');
+         if (teamText) {
+           anime({
+             targets: '#team-text',
+             opacity: [0, 1],
+             translateY: [20, 0],
+             duration: 1000,
+             easing: 'easeOutQuad',
+             delay: 300
+           });
+         }
+        }
+      });
+    </script>
+   <script>
+      // Add background to desktop nav on scroll
+      const desktopPill = document.getElementById('desktop-nav-pill');
+      const rightPill = document.getElementById('header-right-pill');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          if (desktopPill) desktopPill.classList.add('has-bg');
+          if (rightPill) rightPill.classList.add('has-bg');
+        } else {
+          if (desktopPill) desktopPill.classList.remove('has-bg');
+          if (rightPill) rightPill.classList.remove('has-bg');
+        }
       });
 
-      // Hero banner: expand on scroll
-      const heroBanner = document.getElementById('hero-banner');
-      const heroBannerImg = document.getElementById('hero-banner-img');
-      if (heroBanner && heroBannerImg) {
-        let ticking = false;
+      // Video player controls
+      const video = document.getElementById('hero-banner-video');
+      const videoControls = document.getElementById('video-controls');
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const playIcon = document.getElementById('play-icon');
+      const pauseIcon = document.getElementById('pause-icon');
+      const progressBar = document.getElementById('progress-bar');
+      const muteBtn = document.getElementById('mute-btn');
+      const volumeOn = document.getElementById('volume-on');
+      const volumeOff = document.getElementById('volume-off');
+      const volumeBar = document.getElementById('volume-bar');
+
+      // Hide controls when scrolling past video
+      if (videoControls) {
         window.addEventListener('scroll', () => {
-          if (!ticking) {
-            window.requestAnimationFrame(() => {
-              const rect = heroBanner.getBoundingClientRect();
-              const viewportHeight = window.innerHeight;
-              const isInView = rect.top < viewportHeight && rect.bottom > 0;
-              
-              if (isInView) {
-                const scrollProgress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
-                // Scale from 0.5 (small) to 1.5 (expanded)
-                const scale = 0.5 + (scrollProgress * (1.5 - 0.5));
-                // Border-radius from 1rem to 0
-                const borderRadius = Math.max(0, 1 - (scrollProgress * 1));
-                
-                heroBanner.style.transform = `translate3d(0px, 0px, 0px) scale(${scale})`;
-                heroBanner.style.borderRadius = `${borderRadius}rem`;
-              }
-              ticking = false;
-            });
-            ticking = true;
+          const videoRect = video.getBoundingClientRect();
+          if (videoRect.bottom < 0 || videoRect.top > window.innerHeight) {
+            videoControls.style.opacity = '0';
+            videoControls.style.pointerEvents = 'none';
+          } else {
+            videoControls.style.opacity = '0.8';
+            videoControls.style.pointerEvents = 'auto';
           }
-        }, { passive: true });
+        });
       }
 
-      // Hero video: expand on scroll
-      const heroVideo = document.getElementById('hero-video');
-      const heroVideoImg = document.getElementById('hero-video-img');
-      if (heroVideo && heroVideoImg) {
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-          if (!ticking) {
-            window.requestAnimationFrame(() => {
-              const rect = heroVideo.getBoundingClientRect();
-              const viewportHeight = window.innerHeight;
-              const isInView = rect.top < viewportHeight && rect.bottom > 0;
-              
-              if (isInView) {
-                const scrollProgress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
-                const scale = 0.9968 + (scrollProgress * (1 - 0.9968));
-                const borderRadius = Math.max(0, 0.204 - (scrollProgress * 0.204));
-                
-                heroVideo.style.transform = `translate3d(0px, 0px, 0px) scale(${scale})`;
-                heroVideo.style.borderRadius = `${borderRadius}rem`;
-              }
-              ticking = false;
-            });
-            ticking = true;
+      if (video && playPauseBtn) {
+        // Play/Pause
+        playPauseBtn.addEventListener('click', () => {
+          if (video.paused) {
+            video.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+          } else {
+            video.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
           }
-        }, { passive: true });
+        });
+
+        // Update progress bar
+        video.addEventListener('timeupdate', () => {
+          if (video.duration) {
+            progressBar.value = (video.currentTime / video.duration) * 100;
+          }
+        });
+
+        // Seek
+        progressBar.addEventListener('input', () => {
+          if (video.duration) {
+            video.currentTime = (progressBar.value / 100) * video.duration;
+          }
+        });
+
+        // Mute/Unmute
+        muteBtn.addEventListener('click', () => {
+          video.muted = !video.muted;
+          volumeOn.style.display = video.muted ? 'none' : 'block';
+          volumeOff.style.display = video.muted ? 'block' : 'none';
+        });
+
+        // Volume
+        volumeBar.addEventListener('input', () => {
+          video.volume = volumeBar.value / 100;
+          video.muted = false;
+          volumeOn.style.display = 'block';
+          volumeOff.style.display = 'none';
+        });
       }
     </script>
-   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f4a94323af61fad',t:'MTc3NzU5NDM5MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

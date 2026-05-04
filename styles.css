@@ -1,7 +1,14 @@
-/* Reset */
+ /* Reset */
     * {
       -webkit-font-smoothing: antialiased;
       box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin:0;
+      padding:0;
+      height: 100%;
     }
 
     html,
@@ -38,7 +45,7 @@ button, input, select, textarea {
 
     :root {
       /* ============== ЦВЕТА ============== */
-      --color-bg:          #f7f7f7;
+      --color-bg:          #F8F8F8;
       --color-surface:     #f8f8f8;
       --color-surface-alt: #f8f8f8cc;
       --color-text:        #151515;
@@ -50,8 +57,8 @@ button, input, select, textarea {
       --color-white:       #ffffff;
 
       /* ============== ТИПОГРАФИКА ============== */
-    --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --font-body:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-heading: 'Open Sans', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
       --font-mono:    ui-monospace, monospace;
 
       /* Размеры шрифтов (mobile → desktop) */
@@ -2128,7 +2135,7 @@ button, input, select, textarea {
 
 .mobile-menu-btn {
   display: flex !important;
-  background: rgba(232, 232, 232, 0.92) !important;
+  background: rgba(232, 232, 232, 0.95) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transition: background 0.3s ease;
@@ -2143,7 +2150,7 @@ button, input, select, textarea {
 }
 .mobile-menu-btn-text {
   color: #6b6b6b;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -2157,13 +2164,41 @@ button, input, select, textarea {
 
 /* ====================== MOBILE MENU PANEL ====================== */
 
+/* ====================== MOBILE NAV ====================== */
+
+.mobile-email-link {
+  display: none;
+}
+@media (min-width: 380px) {
+  .mobile-email-link {
+    display: block;
+  }
+}
+
+.mobile-menu-btn {
+  background: rgba(232, 232, 232, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background 0.3s ease;
+  border-radius: 8px;
+  width: 130px;
+  height: 56px;
+  justify-content: center;
+  align-items: center;
+}
+.mobile-menu-btn:active {
+  background: rgba(220, 220, 220, 0.95);
+}
+
+/* ====================== MOBILE MENU PANEL ====================== */
+
 .nav-menu-panel--mobile {
   display: none;
   position: fixed;
-  top: 90px;
-  left: 1.25rem;
-  right: 1.25rem;
-  background: rgba(232, 232, 232, 0.92);
+  top: 85px;
+  left: 20px;
+  right: 20px;
+  background: rgba(232, 232, 232, 0.95);
   border-radius: 8px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -2172,7 +2207,7 @@ button, input, select, textarea {
   transform: translateY(-8px);
   transition: opacity 0.28s ease, transform 0.28s ease;
   z-index: 65;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 105px);
   overflow-y: auto;
 }
 .nav-menu-panel--mobile.open {
@@ -2211,7 +2246,7 @@ button, input, select, textarea {
 .nav-menu-link {
   display: block;
   padding: 1rem 1rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  [font-family:'Open Sans', sans-serif];
   font-size: 1.25rem;
   line-height: 1.2;
   text-align: center;
@@ -2222,27 +2257,10 @@ button, input, select, textarea {
 .nav-menu-contacts {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   margin-top: 0;
   padding-top: 0;
   border-top: none;
-}
-
-.nav-menu-phone,
-.nav-menu-email {
-  display: flex;
-  align-items: center;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1.5rem;
-  padding: 0.2rem 1rem;
-  font-weight: 500;
-  color: #151515;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-.nav-menu-phone:hover,
-.nav-menu-email:hover {
-  opacity: 0.6;
 }
 
 .nav-menu-cta-btn {
@@ -2252,9 +2270,9 @@ button, input, select, textarea {
   padding: 1rem;
   background: #151515;
   color: #f8f8f8;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  [font-family:'Open Sans', sans-serif];
   font-size: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   text-decoration: none;
   transition: background 0.2s ease;
   width: 100%;
@@ -2262,22 +2280,97 @@ button, input, select, textarea {
 .nav-menu-cta-btn:hover {
   background: #2a2a2a;
 }
-
-@media (min-width: 768px) {
-  .nav-menu-panel--mobile {
+    display: flex !important;
+  }
+  #nav-menu-panel {
+    display: none !important;
+  }
+  #nav-menu-panel.open {
+    display: block !important;
+  }
+}
+  #nav-menu-panel {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 20000;
+  }
+  #nav-menu-panel.open {
+    display: block !important;
+  }
+  }
   }
 }
 
-/* ====================== NAV MENU ====================== */
+/* ==================== DESKTOP NAV - HIDE ON MOBILE ==================== */
+@media (max-width: 1023px) {
+  .desktop-nav-wrapper,
+  .desktop-nav-wrapper *,
+  #desktop-nav-pill,
+  #header-right-pill {
+    display: none !important;
+  }
+  div[class*="desktop"] {
+    display: none !important;
+  }
+}
 
-/* Мобильная панель (без фона) */
+/* ==================== DESKTOP NAV - SHOW ON DESKTOP ==================== */
+@media (min-width: 1024px) {
+  .desktop-nav-wrapper {
+    display: flex !important;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1560px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+  }
+}
+
+/* Мобильная шапка — прозрачная по умолчанию */
 .mobile-header-bar {
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
 
+/* ==================== MOBILE NAV - HIDE ON DESKTOP ==================== */
+@media (min-width: 1024px) {
+  .mobile-header-bar,
+  #nav-menu-panel {
+    display: none !important;
+  }
+}
+
+/* ==================== MOBILE NAV - SHOW ON MOBILE ==================== */
+
+/* Hero text animation */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Hero text line height */
+.hero-line-height {
+  line-height: 1.1;
+}
+.animate-hero {
+  animation: heroFadeIn 0.75s ease forwards;
+  animation-delay: 0.1s;
+}
 /* Левая плашка — прозрачная по умолчанию, фон по ховеру/скроллу */
 .header-left-pill {
   background: transparent;
@@ -2302,26 +2395,6 @@ button, input, select, textarea {
   opacity: 1;
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-/* Hero text animation */
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Hero text line height */
-.hero-line-height {
-  line-height: 1.1;
-}
-.animate-hero {
-  animation: heroFadeIn 0.75s ease forwards;
-  animation-delay: 0.1s;
 }
 .header-right-pill.has-bg {
   background: rgba(232, 232, 232, 0.92);
@@ -2385,7 +2458,7 @@ button, input, select, textarea {
   display: block;
   padding: 12px 12px;
   color: #151515;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: -0.04em;
@@ -2424,7 +2497,7 @@ button, input, select, textarea {
   border: none;
   background: transparent;
   color: #151515;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
@@ -2537,12 +2610,38 @@ main {
 
 .animated-word {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.28s ease, transform 0.28s ease;
-  will-change: opacity, transform;
+  color: #b4b4b4;
+  transition: color 0.4s ease;
+  will-change: color;
 }
 .animated-word.visible {
+  color: #151515;
+}
+
+/* Video player custom styles */
+#video-controls {
+  transition: opacity 0.3s;
+  opacity: 0.8;
+}
+#video-controls:hover {
   opacity: 1;
-  transform: translateY(0);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
 }

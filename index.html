@@ -86,7 +86,7 @@
        <!-- Остальной контент без изменений (только удалены data-uid) -->
         <section style="padding: 220px 20px 40px 20px; max-width: 1600px; margin: 0 auto;">
          <div>
-            <h1 id="hero-text" class="h1 text-display tracking-display text-[#151515] text-center max-w-[1100px] mx-auto" style="opacity:0; transform: translateY(30px);">
+            <h1 id="hero-text" class="h1 text-display tracking-display text-[#151515] text-center max-w-[1100px] mx-auto" style="opacity:0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease;">
               Создаем контент, которому доверяют бренды и&nbsp;их аудитория
             </h1>
          </div>
@@ -880,18 +880,14 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Hero text: fade + slide up (one-time, on load)
       const heroText = document.querySelector('#hero-text');
-      if (heroText && typeof anime !== 'undefined') {
-        heroText.style.opacity = '0';
-        heroText.style.transform = 'translateY(30px)';
-        heroText.style.transition = 'opacity 0.75s ease, transform 0.75s ease';
-        
+      if (heroText) {
         setTimeout(() => {
           heroText.style.opacity = '1';
           heroText.style.transform = 'translateY(0)';
         }, 100);
       }
 
-      // Team text: words animation (one-time) - leave as is
+      // Team text: words animation (one-time) - using anime.js
       const teamText = document.querySelector('#team-text');
       if (teamText && typeof anime !== 'undefined') {
         const words = teamText.textContent.split(' ');

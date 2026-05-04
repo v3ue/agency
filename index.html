@@ -935,8 +935,10 @@
               
               if (isInView) {
                 const scrollProgress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
-                const scale = 0.9968 + (scrollProgress * (1 - 0.9968));
-                const borderRadius = Math.max(0, 0.204 - (scrollProgress * 0.204));
+                // Scale from 0.5 (small) to 1.5 (expanded)
+                const scale = 0.5 + (scrollProgress * (1.5 - 0.5));
+                // Border-radius from 1rem to 0
+                const borderRadius = Math.max(0, 1 - (scrollProgress * 1));
                 
                 heroBanner.style.transform = `translate3d(0px, 0px, 0px) scale(${scale})`;
                 heroBanner.style.borderRadius = `${borderRadius}rem`;

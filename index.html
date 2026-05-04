@@ -882,8 +882,7 @@
       const heroText = document.querySelector('#hero-text');
       if (heroText) {
         setTimeout(() => {
-          heroText.style.opacity = '1';
-          heroText.style.transform = 'translateY(0)';
+          heroText.classList.add('show');
         }, 100);
       }
 

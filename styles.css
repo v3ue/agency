@@ -2318,7 +2318,7 @@ button, input, select, textarea {
 }
 /* Hero text line height */
 .hero-line-height {
-  line-height: 98%;
+  line-height: 1.1;
 }
 .animate-hero {
   animation: heroFadeIn 0.75s ease forwards;

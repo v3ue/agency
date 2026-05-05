@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Проекты - Студия 12/20</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
   <style>
     /* ===== LAYOUT ===== */
@@ -19,14 +22,14 @@
     }
     .project-list-wrapper::-webkit-scrollbar { display: none; }
     .project-list-inner { padding: 0; }
-    .project-section { 
-      height: 100vh; 
+    .project-section {
+      min-height: 100vh;
       scroll-snap-align: center;
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
-      padding: 40px 60px; 
-      border-bottom: 1px solid #eee; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 60px;
+      border-bottom: 1px solid #eee;
       box-sizing: border-box;
       padding-top: 10vh;
     }
@@ -34,7 +37,7 @@
       font-size: 3.5rem; 
       margin-bottom: 20px; 
       color: #151515; 
-      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      font-family: 'Fixel Display', sans-serif;
       font-weight: 700;
     }
     .project-section p { 
@@ -43,7 +46,7 @@
       color: #555; 
       max-width: 500px; 
       margin-bottom: 30px; 
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Open Sans', sans-serif;
     }
     .competency-tags { display: flex; gap: 10px; flex-wrap: wrap; }
     .competency-tag { 
@@ -52,7 +55,7 @@
       border-radius: 20px; 
       font-size: 0.9rem; 
       color: #666; 
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Open Sans', sans-serif;
     }
     .project-nav { 
       position: fixed; 
@@ -101,135 +104,6 @@
       overflow: hidden;
     }
 
-    /* ===== ДЕСКТОП МЕНЮ ===== */
-    #desktop-nav {
-      display: flex;
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 40px);
-      max-width: 1560px;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-    }
-    .desktop-left {
-      position: relative;
-    }
-    .pill {
-      display: flex;
-      align-items: center;
-      height: 65px;
-      padding: 0 28px;
-      background: rgba(232, 232, 232, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 8px;
-    }
-    .pill a {
-      color: #191919;
-      text-decoration: none;
-      font-size: 18px;
-      margin-right: 20px;
-    }
-    .pill a:hover { opacity: 0.7; }
-    #desktop-panel {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 200px;
-      background: rgba(232, 232, 232, 0.95);
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 8px;
-    }
-    #desktop-panel a {
-      display: block;
-      color: #151515;
-      text-decoration: none;
-      font-size: 16px;
-      padding: 6px 0;
-    }
-    #desktop-panel a:hover { opacity: 0.7; }
-    .right-pill {
-      display: flex;
-      align-items: center;
-      height: 65px;
-      padding: 0 24px;
-      background: rgba(232, 232, 232, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 8px;
-      gap: 24px;
-    }
-
-    /* ===== МОБИЛЬНОЕ МЕНЮ ===== */
-    #mobile-nav {
-      display: none;
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 40px);
-      max-width: 400px;
-      z-index: 100;
-    }
-    .mobile-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 65px;
-      padding: 0 28px;
-    }
-    #menu-panel {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-    }
-    #menu-panel.open { display: block; }
-    .panel-inner {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(232, 232, 232, 0.95);
-      border-radius: 8px;
-      padding: 24px;
-      min-width: 300px;
-    }
-    .panel-inner a {
-      display: block;
-      color: #151515;
-      text-decoration: none;
-      font-size: 18px;
-      padding: 8px 0;
-    }
-    .panel-inner a:hover { opacity: 0.7; }
-    .contact-info {
-      margin: 16px 0;
-    }
-    .contact-info a {
-      font-size: 16px;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: #151515;
-      color: #f8f8f8 !important;
-      padding: 12px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-
     /* ===== МЕДИА-ЗАПРОС (мобильная версия) ===== */
     @media (max-width: 768px) {
       .project-layout { flex-direction: column; height: auto; overflow: visible; }
@@ -271,8 +145,6 @@
       
       .video-container { display: none; }
       .project-nav { display: none; }
-      #desktop-nav { display: none !important; }
-      #mobile-nav { display: flex !important; }
     }
   </style>
 </head>
@@ -304,16 +176,16 @@
              </div>
            </div>
           <div id="header-right-pill" class="header-right-pill h-[65px] flex items-center gap-6 rounded-lg backdrop-blur-md" style="padding-left: 16px; padding-right: 16px;">
-            <a href="mailto:hi@1220.ru" class="flex items-center gap-2 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="mailto:hi@1220.ru" class="flex items-center gap-2 [font-family:'Open Sans',Helvetica,Arial,sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-mail.svg" alt="" class="w-7 h-7">
               hi@1220.ru
             </a>
-            <a href="tel:+79169950270" class="flex items-center gap-2 [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="tel:+79169950270" class="flex items-center gap-2 [font-family:'Open Sans',Helvetica,Arial,sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-phone.svg" alt="" class="w-7 h-7">
               +7 (916) 995 02 70
             </a>
             <div class="w-8"></div>
-            <a href="index.html#cta" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Helvetica Neue',Helvetica,Arial,sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+            <a href="index.html#cta" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans',Helvetica,Arial,sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
           </div>
          </div>
 
@@ -426,15 +298,51 @@
   </div>
 
    <script>
+    /* ==================== МОБИЛЬНОЕ МЕНЮ ==================== */
+    const menuPanelMobile = document.getElementById('nav-menu-panel');
+    const menuOpenMobile = document.getElementById('nav-menu-open-mobile');
+    const menuBtnText = document.querySelector('.mobile-menu-btn-text');
+    let mobileOpen = false;
+
+    const toggleMobileMenu = (open) => {
+      if (!menuPanelMobile) return;
+      mobileOpen = open;
+      menuPanelMobile.classList.toggle('open', open);
+      menuPanelMobile.setAttribute('aria-hidden', String(!open));
+      if (menuOpenMobile) menuOpenMobile.setAttribute('aria-expanded', String(open));
+      if (menuBtnText) menuBtnText.textContent = open ? 'Закрыть' : 'Меню';
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    if (menuOpenMobile) {
+      menuOpenMobile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMobileMenu(!mobileOpen);
+      });
+    }
+    if (menuPanelMobile) {
+      menuPanelMobile.addEventListener('click', (e) => {
+        if (e.target === menuPanelMobile) toggleMobileMenu(false);
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (mobileOpen && !menuPanelMobile.contains(e.target) && !menuOpenMobile.contains(e.target)) {
+        toggleMobileMenu(false);
+      }
+    });
+
     /* ==================== ДЕСКТОП МЕНЮ ==================== */
     const desktopPill = document.getElementById('desktop-nav-pill');
     const menuPanelDesktop = document.getElementById('nav-menu-panel-desktop');
     const menuOpenDesktop = document.getElementById('nav-menu-open-desktop');
     const desktopDot = document.querySelector('.nav-menu-open-dot');
     let desktopCloseTimer = null;
+    let desktopOpen = false;
 
     const setDesktopMenuOpen = (open) => {
       if (!menuPanelDesktop) return;
+      desktopOpen = open;
       menuPanelDesktop.classList.toggle('open', open);
       menuPanelDesktop.setAttribute('aria-hidden', String(!open));
       if (menuOpenDesktop) menuOpenDesktop.setAttribute('aria-expanded', String(open));
@@ -454,39 +362,6 @@
         desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
       });
     }
-
-    /* ==================== МОБИЛЬНОЕ МЕНЮ ==================== */
-    const menuPanelMobile = document.getElementById('nav-menu-panel');
-    const menuOpenMobile = document.getElementById('nav-menu-open-mobile');
-    const menuDotMobile = document.querySelector('.menu-dot');
-    const menuBtnText = document.querySelector('.mobile-menu-btn-text');
-    let mobileOpen = false;
-
-    const toggleMobileMenu = (open) => {
-      if (!menuPanelMobile) return;
-      mobileOpen = open;
-      menuPanelMobile.classList.toggle('open', open);
-      menuPanelMobile.setAttribute('aria-hidden', String(!open));
-      if (menuOpenMobile) menuOpenMobile.setAttribute('aria-expanded', String(open));
-      if (menuDotMobile) menuDotMobile.style.opacity = open ? '0' : '1';
-      if (menuBtnText) menuBtnText.textContent = open ? 'Закрыть' : 'Меню';
-      document.body.style.overflow = open ? 'hidden' : '';
-    };
-
-    if (menuOpenMobile) {
-      menuOpenMobile.addEventListener('click', () => toggleMobileMenu(!mobileOpen));
-    }
-    if (menuPanelMobile) {
-      menuPanelMobile.addEventListener('click', (e) => {
-        if (e.target === menuPanelMobile) toggleMobileMenu(false);
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (mobileOpen && !menuPanelMobile.contains(e.target) && !menuOpenMobile.contains(e.target)) {
-        toggleMobileMenu(false);
-      }
-    });
 
     const menuLinks = Array.from(document.querySelectorAll('.nav-menu-link'));
     menuLinks.forEach(link => {
@@ -546,52 +421,72 @@
     var currentVideo = document.getElementById('currentVideo');
     var videoContainer = document.getElementById('videoContainer');
     var sections = document.querySelectorAll('.project-section');
-    var isScrolling = false;
-    var scrollTimeout;
+    var isLocked = false;
 
-    function updateProject(index) {
-      if (isMobile) return;
+    function switchProject(index) {
+      if (isMobile || isLocked) return;
       if (index <0 || index >= projects.length) return;
+
+      isLocked = true;
       currentIndex = index;
       var proj = projects[currentIndex];
+
+      // Обновляем правую часть (видео/превью)
       currentVideo.innerHTML = '<img src="' + proj.video + '" alt="' + proj.title + '" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">';
       videoContainer.style.backgroundColor = proj.color || '#151515';
-      var targetSection = document.getElementById(proj.id);
-      if (targetSection && !isScrolling) {
-        isScrolling = true;
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(function() { isScrolling = false; }, 600);
+
+      // Скроллим к соответствующему проекту слева
+      var target = document.getElementById(proj.id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Добавляем visible с небольшой задержкой для срабатывания анимации
+        setTimeout(function() {
+          sections.forEach(function(s) { s.classList.remove('visible'); });
+          target.classList.add('visible');
+        }, 100);
       }
+
+      // Разблокируем через 1000мс (достаточно для завершения анимации)
+      setTimeout(function() { isLocked = false; }, 1000);
     }
 
     if (!isMobile) {
+      // Observer следит за тем, какой проект виден (для обновления правой части)
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            var index = projects.findIndex(function(p) { return p.id === entry.target.id; });
-            if (index !== -1) updateProject(index);
+          if (entry.isIntersecting && !isLocked) {
+            var idx = projects.findIndex(function(p) { return p.id === entry.target.id; });
+            if (idx !== -1 && idx !== currentIndex) {
+              currentIndex = idx;
+              var p = projects[idx];
+              currentVideo.innerHTML = '<img src="' + p.video + '" alt="' + p.title + '" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">';
+              videoContainer.style.backgroundColor = p.color || '#151515';
+            }
           }
         });
       }, { threshold: 0.6 });
-      
+
       sections.forEach(function(section) { observer.observe(section); });
 
-      document.getElementById('prevBtn').onclick = function() { updateProject(currentIndex - 1); };
-      document.getElementById('nextBtn').onclick = function() { updateProject(currentIndex + 1); };
+      // Кнопки переключения
+      document.getElementById('prevBtn').onclick = function() { switchProject(currentIndex - 1); };
+      document.getElementById('nextBtn').onclick = function() { switchProject(currentIndex + 1); };
 
+      // Скролл колёсиком мыши / тачпадом (с защитой от дёрганий)
       if (projectList) {
-        var wheelTimeout = false;
+        var lastScrollTime = 0;
         projectList.addEventListener('wheel', function(e) {
           e.preventDefault();
-          if (isScrolling || wheelTimeout) return;
-          wheelTimeout = true;
-          if (e.deltaY > 0) updateProject(currentIndex + 1);
-          else updateProject(currentIndex - 1);
-          setTimeout(function() { wheelTimeout = false; }, 800);
+          var now = Date.now();
+          if (now - lastScrollTime < 1000) return;  // защита 1
+          if (isLocked) return;  // защита 2
+          lastScrollTime = now;
+          if (e.deltaY > 0) switchProject(currentIndex + 1);
+          else switchProject(currentIndex - 1);
         }, { passive: false });
       }
-      updateProject(0);
+
+      switchProject(0);
     }
   </script>
 </body>

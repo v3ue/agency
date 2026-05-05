@@ -247,7 +247,7 @@ button, input, select, textarea {
       position: absolute;
       top: 20px;
       left: 460px;
-      width: 140px;
+      width: 220px;
       height: 360px;
       transition: all 200ms ease-in-out;
       overflow: hidden;
@@ -255,10 +255,6 @@ button, input, select, textarea {
       justify-content: flex-start;
       align-items: flex-start;
       padding-right: 20px;
-    }
-    .project-wrapper:hover .project-header-wrapper {
-      left: 20px;
-      width: 410px;
     }
     .project-header-wrapper h1 {
       color: #151515;
@@ -278,7 +274,7 @@ button, input, select, textarea {
       position: absolute;
       bottom: 20px;
       left: 460px;
-      width: 140px;
+      width: 220px;
       color: #151515;
       font-family: 'Open Sans', sans-serif;
       font-size: 1rem;

@@ -222,7 +222,7 @@ button, input, select, textarea {
     }
     .project-image-wrapper {
       height: 400px;
-      width: 300px;
+      width: 280px;
       overflow: hidden;
       border-radius: 1rem;
       transition: all 200ms ease-in-out;
@@ -234,6 +234,9 @@ button, input, select, textarea {
       object-fit: cover;
       object-position: top;
       transition: all 200ms ease-in-out;
+    }
+    .project-wrapper:hover .project-image-wrapper {
+      width: 600px;
     }
     .project-wrapper:hover .project-image-wrapper img {
       transform: scale(1.3);

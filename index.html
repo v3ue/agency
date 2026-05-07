@@ -31,7 +31,7 @@
               <div class="nav-menu-panel-inner">
                 <nav class="nav-menu-links" aria-label="Навигация по сайту">
                   <a class="nav-menu-link" href="#about">О нас</a>
-                  <a class="nav-menu-link" href="#projects-heading">Проекты</a>
+                  <a class="nav-menu-link" href="#projects">Проекты</a>
                   <a class="nav-menu-link" href="#process-heading">Процесс</a>
                   <a class="nav-menu-link" href="#cta">Контакты</a>
                 </nav>
@@ -67,7 +67,7 @@
           <div class="nav-menu-panel-inner">
             <nav class="nav-menu-links" aria-label="Навигация по сайту">
               <a class="nav-menu-link" href="#about">О нас</a>
-              <a class="nav-menu-link" href="#projects-heading">Проекты</a>
+                  <a class="nav-menu-link" href="#projects">Проекты</a>
               <a class="nav-menu-link" href="#process-heading">Процесс</a>
               <a class="nav-menu-link" href="#cta">Контакты</a>
             </nav>
@@ -184,77 +184,26 @@
            </p>
           </div>
         </section>
-           <div id="projects-outer" style="height: 200vh; background: #0a0a0a;">
-              <div id="projects-inner" style="position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; background: #0a0a0a;">
-                <section id="projects-section" aria-labelledby="projects-heading"
-                     style="display: flex; flex-direction: column; padding: 80px 20px 40px 20px; margin: 0; max-width: none; min-height: 0;">
-                   <div style="max-width: 1600px; margin: 0 auto; display: flex; width: 100%; min-height: 0;">
-                  <!-- Заголовок Проекты слева -->
-                  <div style="width: 100px; flex-shrink: 0; padding: 0 10px; display: flex; align-items: flex-start; justify-content: flex-start;">
-                    <h2 id="projects-heading" class="h2 text-heading text-[#f8f8f8]" style="font-size: 2.5rem; margin: 0;">
-                      Проекты</h2>
-                  </div>
-                  <!-- Вертикальные миниатюры слева -->
-                <div class="thumbnail-sidebar-vertical" id="thumbnailSidebar" style="width: 100px; padding: 0 10px; display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0;">
-                  <ul class="thumbnail-list-vertical" id="thumbnailList" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; position: relative;">
-                    <li>
-                      <button class="thumbnail-btn-vertical" data-index="0">
-                        <span class="sr-only">Изофом</span>
-                        <img src="./static/images/4lg5t-1.jpg" alt="Изофом" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px;">
-                      </button>
-                    </li>
-                    <li>
-                      <button class="thumbnail-btn-vertical" data-index="1">
-                        <span class="sr-only">C-Tea</span>
-                        <img src="./static/images/frame-12@2x.png" alt="C-Tea" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px;">
-                      </button>
-                    </li>
-                    <li>
-                      <button class="thumbnail-btn-vertical" data-index="2">
-                        <span class="sr-only">Янта</span>
-                        <img src="./static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png" alt="Янта" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px;">
-                      </button>
-                    </li>
-                    <li>
-                      <button class="thumbnail-btn-vertical" data-index="3">
-                        <span class="sr-only">Особый ремонт</span>
-                        <img src="./static/images/6l06a-1.png" alt="Особый ремонт" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px;">
-                      </button>
-                    </li>
-                  </ul>
-                  <div class="thumbnail-indicator-vertical" id="thumbnailIndicator" style="position: absolute; top: 0; left: 0; width: 80px; height: 50px; border: 2px solid #f8f8f8; border-radius: 6px; pointer-events: none; transition: transform 300ms ease; opacity: 0;"></div>
-                </div>
+        <!-- ==================== PROJECTS ==================== -->
+        <section id="projects" class="projects-section" aria-labelledby="projects-heading">
+          <div class="projects-container">
+            <!-- Left sidebar (desktop only) -->
+            <div class="projects-sidebar desktop-only">
+              <h2 id="projects-heading" class="section-title">Проекты</h2>
+              <div class="project-list" id="project-list"></div>
+            </div>
 
-                <!-- Видео по центру -->
-                 <div class="video-main-area" style="display: flex; flex-direction: column; padding: 0 40px 0 20px; overflow: hidden;">
-                  <div class="video-display" id="videoDisplay" style="border-radius: 12px; overflow: hidden; background: #000; position: relative; max-width: 900px; margin: 0 auto; width: 100%; transition: background-color 0.8s ease;">
-                    <div class="video-wrapper" id="currentVideo" style="width: 100%; height: 100%;">
-                      <!-- Видео будет вставлено через JS -->
-                    </div>
-                  </div>
-                  <div class="video-info" id="videoInfo" style="padding: 16px 0 0 0; display: flex; align-items: flex-start; max-width: 900px; margin: 0 auto; width: 100%;">
-                    <h2 class="video-title" id="videoTitle" style="font-family: 'Fixel Display', sans-serif; font-size: 36px; text-transform: uppercase; margin: 0; color: #f8f8f8; white-space: nowrap; line-height: 1;">Изофом</h2>
-                    <p class="video-description" id="videoDescription" style="font-family: 'Open Sans', sans-serif; font-size: 0.9rem; line-height: 1.5; color: #aaa; margin: 0 0 0 auto; width: 440px; text-align: left;">Серия объясняющих роликов для производителя строительного материала.</p>
-                  </div>
-             </div>
-              </div>
-              </section>
-             </div>
-             </div>
-             </section>
-             <!-- Кнопка Смотреть все проекты - ПОСЛЕ блока проектов (на черном фоне) -->
-             <div style="background: #0a0a0a; padding: 40px 20px 60px 20px; display: flex; justify-content: flex-end;">
-                <a href="/project"
-                    class="group inline-flex items-center gap-2 border-b-2 pb-0" style="border-bottom-color: #f8f8f8; display: inline-flex;">
-                   <span class="inline-flex items-center transition-transform duration-300 group-hover:translate-x-1">
-                     <img src="./static/icons/arrow-watch.svg" alt="Смотреть" class="h-8 w-auto align-middle" style="margin-bottom: 0; filter: invert(1);">
-                   </span><span class="text-body text-[#f8f8f8] text-xl md:text-[28px] tracking-normal leading-[1.0]">Смотреть
-                     все проекты</span>
-                </a>
-              </div>
-        </div>
-        </div>
-       <section aria-labelledby="competencies-heading"
+            <!-- Right side / main content -->
+            <div class="projects-main">
+              <!-- Desktop: large video, one per project -->
+              <div class="project-showcase desktop-only" id="project-showcase"></div>
+
+              <!-- Mobile: simple linear sequence -->
+              <div class="projects-mobile mobile-only" id="projects-mobile"></div>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="competencies-heading"
          class="competencies-section pt-[120px] md:pt-[140px] pb-16 md:pb-28 px-5 md:px-10 max-w-[1600px] mx-auto">
         <h2 id="competencies-heading" class="h2 text-heading text-[#151515] mb-12">
           Компетенции</h2>
@@ -926,144 +875,198 @@
          });
        });
         </script>
-    <script>
-    // Video hover/autoplay for project cards
-    (function() {
-      var isMobile = window.innerWidth < 768;
-      var videos = document.querySelectorAll('.project-video');
+       <script>
+(function() {
+  const projects = [
+    {
+      id: 0,
+      title: "Изофом",
+      description: "Серия объясняющих роликов для производителя строительного материала.",
+      video: "./static/videos/Изофом.mov",
+      poster: "./static/images/4lg5t-1.jpg",
+      isVertical: false
+    },
+    {
+      id: 1,
+      title: "C-Tea",
+      description: "Серия маркетинговых роликов для продуктовой линейки локального заведения.",
+      video: "./static/videos/C-Tea.mov",
+      poster: "./static/images/frame-12@2x.png",
+      isVertical: true
+    },
+    {
+      id: 2,
+      title: "Янта",
+      description: "Рекламный ролик для FMCG-бренда с точной передачей упаковки.",
+      video: "./static/videos/Yanta.mp4",
+      poster: "./static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png",
+      isVertical: false
+    },
+    {
+      id: 3,
+      title: "Особый ремонт",
+      description: "Брендовый ролик в стиле «Миссия невыполнима» для компании по ремонту недвижимости.",
+      video: "./static/videos/Gussi Rem.mp4",
+      poster: "./static/images/6l06a-1.png",
+      isVertical: false
+    }
+  ];
 
-      videos.forEach(function(video) {
-        if (isMobile) {
-          // Autoplay on mobile
-          video.play().catch(function() {});
-        } else {
-          // Play on hover, pause when not hovering
-          var wrapper = video.closest('.project-wrapper');
-          if (wrapper) {
-            wrapper.addEventListener('mouseenter', function() {
-              video.play().catch(function() {});
-            });
-            wrapper.addEventListener('mouseleave', function() {
-              video.pause();
-              video.currentTime = 0;
-            });
-          }
-        }
+  let activeId = 0;
+
+  const projectList = document.getElementById('project-list');
+  const showcase = document.getElementById('project-showcase');
+  const mobileContainer = document.getElementById('projects-mobile');
+
+  function isDesktop() {
+    return window.innerWidth >= 1024;
+  }
+
+  function buildProjectList() {
+    projectList.innerHTML = '';
+
+    projects.forEach(project => {
+      const item = document.createElement('button');
+      item.className = 'project-item';
+      item.dataset.id = project.id;
+
+      item.innerHTML = `
+        <img src="${project.poster}" alt="${project.title}">
+        <div class="project-item-text">
+          <span>${project.title}</span>
+          <p class="item-description">${project.description}</p>
+        </div>
+      `;
+
+      item.addEventListener('click', () => {
+        setActive(project.id);
+        scrollToCard(project.id);
       });
-    })();
 
-      // Video switching on scroll for projects section (scroll-jacking)
-    (function() {
-      var projects = [
-        { title: 'Изофом', video: './static/videos/Изофом.mov', poster: './static/images/4lg5t-1.jpg', color: '#0a0a0a', isVertical: false,
-          desc: 'Серия объясняющих роликов для производителя строительного материала.' },
-        { title: 'C-Tea', video: './static/videos/C-Tea.mov', poster: './static/images/frame-12@2x.png', color: '#0a0a0a', isVertical: true,
-          desc: 'Серия маркетинговых роликов для продуктовой линейки локального заведения.' },
-        { title: 'Янта', video: './static/videos/Yanta.mp4', poster: './static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png', color: '#0a0a0a', isVertical: false,
-          desc: 'Рекламный ролик для FMCG-бренда с точной передачей упаковки.' },
-        { title: 'Особый ремонт', video: './static/videos/Gussi Rem.mp4', poster: './static/images/6l06a-1.png', color: '#0a0a0a', isVertical: false,
-          desc: 'Брендовый ролик в стиле «Миссия невыполнима» для компании, занимающейся ремонтом недвижимости.' }
-      ];
+      projectList.appendChild(item);
+    });
+  }
 
-      var currentIndex = -1;
-      var videoTitle = document.getElementById('videoTitle');
-      var videoDescription = document.getElementById('videoDescription');
-      var thumbnailBtns = document.querySelectorAll('.thumbnail-btn-vertical');
-      var thumbnailIndicator = document.getElementById('thumbnailIndicator');
-      var projectsOuter = document.getElementById('projects-outer');
-      var projectsInner = document.getElementById('projects-inner');
-      var isLocked = false;
+  function buildShowcase() {
+    showcase.innerHTML = '';
+    projects.forEach(project => {
+      const wrapperClass = project.isVertical
+        ? 'project-video-container vertical'
+        : 'project-video-container';
 
-      function switchProject(index) {
-        if (index < 0 || index >= projects.length || isLocked || index === currentIndex) return;
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.id = `project-card-${project.id}`;
+      card.innerHTML = `
+        <div class="${wrapperClass}">
+          <video autoplay muted loop playsinline preload="auto" poster="${project.poster}" class="project-video">
+            <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
+          </video>
+        </div>
+      `;
+      showcase.appendChild(card);
+    });
+  }
 
-        isLocked = true;
-        currentIndex = index;
-        var proj = projects[currentIndex];
+  function buildMobile() {
+    mobileContainer.innerHTML = '';
+    projects.forEach(project => {
+      const wrapperClass = project.isVertical
+        ? 'project-video-container vertical'
+        : 'project-video-container';
 
-        // Update video with fade effect
-        var wrapper = document.getElementById('currentVideo');
-        var videoDisplay = document.getElementById('videoDisplay');
-        if (!wrapper) return;
-        wrapper.style.opacity = '0';
-        setTimeout(function() {
-          if (proj.video) {
-            var isMov = proj.video.endsWith('.mov');
-            var objectFit = proj.isVertical ? 'contain' : 'cover';
-            var videoBorderRadius = '12px';
-            wrapper.innerHTML = '<video id="mainVideo" muted loop playsinline poster="' + proj.poster + '" style="width:100%;height:100%;object-fit:' + objectFit + ';border-radius:' + videoBorderRadius + ';transition:object-fit 0.3s ease;transform:translateZ(0);">' +
-              '<source src="' + proj.video + '" type="' + (isMov ? 'video/quicktime' : 'video/mp4') + '">' +
-              '</video>';
-            // For vertical videos, also ensure the container has a background to fill the empty space
-            if (proj.isVertical && videoDisplay) {
-              videoDisplay.style.backgroundColor = '#000';
-            }
-            var v = document.getElementById('mainVideo');
-            if (v) {
-              if (proj.isVertical && videoDisplay) {
-                videoDisplay.style.backgroundColor = '#000';
-              }
-              v.play().catch(function() {});
-            }
+      const card = document.createElement('div');
+      card.className = 'project-mobile-card';
+      card.innerHTML = `
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="${wrapperClass}">
+          <video autoplay muted loop playsinline preload="auto" poster="${project.poster}" class="project-video">
+            <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
+          </video>
+        </div>
+      `;
+      mobileContainer.appendChild(card);
+    });
+  }
+
+  function setupPlayback(container) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+            entry.target.play().catch(() => {});
           } else {
-            wrapper.innerHTML = '<img src="' + proj.poster + '" style="width:100%;height:100%;object-fit:cover;">';
+            entry.target.pause();
           }
-          wrapper.style.opacity = '1';
-        }, 300);
-
-        // Update info
-        if (videoTitle) videoTitle.textContent = proj.title;
-        if (videoDescription) videoDescription.textContent = proj.desc;
-
-        // Update active thumbnail
-        thumbnailBtns.forEach(function(btn, idx) {
-          btn.classList.toggle('active', idx === currentIndex);
         });
+      },
+      { threshold: 0.3 }
+    );
 
-        // Move indicator (vertical)
-        if (thumbnailIndicator) {
-          thumbnailIndicator.classList.add('visible');
-          var btnHeight = 50 + 12; // height + gap
-          thumbnailIndicator.style.transform = 'translateY(' + (currentIndex * btnHeight) + 'px)';
+    container.querySelectorAll('.project-video').forEach(video => {
+      observer.observe(video);
+    });
+  }
+
+  function scrollToCard(id) {
+    const card = document.getElementById(`project-card-${id}`);
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function setActive(id) {
+    if (id === activeId) return;
+    activeId = id;
+
+    projectList.querySelectorAll('.project-item').forEach(item => {
+      item.classList.toggle('active', parseInt(item.dataset.id) === id);
+    });
+  }
+
+  function setupObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+          const id = parseInt(entry.target.id.replace('project-card-', ''));
+          setActive(id);
         }
-
-        setTimeout(function() { isLocked = false; }, 400);
-      }
-
-      // Click on thumbnails
-      thumbnailBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var idx = parseInt(this.getAttribute('data-index'), 10);
-          if (!isNaN(idx)) switchProject(idx);
-        });
       });
+    }, { threshold: [0.45, 0.6] });
 
-      // Initialize first project
-      switchProject(0);
+    showcase.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+  }
 
-      // Auto-rotate projects every 5 seconds
-      var autoRotateTimer = setInterval(function() {
-        var nextIndex = (currentIndex + 1) % projects.length;
-        switchProject(nextIndex);
-      }, 5000);
+  function renderByViewport() {
+    showcase.innerHTML = '';
+    mobileContainer.innerHTML = '';
 
-      // Pause auto-rotate on user interaction
-      thumbnailBtns.forEach(function(btn) {
-        btn.addEventListener('mouseenter', function() {
-          clearInterval(autoRotateTimer);
-        });
-        btn.addEventListener('click', function() {
-          clearInterval(autoRotateTimer);
-          // Resume after 10 seconds
-          setTimeout(function() {
-            autoRotateTimer = setInterval(function() {
-              var nextIndex = (currentIndex + 1) % projects.length;
-              switchProject(nextIndex);
-            }, 5000);
-          }, 10000);
-        });
+    if (isDesktop()) {
+      buildShowcase();
+      setActive(0);
+      requestAnimationFrame(() => {
+        setupObserver();
+        setupPlayback(showcase);
       });
-    })();
-    </script>
+    } else {
+      buildMobile();
+      setupPlayback(mobileContainer);
+    }
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      showcase.innerHTML = '';
+      mobileContainer.innerHTML = '';
+      renderByViewport();
+    }, 200);
+  });
+
+  // Init
+  buildProjectList();
+  renderByViewport();
+})();
+       </script>
 </body>
 </html>

@@ -20,18 +20,6 @@
       height: 100%;
     }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-
-    button:focus-visible {
-      outline: 2px solid #4a90e2 !important;
-      outline: -webkit-focus-ring-color auto 5px !important;
-    }
 
     a {
       text-decoration: none;
@@ -356,30 +344,27 @@ button, input, select, textarea {
       .thumbnail-indicator-vertical.visible {
         opacity: 1;
       }
-      .video-main-area {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 0 40px 0 20px;
-        overflow: hidden;
-        min-height: 0;
-      }
-      .video-display {
-        flex: 1;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #000;
-        position: relative;
-        min-height: 0;
-        max-width: 900px;
-        margin: 0 auto;
-        width: 100%;
-      }
-       .video-wrapper {
-         width: 100%;
-         height: 100%;
-         transition: opacity 0.3s ease;
+       .video-main-area {
+         display: flex;
+         flex-direction: column;
+         padding: 0 40px 0 20px;
+         overflow: hidden;
+         min-height: 0;
        }
+
+       .video-display {
+         border-radius: 12px;
+         overflow: hidden;
+         background: #000;
+         position: relative;
+         min-height: 0;
+         max-width: 900px;
+         margin: 0 auto;
+         width: 100%;
+         /* Fix for vertical video border-radius */
+         transform: translateZ(0);
+       }
+
        #projects-section {
         transition: background-color 0.8s ease;
       }
@@ -1163,65 +1148,7 @@ button, input, select, textarea {
       margin-right: auto
     }
 
-    .mb-10 {
-      margin-bottom: 2.5rem
-    }
 
-    .mb-12 {
-      margin-bottom: 3rem
-    }
-
-    .mb-14 {
-      margin-bottom: 3.5rem
-    }
-
-    .mb-2 {
-      margin-bottom: 0.5rem
-    }
-
-    .mb-4 {
-      margin-bottom: 1rem
-    }
-
-    .mb-6 {
-      margin-bottom: 1.5rem
-    }
-
-    .mb-8 {
-      margin-bottom: 2rem
-    }
-
-    .ml-8 {
-      margin-left: 2rem
-    }
-
-    .mt-1 {
-      margin-top: 0.25rem
-    }
-
-    .mt-10 {
-      margin-top: 2.5rem
-    }
-
-    .mt-12 {
-      margin-top: 3rem
-    }
-
-    .mt-2 {
-      margin-top: 0.5rem
-    }
-
-    .mt-3 {
-      margin-top: 0.75rem
-    }
-
-    .mt-4 {
-      margin-top: 1rem
-    }
-
-    .mt-6 {
-      margin-top: 1.5rem
-    }
 
     .block {
       display: block
@@ -2280,19 +2207,7 @@ button, input, select, textarea {
   box-shadow: 0 0 0 6px rgba(22, 58, 242, 0.15);
 }
 
-.process-step-content {
-  position: relative;
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 2rem 1.5rem;
-  color: white;
-  text-align: center;
-}
+
 
 .process-step-title {
   font-size: 1.5rem;
@@ -2598,17 +2513,6 @@ button, input, select, textarea {
   }
 }
 
-.mobile-menu-btn {
-  background: rgba(232, 232, 232, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: background 0.3s ease;
-  border-radius: 8px;
-  width: 130px;
-  height: 56px;
-  justify-content: center;
-  align-items: center;
-}
 .mobile-menu-btn:active {
   background: rgba(220, 220, 220, 0.95);
 }
@@ -3312,21 +3216,22 @@ input[type="range"]::-moz-range-thumb {
 
 /* ====================== MOBILE ADAPTATION FOR PROJECTS ====================== */
 @media (max-width: 768px) {
+  #projects-outer {
+    height: auto !important;
+    background: #0a0a0a;
+    scroll-behavior: smooth;
+  }
+
   #projects-inner {
     position: static;
     height: auto;
     min-height: 100vh;
     padding: 40px 0 !important;
-    flex-direction: column;
-  }
-
-  #projects-outer {
-    height: auto !important;
   }
 
   #projects-section {
-    flex: 0 1 auto !important;
-    padding: 40px 20px !important;
+    padding: 20px 20px !important;
+    justify-content: flex-start !important;
   }
 
   .thumbnail-sidebar-vertical {
@@ -3362,11 +3267,17 @@ input[type="range"]::-moz-range-thumb {
   .video-main-area {
     padding: 20px 20px 0 20px !important;
     order: 2;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
-  .video-display {
-    min-height: 200px;
-    max-height: 50vh;
+
+
+  .video-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .video-info {
@@ -3383,13 +3294,5 @@ input[type="range"]::-moz-range-thumb {
     font-size: 0.8rem !important;
     width: 100% !important;
     text-align: left !important;
-  }
-
-  /* Button container */
-  #projects-inner > div:last-child {
-    order: 4;
-    margin-top: 20px !important;
-    justify-content: center !important;
-    padding: 20px !important;
   }
 }

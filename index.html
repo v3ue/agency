@@ -184,11 +184,11 @@
            </p>
           </div>
         </section>
-           <div id="projects-outer" style="height: 800vh;">
-              <div id="projects-inner" style="position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; background: #0a0a0a; padding: clamp(20px, 5vh, 80px) 0;">
+           <div id="projects-outer" style="height: 200vh; background: #0a0a0a;">
+              <div id="projects-inner" style="position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; background: #0a0a0a;">
                 <section id="projects-section" aria-labelledby="projects-heading"
                      style="display: flex; flex-direction: column; padding: 80px 20px 40px 20px; margin: 0; max-width: none; min-height: 0;">
-                  <div style="max-width: 1600px; margin: 0 auto; display: flex; width: 100%; flex: 1; min-height: 0;">
+                   <div style="max-width: 1600px; margin: 0 auto; display: flex; width: 100%; min-height: 0;">
                   <!-- Заголовок Проекты слева -->
                   <div style="width: 100px; flex-shrink: 0; padding: 0 10px; display: flex; align-items: flex-start; justify-content: flex-start;">
                     <h2 id="projects-heading" class="h2 text-heading text-[#f8f8f8]" style="font-size: 2.5rem; margin: 0;">
@@ -226,8 +226,8 @@
                 </div>
 
                 <!-- Видео по центру -->
-                <div class="video-main-area" style="flex: 1; display: flex; flex-direction: column; padding: 0 40px 0 20px; overflow: hidden;">
-                  <div class="video-display" id="videoDisplay" style="flex: 1; border-radius: 12px; overflow: hidden; background: #000; position: relative; max-width: 900px; margin: 0 auto; width: 100%; transition: background-color 0.8s ease;">
+                 <div class="video-main-area" style="display: flex; flex-direction: column; padding: 0 40px 0 20px; overflow: hidden;">
+                  <div class="video-display" id="videoDisplay" style="border-radius: 12px; overflow: hidden; background: #000; position: relative; max-width: 900px; margin: 0 auto; width: 100%; transition: background-color 0.8s ease;">
                     <div class="video-wrapper" id="currentVideo" style="width: 100%; height: 100%;">
                       <!-- Видео будет вставлено через JS -->
                     </div>
@@ -236,22 +236,22 @@
                     <h2 class="video-title" id="videoTitle" style="font-family: 'Fixel Display', sans-serif; font-size: 36px; text-transform: uppercase; margin: 0; color: #f8f8f8; white-space: nowrap; line-height: 1;">Изофом</h2>
                     <p class="video-description" id="videoDescription" style="font-family: 'Open Sans', sans-serif; font-size: 0.9rem; line-height: 1.5; color: #aaa; margin: 0 0 0 auto; width: 440px; text-align: left;">Серия объясняющих роликов для производителя строительного материала.</p>
                   </div>
-                  </div>
-                 </div>
-                 </section>
-                 <!-- Кнопка Смотреть все проекты - под видео (на черном фоне) -->
-                  <div style="max-width: 1600px; margin: 0 auto; margin-top: auto; display: flex; justify-content: flex-end; padding: 20px 20px 40px 20px;">
-                   <a href="/project"
-                      class="group inline-flex items-center gap-2 border-b-2 pb-0" style="border-bottom-color: #f8f8f8; display: inline-flex;">
-                     <span class="inline-flex items-center transition-transform duration-300 group-hover:translate-x-1">
-                       <img src="./static/icons/arrow-watch.svg" alt="Смотреть" class="h-8 w-auto align-middle" style="margin-bottom: 0; filter: invert(1);">
-                     </span><span class="text-body text-[#f8f8f8] text-xl md:text-[28px] tracking-normal leading-[1.0]">Смотреть
-                       все проекты</span>
-                   </a>
-                 </div>
-            </div>
-            </div>
-            </section>
+             </div>
+              </div>
+              </section>
+             </div>
+             </div>
+             </section>
+             <!-- Кнопка Смотреть все проекты - ПОСЛЕ блока проектов (на черном фоне) -->
+             <div style="background: #0a0a0a; padding: 40px 20px 60px 20px; display: flex; justify-content: flex-end;">
+                <a href="/project"
+                    class="group inline-flex items-center gap-2 border-b-2 pb-0" style="border-bottom-color: #f8f8f8; display: inline-flex;">
+                   <span class="inline-flex items-center transition-transform duration-300 group-hover:translate-x-1">
+                     <img src="./static/icons/arrow-watch.svg" alt="Смотреть" class="h-8 w-auto align-middle" style="margin-bottom: 0; filter: invert(1);">
+                   </span><span class="text-body text-[#f8f8f8] text-xl md:text-[28px] tracking-normal leading-[1.0]">Смотреть
+                     все проекты</span>
+                </a>
+              </div>
         </div>
         </div>
        <section aria-labelledby="competencies-heading"
@@ -591,7 +591,8 @@
           </div>
         </div>
       </section>
-     </main>
+   </main>
+  <script type="module" src="./js/init.js"></script>
      <!-- BLUR EFFECT DISABLED - moved to blur-effect.css
      <div class="page-bottom-blur" aria-hidden="true">
        <div class="page-bottom-blur-inner">
@@ -606,287 +607,10 @@
   </div>
 
    <!-- <link rel="stylesheet" href="blur-effect.css">  DISABLED: blur effect -->
-   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-   <script>
-     document.addEventListener('DOMContentLoaded', () => {
-       // Process timeline animation
-      const steps = Array.from(document.querySelectorAll('.process-step'));
-      const stepsContainer = document.querySelector('.process-steps');
-      if (steps.length && stepsContainer) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-          });
-          const lastVisibleIndex = steps.reduce((result, step, index) => {
-            return step.classList.contains('visible') ? index : result;
-          }, -1);
-          const pct = ((lastVisibleIndex + 1) / steps.length) * 100;
-          stepsContainer.style.setProperty('--fill-pct', `${pct}%`);
-        }, { threshold: 0.4, rootMargin: '0px 0px -20% 0px' });
-        steps.forEach((step) => observer.observe(step));
-      }
-
-      /* ==================== ДЕСКТОП МЕНЮ ==================== */
-      const desktopPill = document.getElementById('desktop-nav-pill');
-      const menuPanelDesktop = document.getElementById('nav-menu-panel-desktop');
-      const menuOpenDesktop = document.getElementById('nav-menu-open-desktop');
-      const desktopDot = document.querySelector('.nav-menu-open-dot');
-      let desktopCloseTimer = null;
-
-      const setDesktopMenuOpen = (open) => {
-        if (!menuPanelDesktop) return;
-        menuPanelDesktop.classList.toggle('open', open);
-        menuPanelDesktop.setAttribute('aria-hidden', String(!open));
-        if (menuOpenDesktop) menuOpenDesktop.setAttribute('aria-expanded', String(open));
-        if (desktopDot) desktopDot.style.opacity = open ? '0' : '1';
-        if (open) clearTimeout(desktopCloseTimer);
-      };
-
-      if (desktopPill) {
-        desktopPill.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
-        desktopPill.addEventListener('mouseleave', () => {
-          desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
-        });
-      }
-      if (menuPanelDesktop) {
-        menuPanelDesktop.addEventListener('mouseenter', () => setDesktopMenuOpen(true));
-        menuPanelDesktop.addEventListener('mouseleave', () => {
-          desktopCloseTimer = window.setTimeout(() => setDesktopMenuOpen(false), 180);
-        });
-      }
-
-      /* ==================== МОБИЛЬНОЕ МЕНЮ ==================== */
-      const menuPanelMobile = document.getElementById('nav-menu-panel');
-      const menuOpenMobile = document.getElementById('nav-menu-open-mobile');
-      const menuDotMobile = document.querySelector('.menu-dot');
-      const menuBtnText = document.querySelector('.mobile-menu-btn-text');
-      let mobileOpen = false;
-
-      const toggleMobileMenu = (open) => {
-        if (!menuPanelMobile) return;
-        mobileOpen = open;
-        menuPanelMobile.classList.toggle('open', open);
-        menuPanelMobile.setAttribute('aria-hidden', String(!open));
-        if (menuOpenMobile) menuOpenMobile.setAttribute('aria-expanded', String(open));
-        if (menuDotMobile) menuDotMobile.style.opacity = open ? '0' : '1';
-        if (menuBtnText) menuBtnText.textContent = open ? 'Закрыть' : 'Меню';
-        document.body.style.overflow = open ? 'hidden' : '';
-      };
-
-      if (menuOpenMobile) {
-        menuOpenMobile.addEventListener('click', () => toggleMobileMenu(!mobileOpen));
-      }
-      if (menuPanelMobile) {
-        menuPanelMobile.addEventListener('click', (e) => {
-          if (e.target === menuPanelMobile) toggleMobileMenu(false);
-        });
-      }
-
-      // Закрытие при клике вне панели
-      document.addEventListener('click', (e) => {
-        if (mobileOpen && !menuPanelMobile.contains(e.target) && !menuOpenMobile.contains(e.target)) {
-          toggleMobileMenu(false);
-        }
-      });
-
-      // Закрытие меню при клике по ссылкам
-      const menuLinks = Array.from(document.querySelectorAll('.nav-menu-link'));
-      menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          toggleMobileMenu(false);
-          setDesktopMenuOpen(false);
-        });
-      });
-
-       /* ==================== СКРОЛЛ ХЕДЕРА ==================== */
-       const leftPill = document.getElementById('desktop-nav-pill');
-       const rightPill = document.getElementById('header-right-pill');
-       let lastScrollY = 0;
-        let scrollThreshold = window.innerHeight * 0.6;
-       let ticking = false;
-
-       const updateHeader = () => {
-         const scrollY = window.scrollY;
-
-         // Левая и правая плашки: фон при скролле ниже порога
-         if (leftPill) {
-           leftPill.classList.toggle('has-bg', scrollY > scrollThreshold);
-         }
-         if (rightPill) {
-           rightPill.classList.toggle('has-bg', scrollY > scrollThreshold);
-         }
-
-         // Правая плашка: прячется при скролле вниз, появляется при скролле вверх (только после первого экрана)
-         if (rightPill && scrollY > scrollThreshold) {
-           if (scrollY > lastScrollY) {
-             rightPill.classList.add('scroll-hidden');
-           } else {
-             rightPill.classList.remove('scroll-hidden');
-           }
-         } else if (rightPill) {
-           rightPill.classList.remove('scroll-hidden');
-         }
-
-         lastScrollY = scrollY;
-         ticking = false;
-       };
-
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          window.requestAnimationFrame(updateHeader);
-          ticking = true;
-        }
-      }, { passive: true });
-
-      window.addEventListener('resize', () => {
-        scrollThreshold = window.innerHeight * 0.6;
-      });
-
-       /* ==================== КОМПЕТЕНЦИИ ==================== */
-      const competencyItems = Array.from(document.querySelectorAll('.competency-item'));
-      const cardSets = Array.from(document.querySelectorAll('.card-set'));
-      const totalSets = cardSets.length;
-      let currentIndex = 0;
-      let autoTimer = null;
-      let userInteracting = false;
-      const AUTO_DELAY = 4000;
-
-      const switchSet = (index) => {
-        if (index === currentIndex) return;
-
-        const oldSet = cardSets[currentIndex];
-        const newSet = cardSets[index];
-
-        if (oldSet) oldSet.classList.remove('active');
-        newSet.classList.add('active');
-
-        // Обновляем активный пункт
-        competencyItems.forEach((item, i) => {
-          item.classList.toggle('active', i === index);
-        });
-
-        currentIndex = index;
-
-        // Перезапускаем авто-таймер
-        if (!userInteracting) {
-          resetAutoTimer();
-        }
-      };
-
-      const nextSet = () => {
-        switchSet((currentIndex + 1) % totalSets);
-      };
-
-      const resetAutoTimer = () => {
-        clearTimeout(autoTimer);
-        autoTimer = setTimeout(nextSet, AUTO_DELAY);
-      };
-
-      // Инициализация
-      cardSets[0].classList.add('active');
-      resetAutoTimer();
-
-      competencyItems.forEach((item) => {
-        const index = parseInt(item.dataset.index, 10);
-
-        item.addEventListener('mouseenter', () => {
-          userInteracting = true;
-          clearTimeout(autoTimer);
-
-          clearTimeout(item._hoverTimer);
-          item._hoverTimer = setTimeout(() => {
-            switchSet(index);
-          }, 200);
-        });
-
-        item.addEventListener('mouseleave', () => {
-          clearTimeout(item._hoverTimer);
-          userInteracting = false;
-          resetAutoTimer();
-        });
-
-        item.addEventListener('click', () => {
-          switchSet(index);
-          userInteracting = true;
-          clearTimeout(autoTimer);
-
-          // Возобновляем авто-прокрутку через 8 секунд после клика
-          clearTimeout(item._resumeTimer);
-          item._resumeTimer = setTimeout(() => {
-            userInteracting = false;
-            resetAutoTimer();
-          }, 8000);
-        });
-      });
-    });
-  </script>
+    <!-- Cloudflare email decode script removed -->
+  <!-- Large inline scripts removed; moved to modular init.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-  <script>
-      // Храним размеры кнопки после первого появления
-      const btnSizes = new Map();
-
-      document.querySelectorAll('article.group').forEach(card => {
-        const videoBtn = card.querySelector('.video-btn');
-        if (!videoBtn) return;
-
-        // Только область изображения триггерит появление
-        const imgContainer = card.querySelector('.rounded-2xl.overflow-hidden');
-        if (!imgContainer) return;
-
-        imgContainer.addEventListener('mouseenter', () => {
-          // Скрываем все кнопки мгновенно
-          document.querySelectorAll('.video-btn').forEach(btn => {
-            btn.style.display = 'none';
-            btn.style.opacity = '0';
-          });
-
-          card.style.cursor = 'none';
-          videoBtn.style.display = 'flex';
-          
-          // После отображения получаем размеры кнопки
-          requestAnimationFrame(() => {
-            if (!btnSizes.has(videoBtn)) {
-              btnSizes.set(videoBtn, {
-                width: videoBtn.offsetWidth,
-                height: videoBtn.offsetHeight
-              });
-            }
-            videoBtn.style.opacity = '1';
-          });
-        });
-
-        // Кнопка следует за курсором только внутри изображения
-        imgContainer.addEventListener('mousemove', (e) => {
-          const rect = imgContainer.getBoundingClientRect();
-          let x = e.clientX - rect.left;
-          let y = e.clientY - rect.top;
-          
-          // Получаем размеры кнопки
-          const size = btnSizes.get(videoBtn) || { width: 100, height: 30 };
-          const btnW = size.width;
-          const btnH = size.height;
-          
-          // Ограничиваем позицию, чтобы кнопка не выходила за пределы изображения
-          const minX = btnW / 2;
-          const maxX = rect.width - btnW / 2;
-          const minY = btnH / 2;
-          const maxY = rect.height - btnH / 2;
-          
-          x = Math.max(minX, Math.min(maxX, x));
-          y = Math.max(minY, Math.min(maxY, y));
-          
-          videoBtn.style.left = x + 'px';
-          videoBtn.style.top = y + 'px';
-          videoBtn.style.transform = 'translate(-50%, -50%)';
-        });
-
-         // Скрываем кнопку, если курсор ушёл с изображения
-         imgContainer.addEventListener('mouseleave', () => {
-           card.style.cursor = 'pointer';
-           videoBtn.style.display = 'none';
-         });
-       });
-    </script>
+  <!-- Removed inline script; migrated to modular init.js -->
   <script src="./word-anim.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script>
@@ -1314,64 +1038,31 @@
         });
       });
 
-      // Wheel-based scroll-jacking: lock scroll when sticky inner is active
-      var lastWheelTime = 0;
-      var isSwitching = false;
-      var isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
-
-      window.addEventListener('wheel', function(e) {
-        // Skip scroll-jacking on mobile devices
-        if (isMobile) return;
-        if (!projectsOuter || !projectsInner) return;
-
-        var innerRect = projectsInner.getBoundingClientRect();
-        var outerRect = projectsOuter.getBoundingClientRect();
-
-        // Check if the sticky inner is currently "stuck" (top == 0) and outer is still in view
-        var isStuck = Math.abs(innerRect.top) < 2 && outerRect.bottom > 0;
-        if (!isStuck) return;
-
-        // If at last project and scrolling down, allow scroll to continue
-        if (e.deltaY > 0 && currentIndex === projects.length - 1) {
-          return;
-        }
-        // If at first project and scrolling up, allow scroll up
-        if (e.deltaY < 0 && currentIndex === 0) {
-          return;
-        }
-
-        // If locked or currently switching, prevent scroll but don't switch
-        if (isLocked || isSwitching) {
-          e.preventDefault();
-          return;
-        }
-
-        // Throttle: only allow one switch per 1500ms (slower)
-        var now = Date.now();
-        if (now - lastWheelTime < 1500) {
-          e.preventDefault();
-          return;
-        }
-
-        // Prevent default scrolling (lock scroll)
-        e.preventDefault();
-
-        lastWheelTime = now;
-        isSwitching = true;
-
-        // Switch project based on scroll direction
-        if (e.deltaY > 0 && currentIndex < projects.length - 1) {
-          switchProject(currentIndex + 1);
-        } else if (e.deltaY < 0 && currentIndex > 0) {
-          switchProject(currentIndex - 1);
-        }
-
-        // Reset switching flag after animation completes
-        setTimeout(function() { isSwitching = false; }, 800);
-      }, { passive: false });
-
       // Initialize first project
       switchProject(0);
+
+      // Auto-rotate projects every 5 seconds
+      var autoRotateTimer = setInterval(function() {
+        var nextIndex = (currentIndex + 1) % projects.length;
+        switchProject(nextIndex);
+      }, 5000);
+
+      // Pause auto-rotate on user interaction
+      thumbnailBtns.forEach(function(btn) {
+        btn.addEventListener('mouseenter', function() {
+          clearInterval(autoRotateTimer);
+        });
+        btn.addEventListener('click', function() {
+          clearInterval(autoRotateTimer);
+          // Resume after 10 seconds
+          setTimeout(function() {
+            autoRotateTimer = setInterval(function() {
+              var nextIndex = (currentIndex + 1) % projects.length;
+              switchProject(nextIndex);
+            }, 5000);
+          }, 10000);
+        });
+      });
     })();
     </script>
 </body>

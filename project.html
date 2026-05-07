@@ -151,7 +151,7 @@
 <body>
   <div id="app">
     <main style="position: relative; background: #f7f7f7; overflow-x: hidden; width: 100%;" aria-label="Студия 12/20">
-     <header class="relative z-50">
+      <header class="relative z-50">
         <!-- DESKTOP NAV -->
         <div class="desktop-nav-wrapper desktop-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
            <div class="nav-left-wrapper relative">
@@ -409,12 +409,12 @@
 
     // --- Данные проектов ---
     var isMobile = window.innerWidth < 768;
-    var projects = [
-      { id: 'proj-yanta', title: 'Янта', video: './static/images/4lg5t-1.png', color: '#F5DEB3' },
-      { id: 'proj-gussi', title: 'Gussi Rem', video: './static/images/frame-12@2x.png', color: '#E0E6E6' },
-      { id: 'proj-isoform', title: 'Изофом', video: './static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png', color: '#B0C4DE' },
-      { id: 'proj-yanta2', title: 'Янта #2', video: './static/images/6l06a-1.png', color: '#E6E8D6' }
-    ];
+     var projects = [
+       { id: 'proj-yanta', title: 'Янта', video: './static/videos/Yanta.mp4', poster: './static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png', color: '#F5DEB3' },
+       { id: 'proj-gussi', title: 'Gussi Rem', video: './static/videos/Gussi Rem.mp4', poster: './static/images/6l06a-1.png', color: '#E0E6E6' },
+       { id: 'proj-isoform', title: 'Изофом', video: './static/videos/Изофом.mov', poster: './static/images/4lg5t-1.jpg', color: '#B0C4DE' },
+       { id: 'proj-yanta2', title: 'Янта #2', video: './static/videos/Yanta.mp4', poster: './static/images/6l06a-1.png', color: '#E6E8D6' }
+     ];
 
     var currentIndex = 0;
     var projectList = document.getElementById('projectList');
@@ -431,9 +431,17 @@
       currentIndex = index;
       var proj = projects[currentIndex];
 
-      // Обновляем правую часть (видео/превью)
-      currentVideo.innerHTML = '<img src="' + proj.video + '" alt="' + proj.title + '" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">';
-      videoContainer.style.backgroundColor = proj.color || '#151515';
+       // Обновляем правую часть (видео/превью)
+       var isMov = proj.video.endsWith('.mov');
+       currentVideo.innerHTML = '<video class="project-video-desktop" muted loop playsinline poster="' + proj.poster + '" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">' +
+         '<source src="' + proj.video + '" type="' + (isMov ? 'video/quicktime' : 'video/mp4') + '">' +
+         '</video>';
+       videoContainer.style.backgroundColor = proj.color || '#151515';
+       // Автозапуск на мобильных
+       if (isMobile) {
+         var v = currentVideo.querySelector('video');
+         if (v) v.play();
+       }
 
       // Скроллим к соответствующему проекту слева
       var target = document.getElementById(proj.id);
@@ -451,20 +459,25 @@
     }
 
     if (!isMobile) {
-      // Observer следит за тем, какой проект виден (для обновления правой части)
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting && !isLocked) {
-            var idx = projects.findIndex(function(p) { return p.id === entry.target.id; });
-            if (idx !== -1 && idx !== currentIndex) {
-              currentIndex = idx;
-              var p = projects[idx];
-              currentVideo.innerHTML = '<img src="' + p.video + '" alt="' + p.title + '" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">';
-              videoContainer.style.backgroundColor = p.color || '#151515';
-            }
-          }
-        });
-      }, { threshold: 0.6 });
+       // Observer следит за тем, какой проект виден (для обновления правой части)
+       var observer = new IntersectionObserver(function(entries) {
+         entries.forEach(function(entry) {
+           if (entry.isIntersecting && !isLocked) {
+             var idx = projects.findIndex(function(p) { return p.id === entry.target.id; });
+             if (idx !== -1 && idx !== currentIndex) {
+               currentIndex = idx;
+               var p = projects[idx];
+               var isMov = p.video.endsWith('.mov');
+               currentVideo.innerHTML = '<video class="project-video-desktop" muted loop playsinline poster="' + p.poster + '" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">' +
+                 '<source src="' + p.video + '" type="' + (isMov ? 'video/quicktime' : 'video/mp4') + '">' +
+                 '</video>';
+               videoContainer.style.backgroundColor = p.color || '#151515';
+               var v = currentVideo.querySelector('video');
+               if (v) v.play().catch(function() {});
+             }
+           }
+         });
+       }, { threshold: 0.6 });
 
       sections.forEach(function(section) { observer.observe(section); });
 

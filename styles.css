@@ -2564,25 +2564,9 @@ textarea {
    transition: background 0.2s ease;
    width: 100%;
  }
- .nav-menu-cta-btn:hover {
-   background: #2a2a2a;
- }
- @media (max-width: 1023px) {
-   #nav-menu-panel {
-     display: none;
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background: rgba(0,0,0,0.5);
-     z-index: 20000;
-   }
-   #nav-menu-panel.open {
-     display: block !important;
-   }
- }
-}
+  .nav-menu-cta-btn:hover {
+    background: #2a2a2a;
+  }
  
  
 /* Мобильная шапка — прозрачная по умолчанию */
@@ -3174,44 +3158,6 @@ input[type="range"]::-moz-range-thumb {
   margin-left: auto;
 }
 
-/* ====================== MOBILE ADAPTATION FOR PROJECTS ====================== */
-@media (max-width: 768px) {
-  /* Mobile navigation panel styling to resemble the previous look */
-  #nav-menu-panel.nav-menu-panel--mobile {
-    background: rgba(0, 0, 0, 0.92);
-    padding: 14px 16px;
-    border-radius: 12px;
-  }
-
-  #nav-menu-panel.nav-menu-panel--mobile .nav-menu-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  #nav-menu-panel.nav-menu-panel--mobile .nav-menu-link {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.125rem; /* ~18px */
-    color: #fff;
-    text-decoration: none;
-  }
-
-  #nav-menu-panel.nav-menu-panel--mobile .nav-menu-contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  #nav-menu-panel.nav-menu-panel--mobile .nav-menu-cta-btn {
-    font-size: 1rem;
-    padding: 10px 14px;
-  }
-
-  /* Ensure the mobile toggle button remains clearly legible and tappable */
-  .mobile-menu-btn-text {
-    font-size: 1.0rem;
-  }
-}
   #projects-outer {
     height: auto !important;
     background: #0a0a0a;

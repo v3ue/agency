@@ -403,6 +403,53 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 #hero-banner:hover .hero-video-btn { opacity: 1; pointer-events: auto; }
 .hero-line-height { line-height: 1.1; }
 
+/* === HERO CTA (кнопка на первом экране) === */
+.hero-cta-btn {
+  position: absolute;
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%);
+  z-index: 30;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #151515;
+  color: #f8f8f8;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+
+  padding: 14px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: background-color 0.2s ease,
+              transform 0.2s ease;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-cta-btn:hover {
+  background: #2a2a2a;
+  transform: translateY(-50%) scale(1.02);
+}
+
+.hero-cta-btn:active {
+  transform: translateY(-50%) scale(0.985);
+}
+
+/* Состояния скрытия */
+.hero-cta-hidden {
+  display: none;
+}
+
+.nav-cta-hidden {
+  display: none;
+}
+
 /* === COMPONENT: Logos Strip === */
 .logos-strip { overflow: hidden; white-space: nowrap; }
 .logos-track {
@@ -426,7 +473,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 }
 
 .projects-container {
-  max-width: 1480px;
+  max-width: 1600px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 420px 1fr;
@@ -444,9 +491,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .section-title {
   font-family: var(--font-heading);
-  font-size: 3.625rem;
-  color: var(--color-text);
-  margin: 0 0 28px 0;
+  font-size: 4rem;
+  color: #151515;
+  margin: 0 0 88px 0;
   display: block;
 }
 
@@ -493,9 +540,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   transition: border-color 0.2s ease;
 }
 
-.project-item.active img {
-  border-color: #163af2;
-}
 
 .project-item-text {
   display: flex;
@@ -505,7 +549,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .project-item-text span {
   font-family: var(--font-body);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 500;
   color: #151515;
   transition: color 0.2s ease;

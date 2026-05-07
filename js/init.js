@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await import('./hero-video.js');
     await import('./process-anim.js');
     await import('./page-interactions.js');
+    await import('./cta-toggle.js');
   } catch (err) {
     console.error('Failed to initialize modules', err);
   }

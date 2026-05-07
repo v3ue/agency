@@ -48,7 +48,7 @@
               +7 (916) 995 02 70
             </a>
             <div class="w-8"></div>
-            <a href="#cta" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+            <a href="#cta" id="nav-cta-btn" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
           </div>
         </div>
 
@@ -145,6 +145,12 @@
                   <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
                   <span style="font-family: 'Open Sans', sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
                 </div>
+                <!-- Большая CTA-кнопка на первом экране (справа от видео) -->
+                <a href="#cta"
+                   id="hero-cta-btn"
+                   class="hero-cta-btn desktop-only">
+                  Обсудить проект
+                </a>
               </div>
             </div>
           </div>
@@ -1039,6 +1045,8 @@
     resizeTimeout = setTimeout(render, 150);
   });
 })();
-       </script>
+        </script>
+  <!-- Модуль переключения CTA-кнопки -->
+  <script type="module" src="./js/cta-toggle.js"></script>
 </body>
 </html>

@@ -41,7 +41,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   --font-body:    'Open Sans', sans-serif;
 
   /* Базовые размеры текста (4 уровня) */
-  --fs-display: clamp(2.75rem, 8vw, 5.75rem);  /* hero */
+  --fs-display: clamp(2.75rem, 8vw, 3rem);  /* hero */
   --fs-heading: clamp(2rem, 6.5vw, 3.5rem);     /* h2, h3 */
   --fs-body:    clamp(1.125rem, 4.5vw, 1.5rem); /* основной */
   --fs-small:   1rem;                            /* мелкий */
@@ -419,37 +419,54 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   animation: logo-pulse 3s infinite alternate ease-in-out;
 }
 
-/* === PROJECTS — описание внутри элемента (расширение) === */
+/* === PROJECTS — исправленная версия === */
 .projects-section {
   background: #F8F8F8;
   padding: 120px 20px;
 }
 
 .projects-container {
-  max-width: 1280px;
+  max-width: 1480px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 80px;
-  align-items: start;
+  grid-template-columns: 420px 1fr;
+  gap: 60px;
+  justify-content: start;
 }
 
 .projects-sidebar {
   position: sticky;
-  top: 100px;
+  top: 120px;
+  align-self: start;
+  display: block;
+  width: 100%;
 }
 
 .section-title {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: 3.625rem;
   color: var(--color-text);
-  margin: 0 0 32px 0;
+  margin: 0 0 28px 0;
+  display: block;
 }
 
 .project-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Мобильная версия */
+@media (max-width: 1023px) {
+  .projects-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .projects-sidebar {
+    display: none;
+  }
 }
 
 .project-item {
@@ -467,11 +484,11 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 }
 
 .project-item img {
-  width: 88px;
-  height: 55px;
+  width: 66px;
+  height: 44px;
   border-radius: 8px;
   object-fit: cover;
-  border: 2px solid transparent;
+
   flex-shrink: 0;
   transition: border-color 0.2s ease;
 }
@@ -488,9 +505,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .project-item-text span {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  color: #888;
+  color: #151515;
   transition: color 0.2s ease;
 }
 
@@ -500,9 +517,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .item-description {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
-  color: #555;
+  color: #888;
   margin-top: 8px;
   max-height: 0;
   overflow: hidden;
@@ -534,7 +551,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .project-showcase {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 120px;
 }
 
 .project-video-container.vertical {
@@ -552,7 +569,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .projects-mobile {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 120px;
 }
 
 .project-mobile-card {
@@ -581,12 +598,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   box-shadow:
     0 20px 60px -15px rgba(0, 0, 0, 0.25),
     0 8px 24px -8px rgba(0, 0, 0, 0.15);
-}
-
-@media (max-width: 1023px) {
-  .projects-container {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* === COMPONENT: Competencies === */

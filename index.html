@@ -199,7 +199,9 @@
               <div class="project-showcase desktop-only" id="project-showcase"></div>
 
               <!-- Mobile: simple linear sequence -->
-              <div class="projects-mobile mobile-only" id="projects-mobile"></div>
+              <div class="projects-mobile mobile-only" id="projects-mobile">
+                <h2 class="section-title mobile-projects-title">Проекты</h2>
+              </div>
             </div>
           </div>
         </section>
@@ -878,58 +880,25 @@
        <script>
 (function() {
   const projects = [
-    {
-      id: 0,
-      title: "Изофом",
-      description: "Серия объясняющих роликов для производителя строительного материала.",
-      video: "./static/videos/Изофом.mov",
-      poster: "./static/images/4lg5t-1.jpg",
-      isVertical: false
-    },
-    {
-      id: 1,
-      title: "C-Tea",
-      description: "Серия маркетинговых роликов для продуктовой линейки локального заведения.",
-      video: "./static/videos/C-Tea.mov",
-      poster: "./static/images/frame-12@2x.png",
-      isVertical: true
-    },
-    {
-      id: 2,
-      title: "Янта",
-      description: "Рекламный ролик для FMCG-бренда с точной передачей упаковки.",
-      video: "./static/videos/Yanta.mp4",
-      poster: "./static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png",
-      isVertical: false
-    },
-    {
-      id: 3,
-      title: "Особый ремонт",
-      description: "Брендовый ролик в стиле «Миссия невыполнима» для компании по ремонту недвижимости.",
-      video: "./static/videos/Gussi Rem.mp4",
-      poster: "./static/images/6l06a-1.png",
-      isVertical: false
-    }
+    { id: 0, title: "Изофом", description: "Серия объясняющих роликов для производителя строительного материала.", video: "./static/videos/Изофом.mov", poster: "./static/images/4lg5t-1.jpg", isVertical: false },
+    { id: 1, title: "C-Tea", description: "Серия маркетинговых роликов для продуктовой линейки локального заведения.", video: "./static/videos/C-Tea.mov", poster: "./static/images/frame-12@2x.png", isVertical: true },
+    { id: 2, title: "Янта", description: "Рекламный ролик для FMCG-бренда с точной передачей упаковки.", video: "./static/videos/Yanta.mp4", poster: "./static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png", isVertical: false },
+    { id: 3, title: "Особый ремонт", description: "Брендовый ролик в стиле «Миссия невыполнима» для компании по ремонту недвижимости.", video: "./static/videos/Gussi Rem.mp4", poster: "./static/images/6l06a-1.png", isVertical: false }
   ];
 
   let activeId = 0;
+  let isUserInteracting = false;
 
   const projectList = document.getElementById('project-list');
   const showcase = document.getElementById('project-showcase');
   const mobileContainer = document.getElementById('projects-mobile');
 
-  function isDesktop() {
-    return window.innerWidth >= 1024;
-  }
-
   function buildProjectList() {
     projectList.innerHTML = '';
-
     projects.forEach(project => {
       const item = document.createElement('button');
       item.className = 'project-item';
       item.dataset.id = project.id;
-
       item.innerHTML = `
         <img src="${project.poster}" alt="${project.title}">
         <div class="project-item-text">
@@ -937,12 +906,13 @@
           <p class="item-description">${project.description}</p>
         </div>
       `;
-
-      item.addEventListener('click', () => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        isUserInteracting = true;
         setActive(project.id);
         scrollToCard(project.id);
+        setTimeout(() => { isUserInteracting = false; }, 1500);
       });
-
       projectList.appendChild(item);
     });
   }
@@ -950,16 +920,13 @@
   function buildShowcase() {
     showcase.innerHTML = '';
     projects.forEach(project => {
-      const wrapperClass = project.isVertical
-        ? 'project-video-container vertical'
-        : 'project-video-container';
-
+      const wrapperClass = project.isVertical ? 'project-video-container vertical' : 'project-video-container';
       const card = document.createElement('div');
       card.className = 'project-card';
       card.id = `project-card-${project.id}`;
       card.innerHTML = `
         <div class="${wrapperClass}">
-          <video autoplay muted loop playsinline preload="auto" poster="${project.poster}" class="project-video">
+          <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
             <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
           </video>
         </div>
@@ -969,43 +936,22 @@
   }
 
   function buildMobile() {
-    mobileContainer.innerHTML = '';
-    projects.forEach(project => {
-      const wrapperClass = project.isVertical
-        ? 'project-video-container vertical'
-        : 'project-video-container';
+    mobileContainer.querySelectorAll('.project-mobile-card').forEach(el => el.remove());
 
+    projects.forEach(project => {
+      const wrapperClass = project.isVertical ? 'project-video-container vertical' : 'project-video-container';
       const card = document.createElement('div');
       card.className = 'project-mobile-card';
       card.innerHTML = `
         <h3>${project.title}</h3>
         <p>${project.description}</p>
         <div class="${wrapperClass}">
-          <video autoplay muted loop playsinline preload="auto" poster="${project.poster}" class="project-video">
+          <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
             <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
           </video>
         </div>
       `;
       mobileContainer.appendChild(card);
-    });
-  }
-
-  function setupPlayback(container) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-            entry.target.play().catch(() => {});
-          } else {
-            entry.target.pause();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    container.querySelectorAll('.project-video').forEach(video => {
-      observer.observe(video);
     });
   }
 
@@ -1017,7 +963,6 @@
   function setActive(id) {
     if (id === activeId) return;
     activeId = id;
-
     projectList.querySelectorAll('.project-item').forEach(item => {
       item.classList.toggle('active', parseInt(item.dataset.id) === id);
     });
@@ -1025,22 +970,47 @@
 
   function setupObserver() {
     const observer = new IntersectionObserver((entries) => {
+      if (isUserInteracting) return;
+
+      let bestEntry = null;
       entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
-          const id = parseInt(entry.target.id.replace('project-card-', ''));
-          setActive(id);
+        if (entry.isIntersecting) {
+          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+            bestEntry = entry;
+          }
         }
       });
-    }, { threshold: [0.45, 0.6] });
+
+      if (bestEntry) {
+        const id = parseInt(bestEntry.target.id.replace('project-card-', ''));
+        setActive(id);
+      }
+    }, {
+      threshold: [0.3, 0.5, 0.7]
+    });
 
     showcase.querySelectorAll('.project-card').forEach(card => observer.observe(card));
   }
 
-  function renderByViewport() {
+  function setupPlayback(container) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+          entry.target.play().catch(() => {});
+        } else {
+          entry.target.pause();
+        }
+      });
+    }, { threshold: 0.3 });
+    container.querySelectorAll('.project-video').forEach(video => observer.observe(video));
+  }
+
+  function render() {
+    const isDesktop = window.innerWidth >= 1024;
     showcase.innerHTML = '';
     mobileContainer.innerHTML = '';
 
-    if (isDesktop()) {
+    if (isDesktop) {
       buildShowcase();
       setActive(0);
       requestAnimationFrame(() => {
@@ -1048,24 +1018,26 @@
         setupPlayback(showcase);
       });
     } else {
+      if (!mobileContainer.querySelector('.mobile-projects-title')) {
+        const title = document.createElement('h2');
+        title.className = 'section-title mobile-projects-title';
+        title.textContent = 'Проекты';
+        mobileContainer.appendChild(title);
+      }
       buildMobile();
       setupPlayback(mobileContainer);
     }
   }
 
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      showcase.innerHTML = '';
-      mobileContainer.innerHTML = '';
-      renderByViewport();
-    }, 200);
-  });
-
-  // Init
+  // Инициализация
   buildProjectList();
-  renderByViewport();
+  render();
+
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(render, 150);
+  });
 })();
        </script>
 </body>

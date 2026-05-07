@@ -407,13 +407,13 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .hero-top-bar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 40px;
-  padding: 0 40px;
+  padding: 0 8px 0 8px;
 }
 
 .hero-top-title {
-  max-width: 580px;
+  max-width: 920px;
   margin: 0;
   text-align: left;
 }
@@ -438,7 +438,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
   transition: background-color 0.2s ease,
               transform 0.2s ease;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-cta-btn:hover {
@@ -455,8 +454,26 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   display: none;
 }
 
+/* Навигационная кнопка: плавное появление вместо display: none */
+#nav-cta-btn {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.4s ease,
+              visibility 0.4s ease,
+              transform 0.4s ease;
+  pointer-events: none;
+}
+
+#nav-cta-btn:not(.nav-cta-hidden) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 .nav-cta-hidden {
-  display: none;
+  /* Оставляем как маркер — управляем через #nav-cta-btn напрямую */
 }
 
 /* === COMPONENT: Logos Strip === */

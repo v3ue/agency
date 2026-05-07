@@ -191,23 +191,26 @@
         </section>
         <!-- ==================== PROJECTS ==================== -->
         <section id="projects" class="projects-section" aria-labelledby="projects-heading">
+          <h2 id="projects-heading" class="section-title section-title-projects desktop-only">Проекты</h2>
           <div class="projects-container">
-            <!-- Left sidebar (desktop only) -->
-            <div class="projects-sidebar desktop-only">
-              <h2 id="projects-heading" class="section-title">Проекты</h2>
-              <div class="project-list" id="project-list"></div>
+            <!-- Left: vertical thumbnail strip (desktop only) -->
+            <div class="projects-sidebar desktop-only" id="projects-sidebar">
+              <div class="project-thumbnail-list" id="project-thumbnail-list"></div>
             </div>
 
-            <!-- Right side / main content -->
+            <!-- Center: video showcase -->
             <div class="projects-main">
-              <!-- Desktop: large video, one per project -->
               <div class="project-showcase desktop-only" id="project-showcase"></div>
 
               <!-- Mobile: simple linear sequence -->
-              <div class="projects-mobile mobile-only" id="projects-mobile">
-                <h2 class="section-title mobile-projects-title">Проекты</h2>
-              </div>
+              <div class="projects-mobile mobile-only" id="projects-mobile"></div>
             </div>
+          </div>
+
+          <!-- Bottom-left: project info (appears on scroll) -->
+          <div class="project-info-fixed" id="project-info-fixed">
+            <h3 class="project-info-title" id="project-info-title"></h3>
+            <p class="project-info-desc" id="project-info-desc"></p>
           </div>
         </section>
         <section aria-labelledby="competencies-heading"
@@ -891,26 +894,21 @@
     { id: 3, title: "Особый ремонт", description: "Брендовый ролик в стиле «Миссия невыполнима» для компании по ремонту недвижимости.", video: "./static/videos/Gussi Rem.mp4", poster: "./static/images/6l06a-1.png", isVertical: false }
   ];
 
-  let activeId = 0;
+  let activeId = -1;
   let isUserInteracting = false;
 
-  const projectList = document.getElementById('project-list');
+  const thumbnailList = document.getElementById('project-thumbnail-list');
   const showcase = document.getElementById('project-showcase');
   const mobileContainer = document.getElementById('projects-mobile');
 
-  function buildProjectList() {
-    projectList.innerHTML = '';
+  function buildThumbnails() {
+    if (!thumbnailList) return;
+    thumbnailList.innerHTML = '';
     projects.forEach(project => {
       const item = document.createElement('button');
-      item.className = 'project-item';
+      item.className = 'project-thumbnail-item';
       item.dataset.id = project.id;
-      item.innerHTML = `
-        <img src="${project.poster}" alt="${project.title}">
-        <div class="project-item-text">
-          <span>${project.title}</span>
-          <p class="item-description">${project.description}</p>
-        </div>
-      `;
+      item.innerHTML = `<img src="${project.poster}" alt="${project.title}">`;
       item.addEventListener('click', (e) => {
         e.preventDefault();
         isUserInteracting = true;
@@ -918,7 +916,7 @@
         scrollToCard(project.id);
         setTimeout(() => { isUserInteracting = false; }, 1500);
       });
-      projectList.appendChild(item);
+      thumbnailList.appendChild(item);
     });
   }
 
@@ -968,13 +966,31 @@
   function setActive(id) {
     if (id === activeId) return;
     activeId = id;
-    projectList.querySelectorAll('.project-item').forEach(item => {
+
+    thumbnailList?.querySelectorAll('.project-thumbnail-item').forEach(item => {
       item.classList.toggle('active', parseInt(item.dataset.id) === id);
     });
+
+    const project = projects.find(p => p.id === id);
+    const info = document.getElementById('project-info-fixed');
+    if (project && info) {
+      const titleEl = document.getElementById('project-info-title');
+      const descEl = document.getElementById('project-info-desc');
+      titleEl.textContent = project.title;
+      descEl.textContent = project.description;
+    }
   }
 
   function setupObserver() {
-    const observer = new IntersectionObserver((entries) => {
+    const info = document.getElementById('project-info-fixed');
+    const sidebar = document.getElementById('projects-sidebar');
+    const cards = showcase.querySelectorAll('.project-card');
+    if (!cards.length) return;
+
+    const section = document.getElementById('projects');
+
+    // Observer для определения активного (центрального) видео
+    const activeObserver = new IntersectionObserver((entries) => {
       if (isUserInteracting) return;
 
       let bestEntry = null;
@@ -991,10 +1007,43 @@
         setActive(id);
       }
     }, {
-      threshold: [0.3, 0.5, 0.7]
+      rootMargin: '-45% 0px -45% 0px',
+      threshold: 0
     });
 
-    showcase.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+    cards.forEach(card => activeObserver.observe(card));
+
+    // Scroll-based visibility для превью и описания
+    // Показываем когда секция Projects вошла в основную часть экрана
+    let ticking = false;
+
+    function updateVisibility() {
+      if (!section || !info) return;
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      // Показываем: верх секции ниже 65% экрана (начало блока видно)
+      // Скрываем: низ секции выше 10% экрана (блок полностью ушёл вверх)
+      const shouldShow = rect.top < vh * 0.65 && rect.bottom > vh * 0.1;
+
+      if (shouldShow) {
+        info.classList.add('visible');
+        sidebar?.classList.add('visible');
+      } else {
+        info.classList.remove('visible');
+        sidebar?.classList.remove('visible');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateVisibility);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateVisibility();
   }
 
   function setupPlayback(container) {
@@ -1016,6 +1065,7 @@
     mobileContainer.innerHTML = '';
 
     if (isDesktop) {
+      buildThumbnails();
       buildShowcase();
       setActive(0);
       requestAnimationFrame(() => {
@@ -1023,19 +1073,16 @@
         setupPlayback(showcase);
       });
     } else {
-      if (!mobileContainer.querySelector('.mobile-projects-title')) {
-        const title = document.createElement('h2');
-        title.className = 'section-title mobile-projects-title';
-        title.textContent = 'Проекты';
-        mobileContainer.appendChild(title);
-      }
+      const title = document.createElement('h2');
+      title.className = 'section-title mobile-projects-title';
+      title.textContent = 'Проекты';
+      mobileContainer.appendChild(title);
       buildMobile();
       setupPlayback(mobileContainer);
     }
   }
 
   // Инициализация
-  buildProjectList();
   render();
 
   let resizeTimeout;

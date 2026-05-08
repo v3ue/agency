@@ -850,7 +850,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   font-weight: 600;
   font-size: 1rem;
   color: rgba(21, 21, 21, 0.6);
-  max-width: 380px;
+  max-width: 420px;
 }
 
 @media (min-width: 1024px) {
@@ -864,7 +864,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; }
   .process-step-title { font-size: 2rem; }
-  .process-step-text { font-size: 1rem; max-width: 340px; }
+  .process-step-text { font-size: 1rem; max-width: 420px; }
 }
 
 /* === COMPONENT: CTA Form === */

@@ -810,7 +810,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .process-step {
   position: relative;
   margin-left: 2.5rem;
-  min-height: 340px;
+  min-height: 420px;
   border-radius: 16px;
   background-size: cover;
   background-position: center;
@@ -862,7 +862,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .process-step-title {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: var(--fs-body);
   color: #151515;
   line-height: 1.2;
 }
@@ -881,7 +881,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .process-step {
     max-width: calc(73% - 1.5rem);
     margin-left: calc(27% + 1.5rem);
-    min-height: 480px;
+    min-height: 540px;
   }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; }

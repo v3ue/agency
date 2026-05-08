@@ -1,7 +1,6 @@
 /**
- * Projects section logic — исправленная версия
- * Desktop: fixed thumbnails + centered videos + bottom-left info panel
- * Mobile: linear list
+ * Projects section logic — финальная стабильная версия
+ * Используем scroll + getBoundingClientRect для точного контроля видимости превью
  */
 
 import { projects } from './projects-data.js';
@@ -12,6 +11,7 @@ const RESIZE_DEBOUNCE_MS = 150;
 let activeId = -1;
 let isUserInteracting = false;
 let resizeTimeout = null;
+let ticking = false;
 
 /** Root DOM elements */
 function getElements() {
@@ -25,7 +25,7 @@ function getElements() {
   };
 }
 
-/** Build thumbnails, showcase, mobile — без изменений */
+/* === buildThumbnails, buildShowcase, buildMobile, scrollToCard — без изменений === */
 function buildThumbnails(thumbnailList) {
   if (!thumbnailList) return;
 
@@ -101,38 +101,55 @@ function scrollToCard(id) {
   if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Активация проекта + показ превью */
+/** Активация проекта */
 function setActive(id) {
   if (id === activeId) return;
   activeId = id;
 
-  const { thumbnailList, info, sidebar } = getElements();
+  const { thumbnailList } = getElements();
 
-  // Обновляем превьюшки
   thumbnailList?.querySelectorAll('.project-thumbnail-item').forEach((item) => {
     item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
   });
 
-  // Обновляем текст в панели
   const project = projects.find((p) => p.id === id);
-  if (project && info) {
+  if (project) {
     const titleEl = document.getElementById('project-info-title');
     const descEl = document.getElementById('project-info-desc');
     if (titleEl) titleEl.textContent = project.title;
     if (descEl) descEl.textContent = project.description;
   }
-
-  // Показываем превью и сайдбар
-  if (info) info.classList.add('visible');
-  if (sidebar) sidebar.classList.add('visible');
 }
 
-/** Главный observer — определяет активный проект и управляет видимостью превью */
+/** Показ/скрытие превью по центру экрана */
+function updateInfoVisibility() {
+  if (ticking) return;
+  ticking = true;
+
+  const { info, sidebar, section } = getElements();
+  if (!info || !section) return;
+
+  const rect = section.getBoundingClientRect();
+  const vh = window.innerHeight;
+
+  // Показываем, когда секция хотя бы частично в центре экрана
+  const shouldShow = rect.top < vh * 0.8 && rect.bottom > vh * 0.2;
+
+  if (shouldShow) {
+    info.classList.add('visible');
+    sidebar?.classList.add('visible');
+  } else {
+    info.classList.remove('visible');
+    sidebar?.classList.remove('visible');
+  }
+
+  ticking = false;
+}
+
+/** Observer только для выбора активного проекта */
 function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
-
-  const { info, sidebar, section } = getElements();
 
   const observer = new IntersectionObserver((entries) => {
     if (isUserInteracting) return;
@@ -151,30 +168,14 @@ function setupActiveObserver(showcase) {
       setActive(id);
     }
   }, {
-    rootMargin: '-40% 0px -40% 0px',   // чуть мягче, чтобы первый проект срабатывал сразу
-    threshold: [0, 0.5, 1],
+    rootMargin: '-42% 0px -42% 0px',
+    threshold: [0.3, 0.6, 1],
   });
 
   cards.forEach((card) => observer.observe(card));
-
-  // Скрываем превью только когда вся секция полностью ушла из виду
-  if (section && info && sidebar) {
-    const hideObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          info.classList.remove('visible');
-          sidebar.classList.remove('visible');
-        }
-      });
-    }, {
-      rootMargin: '0px 0px -5% 0px',   // исчезает только когда секция почти полностью ушла
-      threshold: 0,
-    });
-    hideObserver.observe(section);
-  }
 }
 
-/** Auto-play / pause видео */
+/** Auto-play видео */
 function setupPlayback(container) {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -192,7 +193,7 @@ function setupPlayback(container) {
   container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
 }
 
-/** Основной рендер */
+/** Render */
 function render() {
   const { thumbnailList, showcase, mobileContainer } = getElements();
   const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
@@ -205,7 +206,7 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
-      setActive(0);                    // сразу активируем первый проект
+      setActive(0);
       setupActiveObserver(showcase);
       setupPlayback(showcase);
     });
@@ -222,10 +223,14 @@ function render() {
 
 /** Public API */
 export function initProjects() {
-  const { showcase } = getElements();
+  const { showcase, section } = getElements();
   if (!showcase) return;
 
   render();
+
+  // Главный контроль видимости превью — scroll listener (самый надёжный)
+  window.addEventListener('scroll', updateInfoVisibility, { passive: true });
+  updateInfoVisibility(); // первый запуск
 
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);

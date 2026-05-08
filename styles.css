@@ -1106,15 +1106,7 @@ main { z-index: 1; }
   border: 0;
 }
 
-/* === TAILWIND === */
-    *,
-    ::after,
-    ::before {
-      box-sizing: border-box;
-      border-width: 0;
-      border-style: solid;
-      border-color: #e5e7eb
-    }
+
 
     ::after,
     ::before {
@@ -2690,6 +2682,112 @@ main { z-index: 1; }
     margin-bottom: 40px;
   }
 }
+
+/* === INLINE-STYLE CLEANUP (moved to semantic classes) === */
+
+/* Data-delay support for animate-fade-in */
+.animate-fade-in[data-delay="0.2s"]  { --animation-delay: 0.2s; }
+.animate-fade-in[data-delay="0.35s"] { --animation-delay: 0.35s; }
+
+/* Button radius */
+.rounded-btn { border-radius: 12px; }
+
+/* Layout */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; }
+.site-main   { position: relative; background: #F8F8F8; overflow-x: hidden; width: 100%; margin-top: 85px; }
+
+/* Sections */
+.section-hero         { padding: 220px 20px 40px 20px; max-width: 1600px; margin: 0 auto; }
+.section-about        { padding: 230px 20px 200px 20px; max-width: 1600px; margin: 0 auto; }
+.section-team         { padding: 80px 20px 240px 20px; max-width: 1600px; margin: 0 auto; }
+.section-cta          { background-color: #0a0a0a; padding: 160px 20px 180px 40px; transition: background-color 0.8s ease; }
+
+/* Containers */
+.container-wide       { max-width: 1600px; margin: 0 auto; }
+.container-narrow     { max-width: 1100px; margin: 0 auto; }
+.container-text       { max-width: 800px; margin: 0 auto; }
+
+/* Hero */
+.hero-banner {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  border-radius: 1rem;
+  will-change: transform, border-radius;
+  z-index: 1;
+  position: relative;
+}
+
+.hero-video-btn {
+  display: none;
+  gap: 3px;
+  background-color: rgba(229, 231, 235, 0.9);
+  border-radius: 4px;
+  padding: 4px 5px 4px 4px;
+  white-space: nowrap;
+  will-change: transform;
+  position: absolute;
+  z-index: 10;
+}
+
+.hero-video-btn .arrow { color: #6b6b6b; font-size: 1.125rem; }
+.hero-video-btn .label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #6b6b6b;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* About */
+.about-text { font-size: 32px; line-height: 1.4; }
+
+/* Content series */
+.content-series-text { font-size: 68px; }
+
+/* Value section */
+.value-section { padding: 20px; }
+.value-bg {
+  border-radius: 1rem;
+  overflow: hidden;
+  background-image: url('./static/images/image-value.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.value-content { text-align: center; padding: 100px 20px; }
+.value-heading { font-size: 4rem; line-height: 1.05; color: white; margin-bottom: 3rem; }
+.value-desc { color: rgba(255, 255, 255, 0.8); font-size: 1.25rem; margin-bottom: 6rem; line-height: 1.5; }
+.value-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem; color: white; font-size: 1.25rem; }
+.value-icon-item { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.value-icon-img  { width: 3rem; height: 3rem; }
+
+/* CTA */
+.cta-heading { font-size: clamp(2.75rem, 5vw, 4.25rem); }
+.cta-phone,
+.cta-email   { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; }
+
+/* Animation delays */
+.delay-02 { transition-delay: 0.2s; }
+.delay-04 { transition-delay: 0.4s; }
+
+.fade-up-d1 { animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.4s both fade-up; }
+.fade-up-d2 { animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s both fade-up; }
+.fade-up-d3 { animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.6s both fade-up; }
+.fade-up-d4 { animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.8s both fade-up; }
+
+/* Mobile menu contacts */
+.mobile-contact { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; color: #151515; text-decoration: none; }
+.mobile-contact-icon      { width: 24px; height: 24px; }
+.mobile-contact-icon-mail { width: 26px; height: 26px; }
+
+/* Nav pill padding (replaces inline) */
+.nav-pill-padding { padding-left: 20px; padding-right: 20px; }
+.nav-pill-padding-sm { padding-left: 16px; padding-right: 16px; }
 
 /* === POST-TAILWIND OVERRIDES === */
 /* Form inputs — remove browser/Tailwind outline on focus/hover */

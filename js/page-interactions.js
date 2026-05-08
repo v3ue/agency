@@ -1,3 +1,5 @@
+import { onScroll } from './utils/scroll.js';
+
 // Page-level interactions: text reveal, CTA background, form fields, anime.js animations
 
 function initPageInteractions() {
@@ -67,7 +69,6 @@ function initPageInteractions() {
   const desktopPill = document.getElementById('desktop-nav-pill');
   const rightPill = document.getElementById('header-right-pill');
   let lastScrollY = 0;
-  let ticking = false;
   let scrollThreshold = window.innerHeight * 0.6;
 
   const updateNavOnScroll = () => {
@@ -96,16 +97,10 @@ function initPageInteractions() {
     }
 
     lastScrollY = scrollY;
-    ticking = false;
   };
 
   if (desktopPill || rightPill) {
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateNavOnScroll);
-        ticking = true;
-      }
-    }, { passive: true });
+    onScroll(updateNavOnScroll);
   }
 
   window.addEventListener('resize', () => {

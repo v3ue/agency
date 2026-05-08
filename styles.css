@@ -874,7 +874,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   letter-spacing: var(--tracking-tight);
   line-height: 1.4;
   color: rgba(21, 21, 21, 0.7);
-  max-width: 600px;
+  max-width: 500px;
 }
 
 @media (min-width: 1024px) {
@@ -888,7 +888,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; gap: 1.5rem; }
   .process-step-title { font-size: 2rem; }
-  .process-step-text { max-width: 620px; }
+  .process-step-text { max-width: 520px; }
 }
 
 /* === COMPONENT: CTA Form === */

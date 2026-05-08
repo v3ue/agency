@@ -693,7 +693,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   }
 }
 
-/* === COMPONENT: Competencies — centered version === */
+/* === COMPONENT: Competencies — centered version (обновлённый) === */
 .competencies-centered-layout {
   display: flex;
   flex-direction: column;
@@ -743,21 +743,53 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .visual-card.card-3 { width: 26%; top: 28%; left: 22%; }
 }
 
+/* Центральный текстовый блок — теперь как единый текст с отступом */
+.competencies-text-list {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .competency-text-item {
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 4.5vw, 2.25rem);
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.04em;
   font-weight: 500;
   color: var(--color-text-muted);
   cursor: pointer;
   transition: color 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-  padding: 12px 0;
+  padding-left: 2.25rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin: 0;
+  position: relative;
+}
+
+.competencies-text-list .flex.flex-col {
+  gap: 0.25rem;
 }
 
 .competency-text-item:hover,
 .competency-text-item.active {
   color: var(--color-text);
+}
+
+.competency-text-item::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 1.35rem;
+  width: 5px;
+  height: 5px;
+  background: var(--color-text-muted);
+  border-radius: 50%;
+  transition: background 0.4s ease;
+}
+
+.competency-text-item:hover::before,
+.competency-text-item.active::before {
+  background: var(--color-text);
 }
 
 /* Скрываем старые неиспользуемые стили */

@@ -1,7 +1,7 @@
 /**
- * Projects section logic
- * Desktop: fixed thumbnails on the left, centered videos, bottom-left info panel.
- * Mobile: linear list with inline titles.
+ * Projects section logic — исправленная версия
+ * Desktop: fixed thumbnails + centered videos + bottom-left info panel
+ * Mobile: linear list
  */
 
 import { projects } from './projects-data.js';
@@ -25,7 +25,7 @@ function getElements() {
   };
 }
 
-/** Build fixed thumbnail strip (desktop only) */
+/** Build thumbnails, showcase, mobile — без изменений */
 function buildThumbnails(thumbnailList) {
   if (!thumbnailList) return;
 
@@ -49,7 +49,6 @@ function buildThumbnails(thumbnailList) {
   });
 }
 
-/** Build desktop video showcase */
 function buildShowcase(showcase) {
   showcase.innerHTML = '';
 
@@ -73,7 +72,6 @@ function buildShowcase(showcase) {
   });
 }
 
-/** Build mobile cards */
 function buildMobile(mobileContainer) {
   mobileContainer.querySelectorAll('.project-mobile-card').forEach((el) => el.remove());
 
@@ -103,7 +101,7 @@ function scrollToCard(id) {
   if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Activate project + show info panel */
+/** Активация проекта + показ превью */
 function setActive(id) {
   if (id === activeId) return;
   activeId = id;
@@ -124,12 +122,12 @@ function setActive(id) {
     if (descEl) descEl.textContent = project.description;
   }
 
-  // Показываем панель
+  // Показываем превью и сайдбар
   if (info) info.classList.add('visible');
   if (sidebar) sidebar.classList.add('visible');
 }
 
-/** Main observer: detects centered card + controls visibility */
+/** Главный observer — определяет активный проект и управляет видимостью превью */
 function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
@@ -153,13 +151,13 @@ function setupActiveObserver(showcase) {
       setActive(id);
     }
   }, {
-    rootMargin: '-45% 0px -45% 0px',   // строго центр экрана
-    threshold: 0,
+    rootMargin: '-40% 0px -40% 0px',   // чуть мягче, чтобы первый проект срабатывал сразу
+    threshold: [0, 0.5, 1],
   });
 
   cards.forEach((card) => observer.observe(card));
 
-  // Скрываем, когда вся секция ушла
+  // Скрываем превью только когда вся секция полностью ушла из виду
   if (section && info && sidebar) {
     const hideObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -169,14 +167,14 @@ function setupActiveObserver(showcase) {
         }
       });
     }, {
-      rootMargin: '0px 0px -10% 0px',
+      rootMargin: '0px 0px -5% 0px',   // исчезает только когда секция почти полностью ушла
       threshold: 0,
     });
     hideObserver.observe(section);
   }
 }
 
-/** Auto-play / pause videos */
+/** Auto-play / pause видео */
 function setupPlayback(container) {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -194,7 +192,7 @@ function setupPlayback(container) {
   container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
 }
 
-/** Main render */
+/** Основной рендер */
 function render() {
   const { thumbnailList, showcase, mobileContainer } = getElements();
   const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
@@ -207,7 +205,7 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
-      setActive(0);                    // ← важно: первый проект сразу активен
+      setActive(0);                    // сразу активируем первый проект
       setupActiveObserver(showcase);
       setupPlayback(showcase);
     });

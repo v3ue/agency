@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     await import('./hero-video.js');
 
     // Sections
-    await import('./projects.js');
+    const projectsModule = await import('./projects.js');
+    projectsModule.initProjects();
     await import('./competencies.js');
     await import('./process-anim.js');
 

@@ -753,7 +753,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .competency-text-item {
   display: inline;
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+  font-size: var(--fs-body);
   line-height: 1.5;
   letter-spacing: -0.04em;
   font-weight: 500;
@@ -1641,7 +1641,7 @@ main { z-index: 1; }
 }
 
 /* About */
-.about-text { font-size: 32px; line-height: 1.4; }
+.about-text { font-size: var(--fs-heading); line-height: 1.4; }
 
 /* Content series */
 .content-series-text { font-size: var(--fs-heading); }

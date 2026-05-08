@@ -5,12 +5,7 @@
  */
 
 import { projects } from './projects-data.js';
-import { onScroll } from './utils/scroll.js';
-
 const DESKTOP_MIN_WIDTH = 1024;
-const SCROLL_MARGIN_ACTIVE = '-45% 0px -45% 0px';
-const VISIBILITY_TOP_THRESHOLD = 0.65;   // show when section top below this
-const VISIBILITY_BOTTOM_THRESHOLD = 0.1; // hide when section bottom above this
 const RESIZE_DEBOUNCE_MS = 150;
 
 let activeId = -1;
@@ -133,31 +128,60 @@ function setActive(id) {
   if (descEl) descEl.textContent = project.description;
 }
 
-/** IntersectionObserver: detect which video is in the center of viewport */
-function setupActiveObserver(showcase) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (isUserInteracting) return;
+/** IntersectionObserver: detect active project + show/hide info sidebar */
+function setupObserver() {
+  const { showcase, info, sidebar } = getElements();
+  const cards = showcase?.querySelectorAll('.project-card');
+  if (!cards?.length) return;
 
-      let bestEntry = null;
+  let isInfoVisible = false;
 
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
-            bestEntry = entry;
-          }
+  const activeObserver = new IntersectionObserver((entries) => {
+    if (isUserInteracting) return;
+
+    let bestEntry = null;
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+          bestEntry = entry;
         }
-      });
-
-      if (bestEntry) {
-        const id = parseInt(bestEntry.target.id.replace('project-card-', ''), 10);
-        setActive(id);
       }
-    },
-    { rootMargin: SCROLL_MARGIN_ACTIVE, threshold: 0 }
-  );
+    });
 
-  showcase.querySelectorAll('.project-card').forEach((card) => observer.observe(card));
+    if (bestEntry) {
+      const id = parseInt(bestEntry.target.id.replace('project-card-', ''), 10);
+      setActive(id);
+
+      if (info && !isInfoVisible) {
+        isInfoVisible = true;
+        info.classList.add('visible');
+        sidebar?.classList.add('visible');
+      }
+    }
+  }, {
+    rootMargin: '-45% 0px -45% 0px',
+    threshold: 0,
+  });
+
+  cards.forEach((card) => activeObserver.observe(card));
+
+  const section = document.getElementById('projects');
+  const hideObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        isInfoVisible = false;
+        info?.classList.remove('visible');
+        sidebar?.classList.remove('visible');
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0,
+  });
+
+  if (section) hideObserver.observe(section);
+
+  setActive(0);
 }
 
 /** IntersectionObserver: auto-play / pause videos */
@@ -178,32 +202,6 @@ function setupPlayback(container) {
   container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
 }
 
-/** Scroll-based visibility for thumbnail sidebar + info panel */
-function setupVisibility({ info, sidebar, section }) {
-  if (!section || !info) return;
-
-    function updateVisibility() {
-      if (!section || !info) return;
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
-
-      const shouldShow =
-        rect.top < vh * VISIBILITY_TOP_THRESHOLD &&
-        rect.bottom > vh * VISIBILITY_BOTTOM_THRESHOLD;
-
-      if (shouldShow) {
-        info.classList.add('visible');
-        sidebar?.classList.add('visible');
-      } else {
-        info.classList.remove('visible');
-        sidebar?.classList.remove('visible');
-      }
-    }
-
-    onScroll(updateVisibility);
-    updateVisibility();
-}
-
 /** Main render: desktop vs mobile */
 function render() {
   const { thumbnailList, showcase, mobileContainer } = getElements();
@@ -215,12 +213,10 @@ function render() {
   if (isDesktop) {
     buildThumbnails(thumbnailList);
     buildShowcase(showcase);
-    setActive(0);
 
     requestAnimationFrame(() => {
-      setupActiveObserver(showcase);
+      setupObserver();
       setupPlayback(showcase);
-      setupVisibility(getElements());
     });
   } else {
     const title = document.createElement('h2');

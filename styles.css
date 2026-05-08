@@ -726,21 +726,21 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   box-shadow: var(--shadow-card);
 }
 .visual-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.visual-card.card-1 { width: 34%; top: 22%; left: 22%;  z-index: 1; animation: float-a 7s ease-in-out infinite; }
-.visual-card.card-2 { width: 34%; top: 16%;  left: 44%; z-index: 2; animation: float-b 8s ease-in-out infinite; }
-.visual-card.card-3 { width: 30%; top: 38%; left: 34%; z-index: 3; animation: float-c 9s ease-in-out infinite; }
+.visual-card.card-1 { width: 38%; top: 22%; left: 20%;  z-index: 1; animation: float-a 7s ease-in-out infinite; }
+.visual-card.card-2 { width: 38%; top: 16%;  left: 42%; z-index: 2; animation: float-b 8s ease-in-out infinite; }
+.visual-card.card-3 { width: 34%; top: 38%; left: 32%; z-index: 3; animation: float-c 9s ease-in-out infinite; }
 
 @media (min-width: 768px) {
   .competencies-visuals { height: 320px; max-width: 600px; }
-  .visual-card.card-1 { width: 32%; top: 20%; left: 19%; }
-  .visual-card.card-2 { width: 32%; top: 14%;  left: 42%; }
-  .visual-card.card-3 { width: 28%; top: 36%; left: 32%; }
+  .visual-card.card-1 { width: 36%; top: 20%; left: 17%; }
+  .visual-card.card-2 { width: 36%; top: 14%;  left: 40%; }
+  .visual-card.card-3 { width: 32%; top: 36%; left: 30%; }
 }
 @media (min-width: 1024px) {
   .competencies-visuals { height: 360px; max-width: 620px; }
-  .visual-card.card-1 { width: 30%; top: 18%; left: 24%; }
-  .visual-card.card-2 { width: 30%; top: 12%;  left: 44%; }
-  .visual-card.card-3 { width: 26%; top: 34%; left: 36%; }
+  .visual-card.card-1 { width: 34%; top: 18%; left: 22%; }
+  .visual-card.card-2 { width: 34%; top: 12%;  left: 42%; }
+  .visual-card.card-3 { width: 30%; top: 34%; left: 34%; }
 }
 
 /* Центральный текстовый блок — сплошной текст */

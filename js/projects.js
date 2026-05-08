@@ -5,7 +5,6 @@
  */
 
 import { projects } from './projects-data.js';
-import { onScroll } from './utils/scroll.js';
 
 const DESKTOP_MIN_WIDTH = 1024;
 const RESIZE_DEBOUNCE_MS = 150;
@@ -107,7 +106,7 @@ function scrollToCard(id) {
   if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Activate a project (highlight thumbnail + update info panel) */
+/** Activate a project + manage info panel visibility */
 function setActive(id) {
   if (id === activeId) return;
   activeId = id;
@@ -121,19 +120,23 @@ function setActive(id) {
     });
 
   const project = projects.find((p) => p.id === id);
-  if (!project || !info) return;
+  if (project && info) {
+    const titleEl = document.getElementById('project-info-title');
+    const descEl = document.getElementById('project-info-desc');
+    if (titleEl) titleEl.textContent = project.title;
+    if (descEl) descEl.textContent = project.description;
+  }
 
-  const titleEl = document.getElementById('project-info-title');
-  const descEl = document.getElementById('project-info-desc');
-
-  if (titleEl) titleEl.textContent = project.title;
-  if (descEl) descEl.textContent = project.description;
+  if (info) info.classList.add('visible');
+  if (getElements().sidebar) getElements().sidebar.classList.add('visible');
 }
 
-/** IntersectionObserver: detect which card is active (no visibility mgmt) */
+/** Main observer: detects centered card + controls info panel visibility */
 function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
+
+  const { info, sidebar, section } = getElements();
 
   const observer = new IntersectionObserver((entries) => {
     if (isUserInteracting) return;
@@ -157,30 +160,21 @@ function setupActiveObserver(showcase) {
   });
 
   cards.forEach((card) => observer.observe(card));
-}
 
-/** Scroll-based: show/hide info + sidebar based on showcase position */
-function setupSectionVisibility() {
-  const { info, sidebar } = getElements();
-  const showcaseEl = document.getElementById('project-showcase');
-  if (!info || !showcaseEl) return;
-
-  function update() {
-    const rect = showcaseEl.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const shouldShow = rect.top < vh && rect.bottom > 0 && activeId >= 0;
-
-    if (shouldShow) {
-      info.classList.add('visible');
-      sidebar?.classList.add('visible');
-    } else {
-      info.classList.remove('visible');
-      sidebar?.classList.remove('visible');
-    }
+  if (section) {
+    const hideObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          if (info) info.classList.remove('visible');
+          if (sidebar) sidebar.classList.remove('visible');
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -20% 0px',
+      threshold: 0,
+    });
+    hideObserver.observe(section);
   }
-
-  onScroll(update);
-  update();
 }
 
 /** IntersectionObserver: auto-play / pause videos */
@@ -214,9 +208,7 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
-      setActive(0);
       setupActiveObserver(showcase);
-      setupSectionVisibility();
       setupPlayback(showcase);
     });
   } else {

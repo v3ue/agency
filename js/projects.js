@@ -157,6 +157,10 @@ function setupObserver() {
         info.classList.add('visible');
         sidebar?.classList.add('visible');
       }
+    } else if (isInfoVisible) {
+      isInfoVisible = false;
+      info?.classList.remove('visible');
+      sidebar?.classList.remove('visible');
     }
   }, {
     rootMargin: '-45% 0px -45% 0px',

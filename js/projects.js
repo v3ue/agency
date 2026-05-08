@@ -1,6 +1,7 @@
 /**
- * Projects section logic — финальная стабильная версия
- * Используем scroll + getBoundingClientRect для точного контроля видимости превью
+ * Projects section logic — стабильная финальная версия
+ * Desktop: fixed thumbnails + centered videos + bottom-left info panel
+ * Mobile: linear list
  */
 
 import { projects } from './projects-data.js';
@@ -25,10 +26,9 @@ function getElements() {
   };
 }
 
-/* === buildThumbnails, buildShowcase, buildMobile, scrollToCard — без изменений === */
+/** Build fixed thumbnail strip (desktop only) */
 function buildThumbnails(thumbnailList) {
   if (!thumbnailList) return;
-
   thumbnailList.innerHTML = '';
 
   projects.forEach((project) => {
@@ -49,6 +49,7 @@ function buildThumbnails(thumbnailList) {
   });
 }
 
+/** Build desktop video showcase */
 function buildShowcase(showcase) {
   showcase.innerHTML = '';
 
@@ -72,6 +73,7 @@ function buildShowcase(showcase) {
   });
 }
 
+/** Build mobile cards */
 function buildMobile(mobileContainer) {
   mobileContainer.querySelectorAll('.project-mobile-card').forEach((el) => el.remove());
 
@@ -101,7 +103,7 @@ function scrollToCard(id) {
   if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Активация проекта */
+/** Activate project */
 function setActive(id) {
   if (id === activeId) return;
   activeId = id;
@@ -121,19 +123,22 @@ function setActive(id) {
   }
 }
 
-/** Показ/скрытие превью по центру экрана */
+/** Scroll-based visibility for info panel (most reliable) */
 function updateInfoVisibility() {
   if (ticking) return;
   ticking = true;
 
   const { info, sidebar, section } = getElements();
-  if (!info || !section) return;
+  if (!info || !section) {
+    ticking = false;
+    return;
+  }
 
   const rect = section.getBoundingClientRect();
   const vh = window.innerHeight;
 
-  // Показываем, когда секция хотя бы частично в центре экрана
-  const shouldShow = rect.top < vh * 0.8 && rect.bottom > vh * 0.2;
+  // Показываем, когда секция занимает значительную часть экрана
+  const shouldShow = rect.top < vh * 0.85 && rect.bottom > vh * 0.15;
 
   if (shouldShow) {
     info.classList.add('visible');
@@ -146,7 +151,7 @@ function updateInfoVisibility() {
   ticking = false;
 }
 
-/** Observer только для выбора активного проекта */
+/** Observer only for active project detection */
 function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
@@ -168,14 +173,14 @@ function setupActiveObserver(showcase) {
       setActive(id);
     }
   }, {
-    rootMargin: '-42% 0px -42% 0px',
-    threshold: [0.3, 0.6, 1],
+    rootMargin: '-40% 0px -40% 0px',
+    threshold: [0.4, 0.7, 1],
   });
 
   cards.forEach((card) => observer.observe(card));
 }
 
-/** Auto-play видео */
+/** Auto-play / pause videos */
 function setupPlayback(container) {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -206,7 +211,7 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
-      setActive(0);
+      setActive(0);                    // сразу первый проект
       setupActiveObserver(showcase);
       setupPlayback(showcase);
     });
@@ -228,9 +233,9 @@ export function initProjects() {
 
   render();
 
-  // Главный контроль видимости превью — scroll listener (самый надёжный)
+  // Основной контроль видимости превью
   window.addEventListener('scroll', updateInfoVisibility, { passive: true });
-  updateInfoVisibility(); // первый запуск
+  updateInfoVisibility(); // initial check
 
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);

@@ -13,7 +13,7 @@ let activeId = -1;
 let isUserInteracting = false;
 let resizeTimeout = null;
 
-/** Root DOM elements (queried once) */
+/** Root DOM elements */
 function getElements() {
   return {
     thumbnailList: document.getElementById('project-thumbnail-list'),
@@ -75,9 +75,7 @@ function buildShowcase(showcase) {
 
 /** Build mobile cards */
 function buildMobile(mobileContainer) {
-  mobileContainer
-    .querySelectorAll('.project-mobile-card')
-    .forEach((el) => el.remove());
+  mobileContainer.querySelectorAll('.project-mobile-card').forEach((el) => el.remove());
 
   projects.forEach((project) => {
     const wrapperClass = project.isVertical
@@ -100,25 +98,24 @@ function buildMobile(mobileContainer) {
   });
 }
 
-/** Scroll to a specific project card */
 function scrollToCard(id) {
   const card = document.getElementById(`project-card-${id}`);
   if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Activate a project + manage info panel visibility */
+/** Activate project + show info panel */
 function setActive(id) {
   if (id === activeId) return;
   activeId = id;
 
-  const { thumbnailList, info } = getElements();
+  const { thumbnailList, info, sidebar } = getElements();
 
-  thumbnailList
-    ?.querySelectorAll('.project-thumbnail-item')
-    .forEach((item) => {
-      item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
-    });
+  // Обновляем превьюшки
+  thumbnailList?.querySelectorAll('.project-thumbnail-item').forEach((item) => {
+    item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
+  });
 
+  // Обновляем текст в панели
   const project = projects.find((p) => p.id === id);
   if (project && info) {
     const titleEl = document.getElementById('project-info-title');
@@ -127,11 +124,12 @@ function setActive(id) {
     if (descEl) descEl.textContent = project.description;
   }
 
+  // Показываем панель
   if (info) info.classList.add('visible');
-  if (getElements().sidebar) getElements().sidebar.classList.add('visible');
+  if (sidebar) sidebar.classList.add('visible');
 }
 
-/** Main observer: detects centered card + controls info panel visibility */
+/** Main observer: detects centered card + controls visibility */
 function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
@@ -155,29 +153,30 @@ function setupActiveObserver(showcase) {
       setActive(id);
     }
   }, {
-    rootMargin: '-45% 0px -45% 0px',
+    rootMargin: '-45% 0px -45% 0px',   // строго центр экрана
     threshold: 0,
   });
 
   cards.forEach((card) => observer.observe(card));
 
-  if (section) {
+  // Скрываем, когда вся секция ушла
+  if (section && info && sidebar) {
     const hideObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
-          if (info) info.classList.remove('visible');
-          if (sidebar) sidebar.classList.remove('visible');
+          info.classList.remove('visible');
+          sidebar.classList.remove('visible');
         }
       });
     }, {
-      rootMargin: '0px 0px -20% 0px',
+      rootMargin: '0px 0px -10% 0px',
       threshold: 0,
     });
     hideObserver.observe(section);
   }
 }
 
-/** IntersectionObserver: auto-play / pause videos */
+/** Auto-play / pause videos */
 function setupPlayback(container) {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -195,7 +194,7 @@ function setupPlayback(container) {
   container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
 }
 
-/** Main render: desktop vs mobile */
+/** Main render */
 function render() {
   const { thumbnailList, showcase, mobileContainer } = getElements();
   const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
@@ -208,6 +207,7 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
+      setActive(0);                    // ← важно: первый проект сразу активен
       setupActiveObserver(showcase);
       setupPlayback(showcase);
     });
@@ -225,7 +225,7 @@ function render() {
 /** Public API */
 export function initProjects() {
   const { showcase } = getElements();
-  if (!showcase) return; // section not present on this page
+  if (!showcase) return;
 
   render();
 

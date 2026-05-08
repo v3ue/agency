@@ -862,7 +862,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .process-step-title {
   font-family: var(--font-heading);
-  font-size: var(--fs-heading);
+  font-size: 1.5rem;
   color: #151515;
   line-height: 1.2;
 }

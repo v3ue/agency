@@ -693,14 +693,60 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   }
 }
 
-/* === PROJECTS — desktop centered layout improvements === */
+/* === PROJECTS — desktop centered layout improvements (финальная версия) === */
 @media (min-width: 1024px) {
-  .project-card {
-    scroll-margin-top: 100px;
+  .projects-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
   }
+
   .project-showcase {
-    gap: 120px;
-    scroll-padding-top: 180px;
+    gap: 80px;                    /* ← сильно уменьшили (было 120px) */
+    scroll-padding-top: 180px;    /* помогает observer'у ловить первую карточку */
+  }
+
+  .project-card {
+    scroll-margin-top: 80px;      /* ← уменьшили */
+  }
+
+  .projects-sidebar {
+    position: fixed;
+    left: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .projects-sidebar.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.25s;
+  }
+
+  .project-info-fixed {
+    position: fixed;
+    bottom: 48px;
+    left: 48px;
+    z-index: 50;
+    max-width: 360px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  .project-info-fixed.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

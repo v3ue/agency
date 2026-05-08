@@ -850,6 +850,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   font-weight: 600;
   font-size: 1rem;
   color: rgba(21, 21, 21, 0.6);
+  max-width: 380px;
 }
 
 @media (min-width: 1024px) {

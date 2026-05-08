@@ -7,7 +7,7 @@
   <title>Студия 12/20</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -40,21 +40,21 @@
             </div>
           </div>
           <div id="header-right-pill" class="header-right-pill h-[65px] flex items-center gap-6 rounded-lg backdrop-blur-md nav-pill-padding-sm">
-            <a href="mailto:hi@1220.ru" class="flex items-center gap-2 [font-family:'Open Sans', sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="mailto:hi@1220.ru" class="flex items-center gap-2 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-mail.svg" alt="" class="w-7 h-7">
               hi@1220.ru
             </a>
-            <a href="tel:+79169950270" class="flex items-center gap-2 [font-family:'Open Sans', sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="tel:+79169950270" class="flex items-center gap-2 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-phone.svg" alt="" class="w-7 h-7">
               +7 (916) 995 02 70
             </a>
             <div class="w-8"></div>
-            <a href="#cta" id="nav-cta-btn" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
+            <a href="#cta" id="nav-cta-btn" class="group bg-[#151515] text-[#f8f8f8] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
           </div>
         </div>
 
         <!-- MOBILE NAV -->
-        <div class="mobile-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[400px] md:max-w-none">
+        <div class="mobile-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] md:max-w-none">
           <div class="mobile-header-bar h-[65px] flex items-center justify-between">
             <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
             <button id="nav-menu-open-mobile" aria-expanded="false" aria-haspopup="true" class="mobile-menu-btn">
@@ -72,13 +72,11 @@
               <a class="nav-menu-link" href="#process-heading">Процесс</a>
               <a class="nav-menu-link" href="#cta">Контакты</a>
             </nav>
-            <div class="nav-menu-contacts flex flex-col gap-4">
+            <div class="nav-menu-contacts">
               <a href="tel:+79169950270" class="mobile-contact">
-                <img src="./static/icons/icon-phone.svg" alt="" class="mobile-contact-icon">
                 +7 (916) 995 02 70
               </a>
               <a href="mailto:hi@1220.ru" class="mobile-contact">
-                <img src="./static/icons/icon-mail.svg" alt="" class="mobile-contact-icon-mail">
                 hi@1220.ru
               </a>
             </div>
@@ -86,47 +84,7 @@
           </div>
         </div>
 
-        <!-- Модальное окно для видео -->
-        <div id="video-modal" class="video-modal" aria-hidden="true">
-          <div class="video-modal-overlay"></div>
-          <div class="video-modal-content">
-            <!-- Видео контейнер (центрируется) -->
-            <div class="video-container" id="video-container">
-              <video id="modal-video" class="modal-video-element" playsinline muted></video>
-              <!-- Кнопка закрытия (внутри контейнера, по углам видео с отступом) -->
-              <div class="RHTV-Modal_player-ui-row__FqsJC RHTV-Modal_top__IHil2">
-                <button class="RHTV-Modal_close-button__2OO19" aria-label="Close" tabindex="0" id="modal-close-btn">
-                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M1 9.58331L9.58624 0.999024L11.0003 2.41309L2.41406 10.9974L1 9.58331Z" fill="currentColor"></path>
-                    <path d="M2.41504 0.998047L10.9993 9.58429L9.58526 10.9983L1.00098 2.41211L2.41504 0.998047Z" fill="currentColor"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <!-- Контролы под видео (на черном фоне) -->
-            <div class="RHTV-Modal_player-ui-row__FqsJC RHTV-Modal_bottom__MGPo3">
-              <div class="bottom-inner">
-                <h1 class="RHTV-Modal_video-title__r80LD">Gussi Rem</h1>
-                <div class="RHTV-Modal_controls__rA9fm">
-                  <button class="RHTV-Modal_control__UJ315 RHTV-Modal_pause__qrFyx" aria-label="Pause" aria-pressed="true" tabindex="0" id="modal-pause-btn">
-                    <svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <path d="M5.5 7.5H2.5V0.5L5.5 0.5V7.5Z" fill="currentColor"></path>
-                      <path d="M9.5 7.5H6.5V0.5L9.5 0.5V7.5Z" fill="currentColor"></path>
-                    </svg>
-                  </button>
-                  <button class="RHTV-Modal_control__UJ315 RHTV-Modal_sound__xyz" aria-label="Sound off" tabindex="0" id="modal-sound-btn">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="sound-off-icon">
-                      <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" fill="currentColor"/>
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="sound-on-icon" class="hidden">
-                      <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- Удалён плеер и модальное окно -->
 
       </header>
 
@@ -144,14 +102,9 @@
           </div>
            <div>
              <div class="mt-10 animate-fade-in" data-delay="0.2s">
-               <div id="hero-banner" class="hero-banner">
-                 <video id="hero-banner-video" class="w-full h-full object-cover" autoplay muted loop playsinline src="./static/videos/gussi rem.mp4"></video>
-                 <!-- Кнопка "Смотреть видео" -->
-                 <div id="hero-video-btn" class="hero-video-btn">
-                   <span class="arrow">→</span>
-                   <span class="label">Смотреть видео</span>
-                 </div>
-               </div>
+                <div id="hero-banner" class="hero-banner">
+                  <video id="hero-banner-video" class="w-full h-full object-cover" autoplay muted loop playsinline src="./static/videos/gussi rem.mp4"></video>
+                </div>
              </div>
            </div>
 
@@ -378,7 +331,7 @@
             <article
               class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
               <div
-                class="text-[#151515] text-lg [font-family:'Open Sans', sans-serif] tracking-normal mb-4">
+                class="text-[#151515] text-lg tracking-normal mb-4">
                 Astra</div>
               <p
                 class="text-body text-[#151515] text-xl md:text-[24px] tracking-tight leading-[1.2] flex-1 mb-8">
@@ -394,7 +347,7 @@
                     class="text-body text-[#151515] text-base tracking-normal">
                     Павел Стрижевский</div>
                   <div
-                    class="opacity-50 [font-family:'Open Sans', sans-serif] text-[#151515] text-sm tracking-normal">
+                    class="opacity-50 text-[#151515] text-sm tracking-normal">
                     Директ развития продукта</div>
                 </div>
               </div>
@@ -405,7 +358,7 @@
             <article
               class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
               <div
-                class="text-[#151515] text-lg [font-family:'Open Sans', sans-serif] tracking-normal mb-4">
+                class="text-[#151515] text-lg tracking-normal mb-4">
                 Изофом</div>
               <p
                 class="text-body text-[#151515] text-xl md:text-[24px] tracking-tight leading-[1.2] flex-1 mb-8">
@@ -421,7 +374,7 @@
                     class="text-body text-[#151515] text-base tracking-normal">
                     Павел Стрижевский</div>
                   <div
-                    class="opacity-50 [font-family:'Open Sans', sans-serif] text-[#151515] text-sm tracking-normal">
+                    class="opacity-50 text-[#151515] text-sm tracking-normal">
                     Директ развития продукта</div>
                 </div>
               </div>
@@ -432,7 +385,7 @@
             <article
               class="bg-black/[0.04] hover:bg-black/[0.07] transition-colors duration-300 rounded-2xl p-8 md:p-10 flex flex-col h-full">
               <div
-                class="text-[#151515] text-lg [font-family:'Open Sans', sans-serif] tracking-normal mb-4">
+                class="text-[#151515] text-lg tracking-normal mb-4">
                 Simple</div>
               <p
                 class="text-body text-[#151515] text-xl md:text-[24px] tracking-tight leading-[1.2] flex-1 mb-8">
@@ -447,7 +400,7 @@
                     class="text-body text-[#151515] text-base tracking-normal">
                     Павел Стрижевский</div>
                   <div
-                    class="opacity-50 [font-family:'Open Sans', sans-serif] text-[#151515] text-sm tracking-normal">
+                    class="opacity-50 text-[#151515] text-sm tracking-normal">
                     Директ развития продукта</div>
                 </div>
               </div>
@@ -465,7 +418,7 @@
                 class="text-[#151515ba] text-xl text-center tracking-tight leading-[1.3] text-body">
                Студия 12/20 — это небольшой творческий состав с вниманием к идее, визуалу и смыслу. Каждый ролик собирается как законченная история: от первого кадра до финального звука.</p>
             <div class="text-center mt-10">
-              <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
+              <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
             </div>
           </div>
         </section>
@@ -476,7 +429,7 @@
               <span class="text-reveal-inner delay-02">Проекты начинаются здесь</span>
             </h2>
             <p
-              class="text-white/50 text-xl [font-family:'Open Sans', sans-serif] tracking-normal max-w-[800px] mx-auto text-reveal delay-04">
+              class="text-white/50 text-xl tracking-normal max-w-[800px] mx-auto text-reveal delay-04">
               <span class="text-reveal-inner delay-04">Достаточно заполнить форму — мы свяжемся в течение дня</span></p>
           </div>
           
@@ -516,12 +469,12 @@
 
           <div class="flex flex-col gap-8 items-center mt-32 fade-up-d4">
             <div class="flex flex-col gap-6 items-center">
-              <a href="tel:+79169950270" class="text-white [font-family:'Fixel Display', sans-serif] font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity cta-phone">
+              <a href="tel:+79169950270" class="text-white font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity cta-phone">
                 +7 (916) 995 02 70</a>
-              <a href="mailto:hi@1220.ru" class="text-white [font-family:'Fixel Display', sans-serif] font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity cta-email">
+              <a href="mailto:hi@1220.ru" class="text-white font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity cta-email">
                 hi@1220.ru</a>
             </div>
-            <span class="text-white/50 text-sm [font-family:'Open Sans', sans-serif] tracking-normal mt-4">Будем рады пообщаться по любым вопросам</span>
+            <span class="text-white/50 text-sm tracking-normal mt-4">Будем рады пообщаться по любым вопросам</span>
           </div>
         </div>
       </section>
@@ -592,214 +545,7 @@
          }
        });
 
-       // Hero video button
-       const heroBanner = document.getElementById('hero-banner');
-       const heroVideoBtn = document.getElementById('hero-video-btn');
-       const heroVideo = document.getElementById('hero-banner-video');
-       const videoModal = document.getElementById('video-modal');
-       const modalVideo = document.getElementById('modal-video');
-       const modalCloseBtn = document.getElementById('modal-close-btn');
-       const modalPauseBtn = document.getElementById('modal-pause-btn');
-       const modalSoundBtn = document.getElementById('modal-sound-btn');
-       const soundOffIcon = document.getElementById('sound-off-icon');
-       const soundOnIcon = document.getElementById('sound-on-icon');
-       const modalOverlay = videoModal ? videoModal.querySelector('.video-modal-overlay') : null;
-       let heroWasPlaying = false;
-
-       // Show/hide hero video button on hover
-       if (heroBanner && heroVideoBtn) {
-         const btnSizes = new Map();
-         
-         heroBanner.addEventListener('mouseenter', () => {
-           heroBanner.style.cursor = 'none';
-           heroVideoBtn.style.display = 'flex';
-           heroVideoBtn.style.pointerEvents = 'auto';
-           requestAnimationFrame(() => {
-             if (!btnSizes.has(heroVideoBtn)) {
-               btnSizes.set(heroVideoBtn, {
-                 width: heroVideoBtn.offsetWidth,
-                 height: heroVideoBtn.offsetHeight
-               });
-             }
-             heroVideoBtn.style.opacity = '1';
-           });
-         });
-
-         heroBanner.addEventListener('mousemove', (e) => {
-           const rect = heroBanner.getBoundingClientRect();
-           let x = e.clientX - rect.left;
-           let y = e.clientY - rect.top;
-           
-           const size = btnSizes.get(heroVideoBtn) || { width: 120, height: 30 };
-           const btnW = size.width;
-           const btnH = size.height;
-           
-           const minX = btnW / 2;
-           const maxX = rect.width - btnW / 2;
-           const minY = btnH / 2;
-           const maxY = rect.height - btnH / 2;
-           
-           x = Math.max(minX, Math.min(maxX, x));
-           y = Math.max(minY, Math.min(maxY, y));
-           
-           heroVideoBtn.style.left = x + 'px';
-           heroVideoBtn.style.top = y + 'px';
-           heroVideoBtn.style.transform = 'translate(-50%, -50%)';
-         });
-
-         heroBanner.addEventListener('mouseleave', (e) => {
-           // Check if cursor left to the button
-           if (heroVideoBtn.contains(e.relatedTarget)) return;
-           heroBanner.style.cursor = 'default';
-           heroVideoBtn.style.opacity = '0';
-           heroVideoBtn.style.pointerEvents = 'none';
-           setTimeout(() => {
-             if (heroVideoBtn.style.opacity === '0') {
-               heroVideoBtn.style.display = 'none';
-             }
-           }, 200);
-         });
-
-        // Keep button visible when hovering over it
-        heroVideoBtn.addEventListener('mouseenter', () => {
-          heroVideoBtn.style.opacity = '1';
-          heroVideoBtn.style.pointerEvents = 'auto';
-          heroBanner.style.cursor = 'pointer';
-        });
-
-        heroVideoBtn.addEventListener('mouseleave', (e) => {
-          if (heroBanner.contains(e.relatedTarget)) {
-            heroBanner.style.cursor = 'none';
-            return;
-          }
-          heroVideoBtn.style.opacity = '0';
-          heroVideoBtn.style.pointerEvents = 'none';
-          setTimeout(() => {
-            if (heroVideoBtn.style.opacity === '0') {
-              heroVideoBtn.style.display = 'none';
-            }
-          }, 200);
-        });
-
-         // Open modal on button click
-         heroVideoBtn.addEventListener('click', () => {
-           if (videoModal && modalVideo && heroVideo) {
-             modalVideo.src = heroVideo.src;
-             modalVideo.muted = true;
-             modalVideo.currentTime = 0; // Start from beginning
-             videoModal.setAttribute('aria-hidden', 'false');
-             document.body.style.overflow = 'hidden';
-             // Remember hero video state and pause it
-             heroWasPlaying = !heroVideo.paused;
-             heroVideo.pause();
-             // Play when ready
-             const playWhenReady = () => {
-               modalVideo.play().catch(e => console.log('Play failed:', e));
-               modalVideo.removeEventListener('loadeddata', playWhenReady);
-             };
-             modalVideo.addEventListener('loadeddata', playWhenReady);
-             // Update pause button to show pause icon
-             modalPauseBtn.innerHTML = '<svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.5 7.5H2.5V0.5L5.5 0.5V7.5Z" fill="currentColor"></path><path d="M9.5 7.5H6.5V0.5L9.5 0.5V7.5Z" fill="currentColor"></path></svg>';
-             modalPauseBtn.setAttribute('aria-label', 'Pause');
-             modalPauseBtn.classList.add('RHTV-Modal_pause__qrFyx');
-             modalPauseBtn.classList.remove('RHTV-Modal_play__abc');
-             // Sound off by default
-             soundOffIcon.style.display = 'block';
-             soundOnIcon.style.display = 'none';
-             modalSoundBtn.setAttribute('aria-label', 'Sound off');
-           }
-         });
-       }
-
-       // Close modal
-       if (modalCloseBtn) {
-         modalCloseBtn.addEventListener('click', () => {
-           if (videoModal && modalVideo) {
-             videoModal.setAttribute('aria-hidden', 'true');
-             document.body.style.overflow = '';
-             modalVideo.pause();
-             modalVideo.src = '';
-             // Resume hero video if it was playing
-             if (heroVideo && heroWasPlaying) {
-               heroVideo.play();
-               heroWasPlaying = false;
-             }
-           }
-         });
-       }
-
-       // Close on overlay click
-       if (modalOverlay) {
-         modalOverlay.addEventListener('click', () => {
-           if (videoModal && modalVideo) {
-             videoModal.setAttribute('aria-hidden', 'true');
-             document.body.style.overflow = '';
-             modalVideo.pause();
-             modalVideo.src = '';
-             // Resume hero video if it was playing
-             if (heroVideo && heroWasPlaying) {
-               heroVideo.play();
-               heroWasPlaying = false;
-             }
-           }
-         });
-       }
-
-       // Close on Escape key
-       document.addEventListener('keydown', (e) => {
-         if (e.key === 'Escape' && videoModal && videoModal.getAttribute('aria-hidden') === 'false') {
-           videoModal.setAttribute('aria-hidden', 'true');
-           document.body.style.overflow = '';
-           modalVideo.pause();
-           modalVideo.src = '';
-           // Resume hero video if it was playing
-           if (heroVideo && heroWasPlaying) {
-             heroVideo.play();
-             heroWasPlaying = false;
-           }
-           // Return focus to hero video button
-           if (heroVideoBtn) heroVideoBtn.focus();
-         }
-       });
-
-         // Pause/Play in modal
-         if (modalPauseBtn && modalVideo) {
-           modalPauseBtn.addEventListener('click', () => {
-             if (modalVideo.paused) {
-               modalVideo.play();
-               // Pause icon: two vertical bars
-               modalPauseBtn.innerHTML = '<svg viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5.5 7.5H2.5V0.5L5.5 0.5V7.5Z" fill="currentColor"></path><path d="M9.5 7.5H6.5V0.5L9.5 0.5V7.5Z" fill="currentColor"></path></svg>';
-               modalPauseBtn.setAttribute('aria-label', 'Pause');
-               modalPauseBtn.classList.add('RHTV-Modal_pause__qrFyx');
-               modalPauseBtn.classList.remove('RHTV-Modal_play__abc');
-             } else {
-               modalVideo.pause();
-               // Play icon: triangle/arrow pointing right
-               modalPauseBtn.innerHTML = '<svg viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 1L12 4L2 7V1Z" fill="currentColor"></path></svg>';
-               modalPauseBtn.setAttribute('aria-label', 'Play');
-               modalPauseBtn.classList.remove('RHTV-Modal_pause__qrFyx');
-               modalPauseBtn.classList.add('RHTV-Modal_play__abc');
-             }
-           });
-         }
-
-       // Sound toggle in modal
-       if (modalSoundBtn && modalVideo) {
-         modalSoundBtn.addEventListener('click', () => {
-           modalVideo.muted = !modalVideo.muted;
-           if (modalVideo.muted) {
-             soundOffIcon.style.display = 'block';
-             soundOnIcon.style.display = 'none';
-             modalSoundBtn.setAttribute('aria-label', 'Sound off');
-           } else {
-             soundOffIcon.style.display = 'none';
-             soundOnIcon.style.display = 'block';
-             modalSoundBtn.setAttribute('aria-label', 'Sound on');
-           }
-         });
-       }
-
-       /* ==================== ТЕКСТОВЫЕ ЭФФЕКТЫ ==================== */
+        /* ==================== ТЕКСТОВЫЕ ЭФФЕКТЫ ==================== */
        document.querySelectorAll('.text-reveal').forEach(el => {
          const observer = new IntersectionObserver((entries) => {
            entries.forEach(entry => {

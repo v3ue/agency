@@ -8,9 +8,6 @@ import { projects } from './projects-data.js';
 import { onScroll } from './utils/scroll.js';
 
 const DESKTOP_MIN_WIDTH = 1024;
-const SCROLL_MARGIN_ACTIVE = '-45% 0px -45% 0px';
-const VISIBILITY_TOP_THRESHOLD = 0.65;   // show when section top below this
-const VISIBILITY_BOTTOM_THRESHOLD = 0.1; // hide when section bottom above this
 const RESIZE_DEBOUNCE_MS = 150;
 
 let activeId = -1;
@@ -133,31 +130,43 @@ function setActive(id) {
   if (descEl) descEl.textContent = project.description;
 }
 
-/** IntersectionObserver: detect which video is in the center of viewport */
+/** Scroll-based: выбирает активную карточку по расстоянию до центра экрана */
 function setupActiveObserver(showcase) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (isUserInteracting) return;
+  const cards = showcase.querySelectorAll('.project-card');
+  if (!cards.length) return;
 
-      let bestEntry = null;
+  const { info, sidebar } = getElements();
 
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
-            bestEntry = entry;
-          }
+  function pickActiveCard() {
+    if (isUserInteracting) return;
+
+    const vh = window.innerHeight;
+    let bestCard = null;
+    let bestDist = Infinity;
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + rect.height / 2;
+      const dist = Math.abs(cardCenter - vh / 2);
+
+      if (rect.top < vh * 0.7 && rect.bottom > vh * 0.3) {
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestCard = card;
         }
-      });
-
-      if (bestEntry) {
-        const id = parseInt(bestEntry.target.id.replace('project-card-', ''), 10);
-        setActive(id);
       }
-    },
-    { rootMargin: SCROLL_MARGIN_ACTIVE, threshold: 0 }
-  );
+    });
 
-  showcase.querySelectorAll('.project-card').forEach((card) => observer.observe(card));
+    if (bestCard) {
+      const id = parseInt(bestCard.id.replace('project-card-', ''), 10);
+      setActive(id);
+      info?.classList.add('visible');
+      sidebar?.classList.add('visible');
+    }
+  }
+
+  onScroll(pickActiveCard);
+  pickActiveCard();
 }
 
 /** IntersectionObserver: auto-play / pause videos */
@@ -178,30 +187,32 @@ function setupPlayback(container) {
   container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
 }
 
-/** Scroll-based visibility for thumbnail sidebar + info panel */
-function setupVisibility({ info, sidebar, section }) {
-  if (!section || !info) return;
+/** Scroll-based: скрывает превью когда вышли за пределы секции (в обе стороны) */
+function setupVisibility({ info, sidebar, showcase }) {
+  if (!info || !showcase) return;
 
-    function updateVisibility() {
-      if (!section || !info) return;
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
+  const cards = showcase.querySelectorAll('.project-card');
+  if (!cards.length) return;
 
-      const shouldShow =
-        rect.top < vh * VISIBILITY_TOP_THRESHOLD &&
-        rect.bottom > vh * VISIBILITY_BOTTOM_THRESHOLD;
+  const firstCard = cards[0];
+  const lastCard = cards[cards.length - 1];
 
-      if (shouldShow) {
-        info.classList.add('visible');
-        sidebar?.classList.add('visible');
-      } else {
-        info.classList.remove('visible');
-        sidebar?.classList.remove('visible');
-      }
+  function updateVisibility() {
+    const vh = window.innerHeight;
+    const firstRect = firstCard.getBoundingClientRect();
+    const lastRect = lastCard.getBoundingClientRect();
+
+    const scrolledAbove = firstRect.top > vh * 0.5;
+    const scrolledBelow = lastRect.bottom < vh * 0.5;
+
+    if (scrolledAbove || scrolledBelow) {
+      info.classList.remove('visible');
+      sidebar?.classList.remove('visible');
     }
+  }
 
-    onScroll(updateVisibility);
-    updateVisibility();
+  onScroll(updateVisibility);
+  updateVisibility();
 }
 
 /** Main render: desktop vs mobile */

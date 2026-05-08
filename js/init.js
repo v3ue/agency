@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Sections
     const projectsModule = await import('./projects.js');
     projectsModule.initProjects();
-    await import('./competencies.js');
+    const competenciesModule = await import('./competencies.js');
+    competenciesModule.default();
     await import('./process-anim.js');
 
     // Page-level interactions + form + CTA

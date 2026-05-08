@@ -777,13 +777,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   color: var(--color-text);
 }
 
-/* Скрываем старые неиспользуемые стили */
-.competency-item-line,
-.competencies-list-col,
-.competencies-layout {
-  display: none !important;
-}
-
 /* === COMPONENT: Process Timeline === */
 .process-steps { position: relative; }
 .process-steps::before {

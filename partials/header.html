@@ -1,0 +1,71 @@
+<header class="site-header">
+  <!-- DESKTOP NAV -->
+  <div class="desktop-nav-wrapper desktop-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
+    <div class="nav-left-wrapper relative">
+      <div id="desktop-nav-pill" class="header-left-pill h-[65px] flex items-center rounded-lg gap-63 nav-pill-padding-lg">
+        <div class="nav-menu-trigger flex items-center gap-4">
+          <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
+          <button id="nav-menu-open-desktop" aria-expanded="false" aria-haspopup="true" class="nav-menu-open-button">
+            <span class="nav-menu-open-label">Меню</span>
+            <span class="nav-menu-open-dot" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <div id="nav-menu-panel-desktop" class="nav-menu-panel nav-menu-panel--desktop" aria-hidden="true">
+        <div class="nav-menu-panel-inner">
+          <nav class="nav-menu-links" aria-label="Навигация по сайту">
+            <a class="nav-menu-link" href="#about">О нас</a>
+            <a class="nav-menu-link" href="#projects-heading">Проекты</a>
+            <a class="nav-menu-link" href="#process-heading">Процесс</a>
+            <a class="nav-menu-link" href="#cta">Контакты</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div id="header-right-pill" class="header-right-pill h-[65px] flex items-center gap-6 rounded-lg backdrop-blur-md nav-pill-padding-sm">
+      <a href="mailto:hi@1220.ru" class="flex items-center gap-2 [font-family:'Open Sans', sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+        <img src="./static/icons/icon-mail.svg" alt="" class="w-7 h-7">
+        hi@1220.ru
+      </a>
+      <a href="tel:+79169950270" class="flex items-center gap-2 [font-family:'Open Sans', sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+        <img src="./static/icons/icon-phone.svg" alt="" class="w-7 h-7">
+        +7 (916) 995 02 70
+      </a>
+      <div class="w-8"></div>
+      <a href="#cta" id="nav-cta-btn" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] btn-primary">Обсудить проект</a>
+    </div>
+  </div>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[400px]">
+    <div class="mobile-header-bar h-[65px] flex items-center justify-between">
+      <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
+      <button id="nav-menu-open-mobile" aria-expanded="false" aria-haspopup="true" class="mobile-menu-btn">
+        <span class="mobile-menu-btn-text">Меню</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Мобильная панель меню -->
+  <div id="nav-menu-panel" class="nav-menu-panel nav-menu-panel--mobile" aria-hidden="true">
+    <div class="nav-menu-panel-inner">
+      <nav class="nav-menu-links" aria-label="Навигация по сайту">
+        <a class="nav-menu-link" href="#about">О нас</a>
+        <a class="nav-menu-link" href="#projects-heading">Проекты</a>
+        <a class="nav-menu-link" href="#process-heading">Процесс</a>
+        <a class="nav-menu-link" href="#cta">Контакты</a>
+      </nav>
+      <div class="nav-menu-contacts flex flex-col gap-4">
+        <a href="tel:+79169950270" class="mobile-nav-contact">
+          <img src="./static/icons/icon-phone.svg" alt="" class="mobile-nav-contact-icon-sm">
+          +7 (916) 995 02 70
+        </a>
+        <a href="mailto:hi@1220.ru" class="mobile-nav-contact">
+          <img src="./static/icons/icon-mail.svg" alt="" class="mobile-nav-contact-icon-md">
+          hi@1220.ru
+        </a>
+      </div>
+      <a href="#cta" class="nav-menu-cta-btn">Обсудить проект</a>
+    </div>
+  </div>
+</header>

@@ -810,7 +810,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .process-step {
   position: relative;
   margin-left: 2.5rem;
-  min-height: 280px;
+  min-height: 340px;
   border-radius: 16px;
   background-size: cover;
   background-position: center;
@@ -857,8 +857,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease 0.4s, transform 0.5s ease 0.4s;
-  background: linear-gradient(to top, #f8f8f8 0%, rgba(248,248,248,0.4) 35%, transparent 60%);
-  border-radius: 16px;
 }
 .process-step.visible .process-step-content { opacity: 1; transform: translateY(0); }
 
@@ -883,7 +881,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .process-step {
     max-width: calc(73% - 1.5rem);
     margin-left: calc(27% + 1.5rem);
-    min-height: 420px;
+    min-height: 480px;
   }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; }

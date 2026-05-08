@@ -850,7 +850,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1.25rem;
   padding: 2rem 1.5rem;
   color: #151515;
   text-align: center;
@@ -862,7 +862,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .process-step-title {
   font-family: var(--font-heading);
-  font-size: var(--fs-body);
+  font-size: var(--fs-heading);
   color: #151515;
   line-height: 1.2;
 }
@@ -886,8 +886,8 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
     min-height: 540px;
   }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
-  .process-step-content { padding: 3rem 2.5rem; }
-  .process-step-title { font-size: 1.75rem; }
+  .process-step-content { padding: 3rem 2.5rem; gap: 1.5rem; }
+  .process-step-title { font-size: 2rem; }
   .process-step-text { max-width: 420px; }
 }
 

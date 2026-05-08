@@ -1643,7 +1643,7 @@ main { z-index: 1; }
 }
 
 /* About */
-.about-text { font-size: var(--fs-display); line-height: 1.4; }
+.about-text { font-size: var(--fs-heading); line-height: 1.4; }
 
 /* Content series */
 .content-series-text { font-size: var(--fs-heading); }

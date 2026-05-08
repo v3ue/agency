@@ -8,17 +8,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
   <div id="app">
-    <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 9999;">
-    <main style="position: relative; background: #F8F8F8; overflow-x: hidden; width: 100%; margin-top: 85px;" aria-label="Студия 12/20">
+    <header class="site-header">
+    <main class="site-main" aria-label="Студия 12/20">
         <!-- DESKTOP NAV -->
         <div class="desktop-nav-wrapper desktop-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
           <div class="nav-left-wrapper relative">
-            <div id="desktop-nav-pill" class="header-left-pill h-[65px] flex items-center rounded-lg gap-63" style="padding-left: 20px; padding-right: 20px;">
+            <div id="desktop-nav-pill" class="header-left-pill h-[65px] flex items-center rounded-lg gap-63 nav-pill-padding">
               <div class="nav-menu-trigger flex items-center gap-4">
                 <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
                 <button id="nav-menu-open-desktop" aria-expanded="false" aria-haspopup="true" class="nav-menu-open-button">
@@ -38,7 +39,7 @@
               </div>
             </div>
           </div>
-          <div id="header-right-pill" class="header-right-pill h-[65px] flex items-center gap-6 rounded-lg backdrop-blur-md" style="padding-left: 16px; padding-right: 16px;">
+          <div id="header-right-pill" class="header-right-pill h-[65px] flex items-center gap-6 rounded-lg backdrop-blur-md nav-pill-padding-sm">
             <a href="mailto:hi@1220.ru" class="flex items-center gap-2 [font-family:'Open Sans', sans-serif] text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-mail.svg" alt="" class="w-7 h-7">
               hi@1220.ru
@@ -48,12 +49,12 @@
               +7 (916) 995 02 70
             </a>
             <div class="w-8"></div>
-            <a href="#cta" id="nav-cta-btn" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+            <a href="#cta" id="nav-cta-btn" class="group bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
           </div>
         </div>
 
         <!-- MOBILE NAV -->
-        <div class="mobile-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[400px]">
+        <div class="mobile-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[400px] md:max-w-none">
           <div class="mobile-header-bar h-[65px] flex items-center justify-between">
             <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
             <button id="nav-menu-open-mobile" aria-expanded="false" aria-haspopup="true" class="mobile-menu-btn">
@@ -72,12 +73,12 @@
               <a class="nav-menu-link" href="#cta">Контакты</a>
             </nav>
             <div class="nav-menu-contacts flex flex-col gap-4">
-              <a href="tel:+79169950270" style="display:flex;align-items:center;gap:12px;font-size:1.5rem;color:#151515;text-decoration:none;">
-                <img src="./static/icons/icon-phone.svg" alt="" style="width:24px;height:24px;">
+              <a href="tel:+79169950270" class="mobile-contact">
+                <img src="./static/icons/icon-phone.svg" alt="" class="mobile-contact-icon">
                 +7 (916) 995 02 70
               </a>
-              <a href="mailto:hi@1220.ru" style="display:flex;align-items:center;gap:12px;font-size:1.5rem;color:#151515;text-decoration:none;">
-                <img src="./static/icons/icon-mail.svg" alt="" style="width:26px;height:26px;">
+              <a href="mailto:hi@1220.ru" class="mobile-contact">
+                <img src="./static/icons/icon-mail.svg" alt="" class="mobile-contact-icon-mail">
                 hi@1220.ru
               </a>
             </div>
@@ -117,7 +118,7 @@
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="sound-off-icon">
                       <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" fill="currentColor"/>
                     </svg>
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="sound-on-icon" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="sound-on-icon" class="hidden">
                       <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"/>
                     </svg>
                   </button>
@@ -130,7 +131,7 @@
       </header>
 
        <!-- Остальной контент без изменений (только удалены data-uid) -->
-         <section style="padding: 220px 20px 40px 20px; max-width: 1600px; margin: 0 auto;">
+         <section class="section-hero">
           <div class="hero-top-bar">
              <h1 id="hero-text" class="h1 text-display tracking-display text-[#151515] hero-top-title hero-line-height animate-hero">
                Создаем контент, которому доверяют бренды и&nbsp;их аудитория
@@ -142,13 +143,13 @@
              </a>
           </div>
            <div>
-             <div class="mt-10 animate-fade-in" style="--animation-delay: 0.2s; background: transparent;">
-               <div id="hero-banner" style="width: 100%; height: 100vh; overflow: hidden; border-radius: 1rem; will-change: transform, border-radius; z-index: 1; position: relative;">
+             <div class="mt-10 animate-fade-in" data-delay="0.2s">
+               <div id="hero-banner" class="hero-banner">
                  <video id="hero-banner-video" class="w-full h-full object-cover" autoplay muted loop playsinline src="./static/videos/gussi rem.mp4"></video>
                  <!-- Кнопка "Смотреть видео" -->
-                 <div id="hero-video-btn" class="hero-video-btn" style="display: none; gap: 3px; background-color: rgba(229,231,235,0.9); border-radius: 4px; padding: 4px 5px 4px 4px; white-space: nowrap; will-change: transform; position: absolute; z-index: 10;">
-                   <span style="color: #6b6b6b; font-size: 1.125rem;">→</span>
-                   <span style="font-family: 'Open Sans', sans-serif; font-weight: 700; color: #6b6b6b; font-size: 0.95rem; white-space: nowrap; line-height: 1.4;">Смотреть видео</span>
+                 <div id="hero-video-btn" class="hero-video-btn">
+                   <span class="arrow">→</span>
+                   <span class="label">Смотреть видео</span>
                  </div>
                </div>
              </div>
@@ -156,7 +157,7 @@
 
         </section>
 
-        <section class="logos-strip animate-fade-in" style="--animation-delay: 0.35s; margin-top: 2rem;">
+        <section class="logos-strip animate-fade-in mt-8" data-delay="0.35s">
          <div class="logos-track">
               <img src="./static/icons/logo-1.svg" alt="Клиент 1" class="logo-img">
               <img src="./static/icons/logo-2.svg" alt="Клиент 2" class="logo-img">
@@ -177,12 +178,10 @@
            </div>
        </section>
 
-        <section id="about" aria-label="О студии"
-            style="padding: 230px 20px 200px 20px; max-width: 1600px; margin: 0 auto;">
-         <div class=""
-           >
+         <section id="about" aria-label="О студии" class="section-about">
+          <div>
             <p id="about-animated-text"
-              class="text-body text-xl tracking-tight leading-[1.4] max-w-[780px]" style="font-size: 32px; line-height: 1.4;">
+               class="text-body tracking-tight max-w-[780px] about-text">
               <span data-animate-part>В Студии 12/20 создают видео для брендов, продуктов и рекламных кампаний.</span>
               <span data-animate-part>Идея, визуальный стиль и современные AI-инструменты</span>
               <span data-animate-part>объединяются в цельный ролик.</span>
@@ -214,85 +213,67 @@
           </div>
         </section>
         <section aria-labelledby="competencies-heading"
-         class="competencies-section pt-[120px] md:pt-[140px] pb-16 md:pb-28 px-5 md:px-10 max-w-[1600px] mx-auto">
-        <h2 id="competencies-heading" class="h2 text-heading text-[#151515] mb-12">
-          Компетенции</h2>
+                 class="competencies-section pt-[120px] md:pt-[140px] pb-20 md:pb-32 px-5 md:px-10 max-w-[1600px] mx-auto">
 
-        <div class="competencies-layout">
-          <!-- Левая колонка: визуальные карточки -->
-          <div class="competencies-visuals">
-            <!-- Сет 0: Персонажи по образу -->
-            <div class="card-set" data-set="0">
-              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+          <h2 id="competencies-heading"
+              class="h2 text-heading text-[#151515] mb-16 text-center">
+            Компетенции
+          </h2>
+
+          <div class="competencies-centered-layout max-w-[1280px] mx-auto">
+
+            <!-- Визуальные карточки -->
+            <div class="competencies-visuals mx-auto">
+              <div class="card-set active" data-set="0">
+                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+              </div>
+              <div class="card-set" data-set="1">
+                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+              </div>
+              <div class="card-set" data-set="2">
+                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+              </div>
+              <div class="card-set" data-set="3">
+                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+              </div>
+              <div class="card-set" data-set="4">
+                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+              </div>
+              <div class="card-set" data-set="5">
+                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
+                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
+                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+              </div>
             </div>
-            <!-- Сет 1: Визуализация продукта -->
-            <div class="card-set" data-set="1">
-              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-            </div>
-            <!-- Сет 2: Рекламные ролики -->
-            <div class="card-set" data-set="2">
-              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-            </div>
-            <!-- Сет 3: Сценарий и раскадровка -->
-            <div class="card-set" data-set="3">
-              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-            </div>
-            <!-- Сет 4: Озвучивание -->
-            <div class="card-set" data-set="4">
-              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-            </div>
-            <!-- Сет 5: Контент для продвижения -->
-            <div class="card-set" data-set="5">
-              <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-              <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-              <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
+
+            <!-- Центральный текстовый блок -->
+            <div class="competencies-text-list mx-auto max-w-[620px]">
+              <div>
+                <div data-index="0" class="competency-text-item active">Контент под рекламные задачи</div>
+                <div data-index="1" class="competency-text-item">Режиссерская постановка сцен</div>
+                <div data-index="2" class="competency-text-item">Подбор и настройка звуковых эффектов</div>
+                <div data-index="3" class="competency-text-item">Единая визуальная система бренда</div>
+                <div data-index="4" class="competency-text-item">Стабильный визуальный результат</div>
+                <div data-index="5" class="competency-text-item">Быстрое тестирование креативов</div>
+              </div>
             </div>
           </div>
-
-          <!-- Правая колонка: список компетенций -->
-          <div class="competencies-list-col">
-            <button class="competency-item active" data-index="0">
-              <span class="competency-item-line"></span>
-              <span class="competency-label">Контент под рекламные задачи</span>
-            </button>
-            <button class="competency-item" data-index="1">
-              <span class="competency-item-line"></span>
-              <span class="competency-label">Режиссерская постановка сцен</span>
-            </button>
-            <button class="competency-item" data-index="2">
-              <span class="competency-item-line"></span>
-              <span class="competency-label">Подбор и настройка звуковых эффектов</span>
-            </button>
-            <button class="competency-item" data-index="3">
-              <span class="competency-item-line"></span>
-              <span class="competency-label">Единая визуальная система бренда</span>
-            </button>
-            <button class="competency-item" data-index="4">
-              <span class="competency-item-line"></span>
-              <span class="competency-label">Стабильный визуальный результат</span>
-            </button>
-            <button class="competency-item" data-index="5">
-              <span class="competency-item-line"></span>
-              <span class="competency-label">Быстрое тестирование креативов</span>
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
       <section aria-label="Серия контента">
         <div
           class="py-16 md:py-28 px-5 md:px-10 max-w-[1600px] mx-auto">
           <p
-            class="text-body text-[#151515] text-center tracking-h1 leading-[1.05] max-w-[900px] mx-auto mb-14" style="font-size: 68px;">
+            class="text-body text-[#151515] text-center tracking-h1 leading-[1.05] max-w-[900px] mx-auto mb-14 content-series-text">
             От точечного ролика <br>до цельной серии контента <br>в едином визуальном стиле</p>
         </div>
         <div class="w-screen -ml-[calc(50vw-50%)]">
@@ -349,41 +330,37 @@
             <div class="process-step-dot"></div>
             <div class="process-step-content">
               <h3 class="process-step-title">Производство</h3>
-              <p class="process-step-text">Съёмка, монтаж и постпродакшн — всё быстро, с понятным контролем на каждом этапе.</p>
+              <p class="process-step-text">Съёмка, монтаж и постпродакшн — всё быстро, с&nbsp;понятным контролем на каждом этапе.</p>
             </div>
           </article>
 
        </div>
      </div>
   </div>
-</section><section aria-label="Ценность бренда"
-         style="padding: 20px;">
-         <div style="max-width: 1600px; margin: 0 auto;">
-           <div style="border-radius: 1rem; overflow: hidden; background-image: url('./static/images/image-value.png'); background-size: cover; background-position: center; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
-             <div style="text-align: center; padding: 100px 20px;">
-<h2 style="font-size: 4rem; line-height: 1.05; color: white; margin-bottom: 3rem;">
-                   Ценность бренда <br>— в первом впечатлении</h2>
-                <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; margin-bottom: 6rem; line-height: 1.5;">
-                  Видео помогает эффективно раскрыть продукт,<br>создать эмоцию и остаться в
-                  памяти.</p>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem; color: white; font-size: 1.25rem;">
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                    <img src="./static/icons/icon-rabbit.svg" alt="" style="width: 3rem; height: 3rem;">
-                    <span>Быстрый запуск</span>
-                  </div>
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                    <img src="./static/icons/icon-content.svg" alt="" style="width: 3rem; height: 3rem;">
-                    <span>Контент для рекламы и соцсетей</span>
-                  </div>
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                    <img src="./static/icons/icon-series.svg" alt="" style="width: 3rem; height: 3rem;">
-                    <span>Серии роликов</span>
-                  </div>
-                  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                    <img src="./static/icons/icon-star.svg" alt="" style="width: 3rem; height: 3rem;">
-                    <span>Яркая подача</span>
-                  </div>
-                </div>
+</section><section aria-label="Ценность бренда" class="value-section">
+         <div class="container-wide">
+           <div class="value-bg">
+             <div class="value-content">
+               <h2 class="value-heading">Ценность бренда <br>— в первом впечатлении</h2>
+               <p class="value-desc">Видео помогает эффективно раскрыть продукт,<br>создать эмоцию и остаться в памяти.</p>
+               <div class="value-icons">
+                 <div class="value-icon-item">
+                   <img src="./static/icons/icon-rabbit.svg" alt="" class="value-icon-img">
+                   <span>Быстрый запуск</span>
+                 </div>
+                 <div class="value-icon-item">
+                   <img src="./static/icons/icon-content.svg" alt="" class="value-icon-img">
+                   <span>Контент для рекламы и соцсетей</span>
+                 </div>
+                 <div class="value-icon-item">
+                   <img src="./static/icons/icon-series.svg" alt="" class="value-icon-img">
+                   <span>Серии роликов</span>
+                 </div>
+                 <div class="value-icon-item">
+                   <img src="./static/icons/icon-star.svg" alt="" class="value-icon-img">
+                   <span>Яркая подача</span>
+                 </div>
+               </div>
              </div>
            </div>
          </div>
@@ -478,35 +455,33 @@
           </div>
         </div>
       </section>
-        <section aria-labelledby="team-heading"
-           style="padding: 80px 20px 240px 20px; max-width: 1600px; margin: 0 auto;">
-          <div style="max-width: 1100px; margin: 0 auto;">
-            <h2 id="team-heading" class="h2 text-heading text-[#151515] text-center mb-6">
-              Кто стоит за студией</h2>
-          </div>
-          <div style="max-width: 800px; margin: 0 auto;">
+         <section aria-labelledby="team-heading" class="section-team">
+           <div class="container-narrow">
+             <h2 id="team-heading" class="h2 text-heading text-[#151515] text-center mb-6">
+               Кто стоит за студией</h2>
+           </div>
+           <div class="container-text">
              <p id="team-text"
                 class="text-[#151515ba] text-xl text-center tracking-tight leading-[1.3] text-body">
                Студия 12/20 — это небольшой творческий состав с вниманием к идее, визуалу и смыслу. Каждый ролик собирается как законченная история: от первого кадра до финального звука.</p>
             <div class="text-center mt-10">
-              <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97]" style="border-radius: 12px;">Обсудить проект</a>
+              <a href="#cta" class="inline-block bg-[#151515] text-[#f8f8f8] [font-family:'Open Sans', sans-serif] text-sm md:text-base tracking-normal px-6 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
             </div>
           </div>
         </section>
-         <section id="cta" aria-labelledby="cta-heading"
-          style="background-color: #0a0a0a; padding: 160px 20px 180px 40px; transition: background-color 0.8s ease;">
+         <section id="cta" aria-labelledby="cta-heading" class="section-cta">
         <div class="max-w-1200 mx-auto px-5">
           <div class="mb-40 text-center">
-            <h2 id="cta-heading" class="h2 text-heading text-white mb-6 max-w-[600px] mx-auto text-reveal" style="font-size: clamp(2.75rem, 5vw, 4.25rem);">
-              <span class="text-reveal-inner" style="transition-delay: 0.2s;">Проекты начинаются здесь</span>
+            <h2 id="cta-heading" class="h2 text-heading text-white mb-6 max-w-[600px] mx-auto text-reveal cta-heading">
+              <span class="text-reveal-inner delay-02">Проекты начинаются здесь</span>
             </h2>
             <p
-              class="text-white/50 text-xl [font-family:'Open Sans', sans-serif] tracking-normal max-w-[800px] mx-auto text-reveal" style="transition-delay: 0.4s;">
-              <span class="text-reveal-inner" style="transition-delay: 0.4s;">Достаточно заполнить форму — мы свяжемся в течение дня</span></p>
+              class="text-white/50 text-xl [font-family:'Open Sans', sans-serif] tracking-normal max-w-[800px] mx-auto text-reveal delay-04">
+              <span class="text-reveal-inner delay-04">Достаточно заполнить форму — мы свяжемся в течение дня</span></p>
           </div>
           
           <form class="cta-grid mb-24">
-            <div class="cta-col-1" style="animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.4s both fade-up;">
+            <div class="cta-col-1 fade-up-d1">
               <div class="form-field">
                 <label for="cta-name">Имя</label>
                 <input id="cta-name" type="text" value="">
@@ -515,7 +490,7 @@
                 <p class="error-msg"></p>
               </div>
             </div>
-            <div class="cta-col-2" style="animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s both fade-up;">
+            <div class="cta-col-2 fade-up-d2">
               <div class="form-field">
                 <label for="cta-email">Почта</label>
                 <input id="cta-email" type="email" value="">
@@ -524,7 +499,7 @@
                 <p class="error-msg"></p>
               </div>
             </div>
-            <div class="cta-col-3" style="animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.6s both fade-up;">
+            <div class="cta-col-3 fade-up-d3">
               <div class="form-field">
                 <label for="cta-message">О проекте</label>
                 <textarea id="cta-message" rows="1"></textarea>
@@ -539,11 +514,11 @@
             </div>
           </form>
 
-          <div class="flex flex-col gap-8 items-center mt-32" style="animation: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.8s both fade-up;">
+          <div class="flex flex-col gap-8 items-center mt-32 fade-up-d4">
             <div class="flex flex-col gap-6 items-center">
-              <a href="tel:+79169950270" class="text-white [font-family:'Fixel Display', sans-serif] font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1;">
+              <a href="tel:+79169950270" class="text-white [font-family:'Fixel Display', sans-serif] font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity cta-phone">
                 +7 (916) 995 02 70</a>
-              <a href="mailto:hi@1220.ru" class="text-white [font-family:'Fixel Display', sans-serif] font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1;">
+              <a href="mailto:hi@1220.ru" class="text-white [font-family:'Fixel Display', sans-serif] font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity cta-email">
                 hi@1220.ru</a>
             </div>
             <span class="text-white/50 text-sm [font-family:'Open Sans', sans-serif] tracking-normal mt-4">Будем рады пообщаться по любым вопросам</span>
@@ -885,213 +860,7 @@
          });
        });
         </script>
-       <script>
-(function() {
-  const projects = [
-    { id: 0, title: "Изофом", description: "Серия объясняющих роликов для производителя строительного материала.", video: "./static/videos/Изофом.mov", poster: "./static/images/4lg5t-1.jpg", isVertical: false },
-    { id: 1, title: "C-Tea", description: "Серия маркетинговых роликов для продуктовой линейки локального заведения.", video: "./static/videos/C-Tea.mov", poster: "./static/images/frame-12@2x.png", isVertical: true },
-    { id: 2, title: "Янта", description: "Рекламный ролик для FMCG-бренда с точной передачей упаковки.", video: "./static/videos/Yanta.mp4", poster: "./static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png", isVertical: false },
-    { id: 3, title: "Особый ремонт", description: "Брендовый ролик в стиле «Миссия невыполнима» для компании по ремонту недвижимости.", video: "./static/videos/Gussi Rem.mp4", poster: "./static/images/6l06a-1.png", isVertical: false }
-  ];
 
-  let activeId = -1;
-  let isUserInteracting = false;
-
-  const thumbnailList = document.getElementById('project-thumbnail-list');
-  const showcase = document.getElementById('project-showcase');
-  const mobileContainer = document.getElementById('projects-mobile');
-
-  function buildThumbnails() {
-    if (!thumbnailList) return;
-    thumbnailList.innerHTML = '';
-    projects.forEach(project => {
-      const item = document.createElement('button');
-      item.className = 'project-thumbnail-item';
-      item.dataset.id = project.id;
-      item.innerHTML = `<img src="${project.poster}" alt="${project.title}">`;
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        isUserInteracting = true;
-        setActive(project.id);
-        scrollToCard(project.id);
-        setTimeout(() => { isUserInteracting = false; }, 1500);
-      });
-      thumbnailList.appendChild(item);
-    });
-  }
-
-  function buildShowcase() {
-    showcase.innerHTML = '';
-    projects.forEach(project => {
-      const wrapperClass = project.isVertical ? 'project-video-container vertical' : 'project-video-container';
-      const card = document.createElement('div');
-      card.className = 'project-card';
-      card.id = `project-card-${project.id}`;
-      card.innerHTML = `
-        <div class="${wrapperClass}">
-          <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
-            <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
-          </video>
-        </div>
-      `;
-      showcase.appendChild(card);
-    });
-  }
-
-  function buildMobile() {
-    mobileContainer.querySelectorAll('.project-mobile-card').forEach(el => el.remove());
-
-    projects.forEach(project => {
-      const wrapperClass = project.isVertical ? 'project-video-container vertical' : 'project-video-container';
-      const card = document.createElement('div');
-      card.className = 'project-mobile-card';
-      card.innerHTML = `
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-        <div class="${wrapperClass}">
-          <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
-            <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
-          </video>
-        </div>
-      `;
-      mobileContainer.appendChild(card);
-    });
-  }
-
-  function scrollToCard(id) {
-    const card = document.getElementById(`project-card-${id}`);
-    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function setActive(id) {
-    if (id === activeId) return;
-    activeId = id;
-
-    thumbnailList?.querySelectorAll('.project-thumbnail-item').forEach(item => {
-      item.classList.toggle('active', parseInt(item.dataset.id) === id);
-    });
-
-    const project = projects.find(p => p.id === id);
-    const info = document.getElementById('project-info-fixed');
-    if (project && info) {
-      const titleEl = document.getElementById('project-info-title');
-      const descEl = document.getElementById('project-info-desc');
-      titleEl.textContent = project.title;
-      descEl.textContent = project.description;
-    }
-  }
-
-  function setupObserver() {
-    const info = document.getElementById('project-info-fixed');
-    const sidebar = document.getElementById('projects-sidebar');
-    const cards = showcase.querySelectorAll('.project-card');
-    if (!cards.length) return;
-
-    const section = document.getElementById('projects');
-
-    // Observer для определения активного (центрального) видео
-    const activeObserver = new IntersectionObserver((entries) => {
-      if (isUserInteracting) return;
-
-      let bestEntry = null;
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
-            bestEntry = entry;
-          }
-        }
-      });
-
-      if (bestEntry) {
-        const id = parseInt(bestEntry.target.id.replace('project-card-', ''));
-        setActive(id);
-      }
-    }, {
-      rootMargin: '-45% 0px -45% 0px',
-      threshold: 0
-    });
-
-    cards.forEach(card => activeObserver.observe(card));
-
-    // Scroll-based visibility для превью и описания
-    // Показываем когда секция Projects вошла в основную часть экрана
-    let ticking = false;
-
-    function updateVisibility() {
-      if (!section || !info) return;
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
-
-      // Показываем: верх секции ниже 65% экрана (начало блока видно)
-      // Скрываем: низ секции выше 10% экрана (блок полностью ушёл вверх)
-      const shouldShow = rect.top < vh * 0.65 && rect.bottom > vh * 0.1;
-
-      if (shouldShow) {
-        info.classList.add('visible');
-        sidebar?.classList.add('visible');
-      } else {
-        info.classList.remove('visible');
-        sidebar?.classList.remove('visible');
-      }
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateVisibility);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    updateVisibility();
-  }
-
-  function setupPlayback(container) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-          entry.target.play().catch(() => {});
-        } else {
-          entry.target.pause();
-        }
-      });
-    }, { threshold: 0.3 });
-    container.querySelectorAll('.project-video').forEach(video => observer.observe(video));
-  }
-
-  function render() {
-    const isDesktop = window.innerWidth >= 1024;
-    showcase.innerHTML = '';
-    mobileContainer.innerHTML = '';
-
-    if (isDesktop) {
-      buildThumbnails();
-      buildShowcase();
-      setActive(0);
-      requestAnimationFrame(() => {
-        setupObserver();
-        setupPlayback(showcase);
-      });
-    } else {
-      const title = document.createElement('h2');
-      title.className = 'section-title mobile-projects-title';
-      title.textContent = 'Проекты';
-      mobileContainer.appendChild(title);
-      buildMobile();
-      setupPlayback(mobileContainer);
-    }
-  }
-
-  // Инициализация
-  render();
-
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(render, 150);
-  });
-})();
-        </script>
   <!-- Модуль переключения CTA-кнопки -->
   <script type="module" src="./js/cta-toggle.js"></script>
 </body>

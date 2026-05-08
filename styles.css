@@ -869,9 +869,11 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .process-step-text {
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 1rem;
-  color: rgba(21, 21, 21, 0.6);
+  font-weight: 500;
+  font-size: var(--fs-body);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.4;
+  color: rgba(21, 21, 21, 0.7);
   max-width: 420px;
 }
 
@@ -886,7 +888,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; }
   .process-step-title { font-size: 1.75rem; }
-  .process-step-text { font-size: 1rem; max-width: 420px; }
+  .process-step-text { max-width: 420px; }
 }
 
 /* === COMPONENT: CTA Form === */

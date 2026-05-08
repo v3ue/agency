@@ -1,5 +1,5 @@
 /**
- * Projects section logic — стабильная версия (решает проблему с "Изофом")
+ * Projects section logic — стабильная версия (превью теперь работает)
  */
 
 import { projects } from './projects-data.js';
@@ -23,7 +23,7 @@ function getElements() {
   };
 }
 
-/** Build functions (без изменений) */
+/** Build functions */
 function buildThumbnails(thumbnailList) {
   if (!thumbnailList) return;
   thumbnailList.innerHTML = '';
@@ -88,7 +88,7 @@ function scrollToCard(id) {
   if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Активация + показ превью */
+/** Активация проекта + показ превью */
 function setActive(id) {
   if (id === activeId) return;
   activeId = id;
@@ -100,7 +100,7 @@ function setActive(id) {
     item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
   });
 
-  // Обновляем текст
+  // Обновляем текст в панели
   const project = projects.find(p => p.id === id);
   if (project && info) {
     document.getElementById('project-info-title').textContent = project.title;
@@ -112,20 +112,20 @@ function setActive(id) {
   if (sidebar) sidebar.classList.add('visible');
 }
 
-/** Observer — теперь ловит ВСЕ проекты надёжно */
+/** Observer для выбора активного проекта */
 function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
-
-  const { info, sidebar, section } = getElements();
 
   const observer = new IntersectionObserver((entries) => {
     if (isUserInteracting) return;
 
     let bestEntry = null;
     entries.forEach(entry => {
-      if (entry.isIntersecting && (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio)) {
-        bestEntry = entry;
+      if (entry.isIntersecting) {
+        if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+          bestEntry = entry;
+        }
       }
     });
 
@@ -134,22 +134,11 @@ function setupActiveObserver(showcase) {
       setActive(id);
     }
   }, {
-    rootMargin: '-38% 0px -38% 0px',   // специально подстроено под твой gap
-    threshold: [0.4, 0.6, 1]
+    rootMargin: '-38% 0px -38% 0px',
+    threshold: [0.4, 0.7, 1]
   });
 
   cards.forEach(card => observer.observe(card));
-
-  // Скрываем панель только когда секция полностью ушла
-  if (section && info && sidebar) {
-    const hideObserver = new IntersectionObserver(entries => {
-      if (!entries[0].isIntersecting) {
-        info.classList.remove('visible');
-        sidebar.classList.remove('visible');
-      }
-    }, { rootMargin: '0px 0px -10% 0px' });
-    hideObserver.observe(section);
-  }
 }
 
 /** Playback видео */
@@ -180,7 +169,7 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
-      setActive(0);                    // первый проект сразу
+      setActive(0);                    // сразу активируем первый проект
       setupActiveObserver(showcase);
       setupPlayback(showcase);
     });

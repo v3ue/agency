@@ -1,5 +1,6 @@
 /**
- * Projects section logic — стабильная версия (превью теперь работает)
+ * Projects section logic — финальная стабильная версия
+ * Превью появляется на первом проекте, переключается при скролле, исчезает когда секция ушла
  */
 
 import { projects } from './projects-data.js';
@@ -10,6 +11,7 @@ const RESIZE_DEBOUNCE_MS = 150;
 let activeId = -1;
 let isUserInteracting = false;
 let resizeTimeout = null;
+let ticking = false;
 
 /** Root DOM elements */
 function getElements() {
@@ -93,26 +95,50 @@ function setActive(id) {
   if (id === activeId) return;
   activeId = id;
 
-  const { thumbnailList, info, sidebar } = getElements();
+  const { thumbnailList } = getElements();
 
-  // Обновляем превьюшки
   thumbnailList?.querySelectorAll('.project-thumbnail-item').forEach(item => {
     item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
   });
 
-  // Обновляем текст в панели
   const project = projects.find(p => p.id === id);
-  if (project && info) {
-    document.getElementById('project-info-title').textContent = project.title;
-    document.getElementById('project-info-desc').textContent = project.description;
+  if (project) {
+    const titleEl = document.getElementById('project-info-title');
+    const descEl = document.getElementById('project-info-desc');
+    if (titleEl) titleEl.textContent = project.title;
+    if (descEl) descEl.textContent = project.description;
   }
-
-  // Показываем панель
-  if (info) info.classList.add('visible');
-  if (sidebar) sidebar.classList.add('visible');
 }
 
-/** Observer для выбора активного проекта */
+/** Контроль видимости превью по скроллу (самый надёжный способ) */
+function updateInfoVisibility() {
+  if (ticking) return;
+  ticking = true;
+
+  const { info, sidebar, section } = getElements();
+  if (!info || !section) {
+    ticking = false;
+    return;
+  }
+
+  const rect = section.getBoundingClientRect();
+  const vh = window.innerHeight;
+
+  // Показываем, когда секция занимает большую часть экрана
+  const shouldShow = rect.top < vh * 0.75 && rect.bottom > vh * 0.25;
+
+  if (shouldShow) {
+    info.classList.add('visible');
+    sidebar?.classList.add('visible');
+  } else {
+    info.classList.remove('visible');
+    sidebar?.classList.remove('visible');
+  }
+
+  ticking = false;
+}
+
+/** Observer только для определения активного проекта */
 function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
@@ -169,7 +195,7 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
-      setActive(0);                    // сразу активируем первый проект
+      setActive(0);
       setupActiveObserver(showcase);
       setupPlayback(showcase);
     });
@@ -184,11 +210,16 @@ function render() {
   }
 }
 
+/** Public API */
 export function initProjects() {
   const { showcase } = getElements();
   if (!showcase) return;
 
   render();
+
+  // Контроль видимости превью
+  window.addEventListener('scroll', updateInfoVisibility, { passive: true });
+  updateInfoVisibility(); // начальная проверка
 
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);

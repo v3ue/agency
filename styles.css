@@ -862,7 +862,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 
 .process-step-title {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.75rem;
+  color: #151515;
+  line-height: 1.2;
 }
 
 .process-step-text {
@@ -883,7 +885,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; }
-  .process-step-title { font-size: 2rem; }
+  .process-step-title { font-size: 1.75rem; }
   .process-step-text { font-size: 1rem; max-width: 420px; }
 }
 

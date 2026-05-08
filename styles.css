@@ -105,16 +105,16 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   to   { transform: translateX(-50%); }
 }
 @keyframes float-a {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50%      { transform: translateY(-10px) rotate(1deg); }
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50%      { transform: translateY(-12px) rotate(2deg); }
 }
 @keyframes float-b {
-  0%, 100% { transform: translateY(0) rotate(4deg); }
-  50%      { transform: translateY(-8px) rotate(-1deg); }
+  0%, 100% { transform: translateY(0) rotate(6deg); }
+  50%      { transform: translateY(-10px) rotate(-2deg); }
 }
 @keyframes float-c {
   0%, 100% { transform: translateY(0) rotate(1deg); }
-  50%      { transform: translateY(-12px) rotate(-2deg); }
+  50%      { transform: translateY(-14px) rotate(-3deg); }
 }
 @keyframes logo-pulse {
   0%   { filter: brightness(0.5) opacity(0.4); }

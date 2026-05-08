@@ -157,10 +157,6 @@ function setupObserver() {
         info.classList.add('visible');
         sidebar?.classList.add('visible');
       }
-    } else if (isInfoVisible) {
-      isInfoVisible = false;
-      info?.classList.remove('visible');
-      sidebar?.classList.remove('visible');
     }
   }, {
     rootMargin: '-45% 0px -45% 0px',
@@ -169,8 +165,7 @@ function setupObserver() {
 
   cards.forEach((card) => activeObserver.observe(card));
 
-  const section = document.getElementById('projects');
-  const hideObserver = new IntersectionObserver((entries) => {
+  const showcaseObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) {
         isInfoVisible = false;
@@ -179,11 +174,11 @@ function setupObserver() {
       }
     });
   }, {
-    rootMargin: '0px 0px -10% 0px',
+    rootMargin: '0px',
     threshold: 0,
   });
 
-  if (section) hideObserver.observe(section);
+  if (showcase) showcaseObserver.observe(showcase);
 
   setActive(0);
 }

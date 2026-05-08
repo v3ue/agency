@@ -703,12 +703,12 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   }
 
   .project-showcase {
-    gap: 80px;                    /* ← сильно уменьшили (было 120px) */
+    gap: 140px;
     scroll-padding-top: 180px;    /* помогает observer'у ловить первую карточку */
   }
 
   .project-card {
-    scroll-margin-top: 80px;      /* ← уменьшили */
+    scroll-margin-top: 100px;
   }
 
   .projects-sidebar {

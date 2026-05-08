@@ -1,9 +1,11 @@
 /**
- * Projects section logic — финальная стабильная версия
- * Превью появляется на первом проекте, переключается при скролле, исчезает когда секция ушла
+ * Projects section logic
+ * Desktop: fixed thumbnails on the left, centered videos, bottom-left info panel.
+ * Mobile: linear list with inline titles.
  */
 
 import { projects } from './projects-data.js';
+import { onScroll } from './utils/scroll.js';
 
 const DESKTOP_MIN_WIDTH = 1024;
 const RESIZE_DEBOUNCE_MS = 150;
@@ -11,9 +13,8 @@ const RESIZE_DEBOUNCE_MS = 150;
 let activeId = -1;
 let isUserInteracting = false;
 let resizeTimeout = null;
-let ticking = false;
 
-/** Root DOM elements */
+/** Root DOM elements (queried once) */
 function getElements() {
   return {
     thumbnailList: document.getElementById('project-thumbnail-list'),
@@ -25,9 +26,10 @@ function getElements() {
   };
 }
 
-/** Build functions */
+/** Build fixed thumbnail strip (desktop only) */
 function buildThumbnails(thumbnailList) {
   if (!thumbnailList) return;
+
   thumbnailList.innerHTML = '';
 
   projects.forEach((project) => {
@@ -48,10 +50,15 @@ function buildThumbnails(thumbnailList) {
   });
 }
 
+/** Build desktop video showcase */
 function buildShowcase(showcase) {
   showcase.innerHTML = '';
+
   projects.forEach((project) => {
-    const wrapperClass = project.isVertical ? 'project-video-container vertical' : 'project-video-container';
+    const wrapperClass = project.isVertical
+      ? 'project-video-container vertical'
+      : 'project-video-container';
+
     const card = document.createElement('div');
     card.className = 'project-card';
     card.id = `project-card-${project.id}`;
@@ -62,14 +69,22 @@ function buildShowcase(showcase) {
         </video>
       </div>
     `;
+
     showcase.appendChild(card);
   });
 }
 
+/** Build mobile cards */
 function buildMobile(mobileContainer) {
-  mobileContainer.querySelectorAll('.project-mobile-card').forEach(el => el.remove());
+  mobileContainer
+    .querySelectorAll('.project-mobile-card')
+    .forEach((el) => el.remove());
+
   projects.forEach((project) => {
-    const wrapperClass = project.isVertical ? 'project-video-container vertical' : 'project-video-container';
+    const wrapperClass = project.isVertical
+      ? 'project-video-container vertical'
+      : 'project-video-container';
+
     const card = document.createElement('div');
     card.className = 'project-mobile-card';
     card.innerHTML = `
@@ -81,108 +96,126 @@ function buildMobile(mobileContainer) {
         </video>
       </div>
     `;
+
     mobileContainer.appendChild(card);
   });
 }
 
+/** Scroll to a specific project card */
 function scrollToCard(id) {
   const card = document.getElementById(`project-card-${id}`);
   if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/** Активация проекта + показ превью */
+/** Activate a project (highlight thumbnail + update info panel) */
 function setActive(id) {
   if (id === activeId) return;
   activeId = id;
 
-  const { thumbnailList } = getElements();
+  const { thumbnailList, info } = getElements();
 
-  thumbnailList?.querySelectorAll('.project-thumbnail-item').forEach(item => {
-    item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
-  });
+  thumbnailList
+    ?.querySelectorAll('.project-thumbnail-item')
+    .forEach((item) => {
+      item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
+    });
 
-  const project = projects.find(p => p.id === id);
-  if (project) {
-    const titleEl = document.getElementById('project-info-title');
-    const descEl = document.getElementById('project-info-desc');
-    if (titleEl) titleEl.textContent = project.title;
-    if (descEl) descEl.textContent = project.description;
-  }
+  const project = projects.find((p) => p.id === id);
+  if (!project || !info) return;
+
+  const titleEl = document.getElementById('project-info-title');
+  const descEl = document.getElementById('project-info-desc');
+
+  if (titleEl) titleEl.textContent = project.title;
+  if (descEl) descEl.textContent = project.description;
 }
 
-/** Контроль видимости превью по скроллу (самый надёжный способ) */
-function updateInfoVisibility() {
-  if (ticking) return;
-  ticking = true;
-
-  const { info, sidebar, section } = getElements();
-  if (!info || !section) {
-    ticking = false;
-    return;
-  }
-
-  const rect = section.getBoundingClientRect();
-  const vh = window.innerHeight;
-
-  // Показываем, когда секция занимает большую часть экрана
-  const shouldShow = rect.top < vh * 0.75 && rect.bottom > vh * 0.25;
-
-  if (shouldShow) {
-    info.classList.add('visible');
-    sidebar?.classList.add('visible');
-  } else {
-    info.classList.remove('visible');
-    sidebar?.classList.remove('visible');
-  }
-
-  ticking = false;
-}
-
-/** Observer только для определения активного проекта */
+/** Scroll-based: выбирает активную карточку по расстоянию до центра экрана */
 function setupActiveObserver(showcase) {
-  const cards = showcase?.querySelectorAll('.project-card');
-  if (!cards?.length) return;
+  const cards = showcase.querySelectorAll('.project-card');
+  if (!cards.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
+  const { info, sidebar } = getElements();
+
+  function pickActiveCard() {
     if (isUserInteracting) return;
 
-    let bestEntry = null;
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
-          bestEntry = entry;
+    const vh = window.innerHeight;
+    let bestCard = null;
+    let bestDist = Infinity;
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + rect.height / 2;
+      const dist = Math.abs(cardCenter - vh / 2);
+
+      if (rect.top < vh * 0.7 && rect.bottom > vh * 0.3) {
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestCard = card;
         }
       }
     });
 
-    if (bestEntry) {
-      const id = parseInt(bestEntry.target.id.replace('project-card-', ''), 10);
+    if (bestCard) {
+      const id = parseInt(bestCard.id.replace('project-card-', ''), 10);
       setActive(id);
+      info?.classList.add('visible');
+      sidebar?.classList.add('visible');
     }
-  }, {
-    rootMargin: '-38% 0px -38% 0px',
-    threshold: [0.4, 0.7, 1]
-  });
+  }
 
-  cards.forEach(card => observer.observe(card));
+  onScroll(pickActiveCard);
+  pickActiveCard();
 }
 
-/** Playback видео */
+/** IntersectionObserver: auto-play / pause videos */
 function setupPlayback(container) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-        entry.target.play().catch(() => {});
-      } else {
-        entry.target.pause();
-      }
-    });
-  }, { threshold: 0.3 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+          entry.target.play().catch(() => {});
+        } else {
+          entry.target.pause();
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
 
-  container.querySelectorAll('.project-video').forEach(video => observer.observe(video));
+  container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
 }
 
-/** Render */
+/** Scroll-based: скрывает превью когда вышли за пределы секции (в обе стороны) */
+function setupVisibility({ info, sidebar, showcase }) {
+  if (!info || !showcase) return;
+
+  const cards = showcase.querySelectorAll('.project-card');
+  if (!cards.length) return;
+
+  const firstCard = cards[0];
+  const lastCard = cards[cards.length - 1];
+
+  function updateVisibility() {
+    const vh = window.innerHeight;
+    const firstRect = firstCard.getBoundingClientRect();
+    const lastRect = lastCard.getBoundingClientRect();
+
+    const scrolledAbove = firstRect.top > vh * 0.5;
+    const scrolledBelow = lastRect.bottom < vh * 0.5;
+
+    if (scrolledAbove || scrolledBelow) {
+      info.classList.remove('visible');
+      sidebar?.classList.remove('visible');
+    }
+  }
+
+  onScroll(updateVisibility);
+  updateVisibility();
+}
+
+/** Main render: desktop vs mobile */
 function render() {
   const { thumbnailList, showcase, mobileContainer } = getElements();
   const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
@@ -193,11 +226,12 @@ function render() {
   if (isDesktop) {
     buildThumbnails(thumbnailList);
     buildShowcase(showcase);
+    setActive(0);
 
     requestAnimationFrame(() => {
-      setActive(0);
       setupActiveObserver(showcase);
       setupPlayback(showcase);
+      setupVisibility(getElements());
     });
   } else {
     const title = document.createElement('h2');
@@ -213,13 +247,9 @@ function render() {
 /** Public API */
 export function initProjects() {
   const { showcase } = getElements();
-  if (!showcase) return;
+  if (!showcase) return; // section not present on this page
 
   render();
-
-  // Контроль видимости превью
-  window.addEventListener('scroll', updateInfoVisibility, { passive: true });
-  updateInfoVisibility(); // начальная проверка
 
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);

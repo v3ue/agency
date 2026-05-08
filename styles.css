@@ -830,6 +830,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  gap: 1.5rem;
   padding: 2rem 1.5rem;
   color: #151515;
   text-align: center;
@@ -838,6 +839,17 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   transition: opacity 0.5s ease 0.4s, transform 0.5s ease 0.4s;
 }
 .process-step.visible .process-step-content { opacity: 1; transform: translateY(0); }
+
+.process-step-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+}
+
+.process-step-text {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
 
 @media (min-width: 1024px) {
   .process-steps::before,
@@ -849,8 +861,8 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; }
-  .process-step-title { font-size: 1.75rem; }
-  .process-step-text { font-size: 0.95rem; max-width: 340px; }
+  .process-step-title { font-size: 2rem; }
+  .process-step-text { font-size: 1.25rem; max-width: 340px; }
 }
 
 /* === COMPONENT: CTA Form === */

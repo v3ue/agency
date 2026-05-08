@@ -883,7 +883,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .process-step {
     max-width: calc(73% - 1.5rem);
     margin-left: calc(27% + 1.5rem);
-    min-height: 540px;
+    min-height: 480px;
   }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; gap: 1.5rem; }

@@ -5,6 +5,8 @@
  */
 
 import { projects } from './projects-data.js';
+import { onScroll } from './utils/scroll.js';
+
 const DESKTOP_MIN_WIDTH = 1024;
 const RESIZE_DEBOUNCE_MS = 150;
 
@@ -128,15 +130,12 @@ function setActive(id) {
   if (descEl) descEl.textContent = project.description;
 }
 
-/** IntersectionObserver: detect active project + show/hide info sidebar */
-function setupObserver() {
-  const { showcase, info, sidebar } = getElements();
+/** IntersectionObserver: detect which card is active (no visibility mgmt) */
+function setupActiveObserver(showcase) {
   const cards = showcase?.querySelectorAll('.project-card');
   if (!cards?.length) return;
 
-  let isInfoVisible = false;
-
-  const activeObserver = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries) => {
     if (isUserInteracting) return;
 
     let bestEntry = null;
@@ -151,36 +150,37 @@ function setupObserver() {
     if (bestEntry) {
       const id = parseInt(bestEntry.target.id.replace('project-card-', ''), 10);
       setActive(id);
-
-      if (info && !isInfoVisible) {
-        isInfoVisible = true;
-        info.classList.add('visible');
-        sidebar?.classList.add('visible');
-      }
     }
   }, {
     rootMargin: '-45% 0px -45% 0px',
     threshold: 0,
   });
 
-  cards.forEach((card) => activeObserver.observe(card));
+  cards.forEach((card) => observer.observe(card));
+}
 
-  const showcaseObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        isInfoVisible = false;
-        info?.classList.remove('visible');
-        sidebar?.classList.remove('visible');
-      }
-    });
-  }, {
-    rootMargin: '0px',
-    threshold: 0,
-  });
+/** Scroll-based: show/hide info + sidebar based on showcase position */
+function setupSectionVisibility() {
+  const { info, sidebar } = getElements();
+  const showcaseEl = document.getElementById('project-showcase');
+  if (!info || !showcaseEl) return;
 
-  if (showcase) showcaseObserver.observe(showcase);
+  function update() {
+    const rect = showcaseEl.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const shouldShow = rect.top < vh && rect.bottom > 0 && activeId >= 0;
 
-  setActive(0);
+    if (shouldShow) {
+      info.classList.add('visible');
+      sidebar?.classList.add('visible');
+    } else {
+      info.classList.remove('visible');
+      sidebar?.classList.remove('visible');
+    }
+  }
+
+  onScroll(update);
+  update();
 }
 
 /** IntersectionObserver: auto-play / pause videos */
@@ -214,7 +214,9 @@ function render() {
     buildShowcase(showcase);
 
     requestAnimationFrame(() => {
-      setupObserver();
+      setActive(0);
+      setupActiveObserver(showcase);
+      setupSectionVisibility();
       setupPlayback(showcase);
     });
   } else {

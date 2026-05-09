@@ -19,8 +19,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     await import('./process-anim.js');
 
     // Page-level interactions + form + CTA
-    await import('./page-interactions.js');
+    const pageInteractionsModule = await import('./page-interactions.js');
+    pageInteractionsModule.default();
     await import('./cta-toggle.js');
+
+    // Testimonials
+    const testimonialsModule = await import('./testimonials.js');
+    testimonialsModule.initTestimonials();
   } catch (err) {
     console.error('Failed to initialize modules', err);
   }

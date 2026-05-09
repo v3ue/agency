@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await import('./hero-video.js');
 
     // Sections
-    const projectsModule = await import('./projects.js');
+    const projectsModule = await import('./projects-section.js');
     projectsModule.initProjects();
     const competenciesModule = await import('./competencies.js');
     competenciesModule.default();

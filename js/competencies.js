@@ -26,7 +26,7 @@ function initializeCompetencies() {
         const next = (currentIndex + 1) % textItems.length;
         setActive(next);
       }
-    }, 4000);
+    }, 3000);
   }
 
   function stopRotation() {

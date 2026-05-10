@@ -215,21 +215,23 @@
       </section>
 
       <div id="project-modal" class="fixed inset-0 bg-white z-50 flex flex-col" style="display: none;">
-        <div class="flex items-center gap-4 px-6 md:px-10 h-[72px] border-b border-gray-100 shrink-0">
-          <img id="modal-logo" src="" alt="" class="w-10 h-10 rounded-lg bg-gray-100 shrink-0 object-cover">
-          <div class="flex-1 min-w-0">
-            <h2 id="modal-title" class="text-lg font-semibold text-[#151515] truncate"></h2>
-            <p id="modal-subtitle" class="text-sm text-gray-500 truncate"></p>
+        <div class="shrink-0 border-b border-gray-100 px-6 md:px-10 py-3">
+          <div class="max-w-4xl mx-auto w-full flex items-center gap-4">
+            <img id="modal-logo" src="" alt="" class="w-10 h-10 rounded-lg bg-gray-100 shrink-0 object-cover">
+            <div class="flex-1 min-w-0">
+              <h2 id="modal-title" class="text-lg font-semibold text-[#151515] truncate"></h2>
+              <p id="modal-subtitle" class="text-sm text-gray-500 truncate"></p>
+            </div>
+            <button id="modal-close" class="w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:text-[#151515] hover:bg-gray-100 transition-all shrink-0" aria-label="Закрыть">&times;</button>
           </div>
-          <button id="modal-close" class="w-9 h-9 flex items-center justify-center rounded-full text-gray-400 hover:text-[#151515] hover:bg-gray-100 transition-all shrink-0" aria-label="Закрыть">&times;</button>
         </div>
 
-        <div class="flex-1 overflow-y-auto px-6 md:px-10 py-8 max-w-4xl mx-auto w-full">
-          <div id="modal-description" class="text-[#151515] leading-relaxed prose prose-neutral max-w-none"></div>
+        <div class="flex-1 overflow-y-auto px-6 md:px-10 py-10 max-w-4xl mx-auto w-full">
+          <div id="modal-description" class="text-[#151515] text-lg md:text-xl leading-relaxed prose prose-neutral max-w-none"></div>
 
-          <div id="modal-competencies" class="flex flex-wrap gap-2 mt-6"></div>
+          <div id="modal-competencies" class="flex flex-wrap gap-2 mt-8"></div>
 
-          <div class="mt-10 aspect-video bg-black rounded-2xl overflow-hidden">
+          <div class="mt-12 aspect-video bg-black rounded-2xl overflow-hidden">
             <video id="modal-video" controls class="w-full h-full object-contain"></video>
           </div>
         </div>

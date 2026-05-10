@@ -112,7 +112,6 @@ export function initProjects() {
       modalVideo.load();
 
       document.querySelector('.site-header')?.classList.add('modal-open');
-      document.body.style.overflow = 'hidden';
       modal.style.display = 'flex';
       animate({ targets: modal, opacity: [0, 1], duration: 300, easing: 'easeOutQuad' });
     });
@@ -120,7 +119,6 @@ export function initProjects() {
 
   const closeModal = () => {
     document.querySelector('.site-header')?.classList.remove('modal-open');
-    document.body.style.overflow = '';
     modal.style.display = 'none';
     modalVideo.pause();
     modalVideo.removeAttribute('src');

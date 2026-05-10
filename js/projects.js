@@ -1,258 +1,151 @@
 /**
- * Projects section logic
- * Desktop: fixed thumbnails on the left, centered videos, bottom-left info panel.
- * Mobile: linear list with inline titles.
+ * projects.js
+ * Динамичная сетка проектов как на haptic.studio
+ * Одна функция — одна задача. Читаемость превыше всего.
  */
 
-import { projects } from './projects-data.js';
-import { onScroll } from './utils/scroll.js';
+import { animate } from '../node_modules/animejs/dist/bundles/anime.esm.js';
 
-const DESKTOP_MIN_WIDTH = 1024;
-const RESIZE_DEBOUNCE_MS = 150;
-
-let activeId = -1;
-let isUserInteracting = false;
-let resizeTimeout = null;
-
-/** Root DOM elements (queried once) */
-function getElements() {
-  return {
-    thumbnailList: document.getElementById('project-thumbnail-list'),
-    showcase: document.getElementById('project-showcase'),
-    mobileContainer: document.getElementById('projects-mobile'),
-    info: document.getElementById('project-info-fixed'),
-    sidebar: document.getElementById('projects-sidebar'),
-    section: document.getElementById('projects'),
-  };
-}
-
-/** Build fixed thumbnail strip (desktop only) */
-function buildThumbnails(thumbnailList) {
-  if (!thumbnailList) return;
-
-  thumbnailList.innerHTML = '';
-
-  projects.forEach((project) => {
-    const btn = document.createElement('button');
-    btn.className = 'project-thumbnail-item';
-    btn.dataset.id = String(project.id);
-    btn.innerHTML = `<img src="${project.poster}" alt="${project.title}">`;
-
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      isUserInteracting = true;
-      setActive(project.id);
-      scrollToCard(project.id);
-      setTimeout(() => { isUserInteracting = false; }, 1500);
-    });
-
-    thumbnailList.appendChild(btn);
-  });
-}
-
-/** Build desktop video showcase */
-function buildShowcase(showcase) {
-  showcase.innerHTML = '';
-
-  projects.forEach((project) => {
-    const wrapperClass = project.isVertical
-      ? 'project-video-container vertical'
-      : 'project-video-container';
-
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.id = `project-card-${project.id}`;
-    card.innerHTML = `
-      <div class="${wrapperClass}">
-        <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
-          <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
-        </video>
-      </div>
-    `;
-
-    showcase.appendChild(card);
-  });
-}
-
-/** Build mobile cards */
-function buildMobile(mobileContainer) {
-  mobileContainer
-    .querySelectorAll('.project-mobile-card')
-    .forEach((el) => el.remove());
-
-  projects.forEach((project) => {
-    const wrapperClass = project.isVertical
-      ? 'project-video-container vertical'
-      : 'project-video-container';
-
-    const card = document.createElement('div');
-    card.className = 'project-mobile-card';
-    card.innerHTML = `
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-      <div class="${wrapperClass}">
-        <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
-          <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
-        </video>
-      </div>
-    `;
-
-    mobileContainer.appendChild(card);
-  });
-}
-
-/** Scroll to a specific project card */
-function scrollToCard(id) {
-  const card = document.getElementById(`project-card-${id}`);
-  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-/** Activate a project (highlight thumbnail + update info panel) */
-function setActive(id) {
-  if (id === activeId) return;
-  activeId = id;
-
-  const { thumbnailList, info } = getElements();
-
-  thumbnailList
-    ?.querySelectorAll('.project-thumbnail-item')
-    .forEach((item) => {
-      item.classList.toggle('active', parseInt(item.dataset.id, 10) === id);
-    });
-
-  const project = projects.find((p) => p.id === id);
-  if (!project || !info) return;
-
-  const titleEl = document.getElementById('project-info-title');
-  const descEl = document.getElementById('project-info-desc');
-
-  if (titleEl) titleEl.textContent = project.title;
-  if (descEl) descEl.textContent = project.description;
-}
-
-/** Scroll-based: выбирает активную карточку по расстоянию до центра экрана */
-function setupActiveObserver(showcase) {
-  const cards = showcase.querySelectorAll('.project-card');
-  if (!cards.length) return;
-
-  const { info, sidebar } = getElements();
-
-  function pickActiveCard() {
-    if (isUserInteracting) return;
-
-    const vh = window.innerHeight;
-    let bestCard = null;
-    let bestDist = Infinity;
-
-    cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.top + rect.height / 2;
-      const dist = Math.abs(cardCenter - vh / 2);
-
-      if (rect.top < vh * 0.7 && rect.bottom > vh * 0.3) {
-        if (dist < bestDist) {
-          bestDist = dist;
-          bestCard = card;
-        }
-      }
-    });
-
-    if (bestCard) {
-      const id = parseInt(bestCard.id.replace('project-card-', ''), 10);
-      setActive(id);
-      info?.classList.add('visible');
-      sidebar?.classList.add('visible');
-    }
+const projectsData = {
+  'yanta': {
+    title: 'Янта',
+    subtitle: 'Рекламный ролик про кетчуп',
+    companyDesc: 'производитель кетчупа',
+    description: `<p>Рекламный ролик про кетчуп.</p>`,
+    detailedDescription: `
+      <p>Рекламный ролик для производителя кетчупа «Янта». Задача — показать продукт так, чтобы он вызывал аппетит и доверие.</p>
+      <p>Мы создали динамичный ролик с крупными планами, сочной цветокоррекцией и плавной динамикой, подчеркивающей вкус и качество продукта.</p>
+    `,
+    competencies: ['Рекламные ролики', 'Визуализация продукта', 'Сценарий и раскадровка']
+  },
+  'isoform': {
+    title: 'Изофом',
+    subtitle: 'Серия объясняющих роликов для производителя строительного материала',
+    companyDesc: 'производитель строительных материалов',
+    description: `<p>Серия объясняющих роликов для производителя строительного материала.</p>`,
+    detailedDescription: `
+      <p>Основная задача заключалась в том, чтобы донести сложную техническую информацию через изометрическую графику и простые визуальные образы.</p>
+      <p>Динамичный ролик для соцсетей, который выделяется уникальным стилем и лёгкостью восприятия даже сложных материалов.</p>
+    `,
+    competencies: ['Визуализация продукта', '2D Моушн', 'Объясняющие ролики']
+  },
+  'c-tea': {
+    title: 'C-Tea',
+    subtitle: 'Рекламный ролик для чайного бренда',
+    companyDesc: 'чайный бренд',
+    description: `<p>Рекламный ролик для чайного бренда.</p>`,
+    detailedDescription: `
+      <p>Атмосферный рекламный ролик для чайного бренда C-Tea. Мы сделали акцент на визуальной эстетике и передаче ощущения уюта.</p>
+      <p>Продуманная фуд-съёмка, тёплая цветовая гамма и плавный монтаж создают настроение, которое ассоциируется с качественным чаем.</p>
+    `,
+    competencies: ['Рекламные ролики', 'Фуд-съёмка', 'Сценарий']
+  },
+  'osobiy-remont': {
+    title: 'Особый ремонт',
+    subtitle: 'Ролик для компании по ремонту недвижимости',
+    companyDesc: 'компания по ремонту недвижимости',
+    description: `<p>Ролик для компании по ремонту недвижимости.</p>`,
+    detailedDescription: `
+      <p>Ролик для компании «Особый ремонт», специализирующейся на ремонте недвижимости. Мы создали образ, который говорит о надёжности и уюте.</p>
+      <p>Видео подчёркивает внимание к деталям, современный подход и индивидуальную работу с каждым клиентом.</p>
+    `,
+    competencies: ['Рекламные ролики', 'Персонажи', 'Озвучивание']
+  },
+  'example-1': {
+    title: 'Проект 5',
+    subtitle: 'Ещё один проект студии',
+    companyDesc: 'студия дизайна',
+    description: `<p>Демонстрационный проект, показывающий, как выглядит обычная карточка в сетке 3 колонок.</p>`,
+    detailedDescription: `<p>Демонстрационный проект. Здесь будет подробное описание проекта студии.</p>`,
+    competencies: ['Моушн-дизайн', 'Рекламные ролики']
+  },
+  'example-2': {
+    title: 'Проект 6',
+    subtitle: 'Широкий проект на 2 колонки',
+    companyDesc: 'продуктовая компания',
+    description: `<p>Демонстрационный проект, показывающий, как выглядит широкая карточка на 2/3 ширины.</p>`,
+    detailedDescription: `<p>Демонстрационный проект. Здесь будет подробное описание проекта студии.</p>`,
+    competencies: ['Моушн-дизайн', 'Рекламные ролики']
+  },
+  'example-3': {
+    title: 'Проект 7',
+    subtitle: 'Завершающий ряд сетки',
+    companyDesc: 'технологический стартап',
+    description: `<p>Демонстрационный проект, завершающий ряд в сетке 3 колонок.</p>`,
+    detailedDescription: `<p>Демонстрационный проект. Здесь будет подробное описание проекта студии.</p>`,
+    competencies: ['Моушн-дизайн', 'Рекламные ролики']
   }
+};
 
-  onScroll(pickActiveCard);
-  pickActiveCard();
-}
-
-/** IntersectionObserver: auto-play / pause videos */
-function setupPlayback(container) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-          entry.target.play().catch(() => {});
-        } else {
-          entry.target.pause();
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
-}
-
-/** Scroll-based: скрывает превью когда вышли за пределы секции (в обе стороны) */
-function setupVisibility({ info, sidebar, showcase }) {
-  if (!info || !showcase) return;
-
-  const cards = showcase.querySelectorAll('.project-card');
-  if (!cards.length) return;
-
-  const firstCard = cards[0];
-  const lastCard = cards[cards.length - 1];
-
-  function updateVisibility() {
-    const vh = window.innerHeight;
-    const firstRect = firstCard.getBoundingClientRect();
-    const lastRect = lastCard.getBoundingClientRect();
-
-    const scrolledAbove = firstRect.top > vh * 0.5;
-    const scrolledBelow = lastRect.bottom < vh * 0.5;
-
-    if (scrolledAbove || scrolledBelow) {
-      info.classList.remove('visible');
-      sidebar?.classList.remove('visible');
-    }
-  }
-
-  onScroll(updateVisibility);
-  updateVisibility();
-}
-
-/** Main render: desktop vs mobile */
-function render() {
-  const { thumbnailList, showcase, mobileContainer } = getElements();
-  const isDesktop = window.innerWidth >= DESKTOP_MIN_WIDTH;
-
-  showcase.innerHTML = '';
-  mobileContainer.innerHTML = '';
-
-  if (isDesktop) {
-    buildThumbnails(thumbnailList);
-    buildShowcase(showcase);
-    setActive(0);
-
-    requestAnimationFrame(() => {
-      setupActiveObserver(showcase);
-      setupPlayback(showcase);
-      setupVisibility(getElements());
-    });
-  } else {
-    const title = document.createElement('h2');
-    title.className = 'section-title mobile-projects-title';
-    title.textContent = 'Проекты';
-    mobileContainer.appendChild(title);
-
-    buildMobile(mobileContainer);
-    setupPlayback(mobileContainer);
-  }
-}
-
-/** Public API */
 export function initProjects() {
-  const { showcase } = getElements();
-  if (!showcase) return; // section not present on this page
+  const cards = document.querySelectorAll('.project-card');
+  const modal = document.getElementById('project-modal');
+  const modalVideo = document.getElementById('modal-video');
+  const modalLogo = document.getElementById('modal-logo');
+  const modalTitle = document.getElementById('modal-title');
+  const modalCompanyDesc = document.getElementById('modal-company-desc');
+  const modalShortDesc = document.getElementById('modal-short-desc');
+  const modalDescription = document.getElementById('modal-description');
+  const modalCompetencies = document.getElementById('modal-competencies');
+  const closeBtn = document.getElementById('modal-close');
 
-  render();
-
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(render, RESIZE_DEBOUNCE_MS);
+  const wrap = document.querySelector('.modal-video-wrap');
+  modalVideo.addEventListener('loadedmetadata', () => {
+    if (wrap && modalVideo.videoWidth) {
+      wrap.style.aspectRatio = String(modalVideo.videoWidth / modalVideo.videoHeight);
+    }
   });
+
+  cards.forEach(card => {
+    const video = card.querySelector('video');
+
+    card.addEventListener('mouseenter', () => video?.play().catch(() => {}));
+    card.addEventListener('mouseleave', () => video?.pause());
+
+    card.addEventListener('click', () => {
+      const projectId = card.dataset.project;
+      const data = projectsData[projectId];
+      if (!data) return;
+
+      modalTitle.textContent = data.title;
+      modalCompanyDesc.textContent = data.companyDesc || '';
+      modalShortDesc.textContent = data.description.replace(/<[^>]*>/g, '');
+      modalDescription.innerHTML = data.detailedDescription || data.description;
+
+      const cardLogo = card.querySelector('.shrink-0');
+      modalLogo.src = cardLogo?.src || '';
+
+      modalCompetencies.innerHTML = '';
+      (data.competencies || []).forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'px-3 py-1.5 bg-gray-100 text-gray-600 text-sm rounded-full';
+        span.textContent = tag;
+        modalCompetencies.appendChild(span);
+      });
+
+      const source = card.querySelector('video source');
+      modalVideo.src = source?.src || '';
+      const wrap = document.querySelector('.modal-video-wrap');
+      if (wrap) wrap.style.aspectRatio = '';
+      modalVideo.load();
+
+      document.querySelector('.site-header')?.classList.add('modal-open');
+      document.body.style.overflow = 'hidden';
+      modal.style.display = 'flex';
+      animate({ targets: modal, opacity: [0, 1], duration: 300, easing: 'easeOutQuad' });
+    });
+  });
+
+  const closeModal = () => {
+    document.querySelector('.site-header')?.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    modal.style.display = 'none';
+    modalVideo.pause();
+    modalVideo.removeAttribute('src');
+    modalVideo.load();
+  };
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 }

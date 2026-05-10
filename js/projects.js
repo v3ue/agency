@@ -10,6 +10,7 @@ const projectsData = {
   'yanta': {
     title: 'Янта',
     subtitle: 'Рекламный ролик про кетчуп',
+    companyDesc: 'производитель кетчупа',
     description: `<p>Рекламный ролик про кетчуп.</p>`,
     detailedDescription: `
       <p>Рекламный ролик для производителя кетчупа «Янта». Задача — показать продукт так, чтобы он вызывал аппетит и доверие.</p>
@@ -20,6 +21,7 @@ const projectsData = {
   'isoform': {
     title: 'Изофом',
     subtitle: 'Серия объясняющих роликов для производителя строительного материала',
+    companyDesc: 'производитель строительных материалов',
     description: `<p>Серия объясняющих роликов для производителя строительного материала.</p>`,
     detailedDescription: `
       <p>Основная задача заключалась в том, чтобы донести сложную техническую информацию через изометрическую графику и простые визуальные образы.</p>
@@ -30,6 +32,7 @@ const projectsData = {
   'c-tea': {
     title: 'C-Tea',
     subtitle: 'Рекламный ролик для чайного бренда',
+    companyDesc: 'чайный бренд',
     description: `<p>Рекламный ролик для чайного бренда.</p>`,
     detailedDescription: `
       <p>Атмосферный рекламный ролик для чайного бренда C-Tea. Мы сделали акцент на визуальной эстетике и передаче ощущения уюта.</p>
@@ -40,6 +43,7 @@ const projectsData = {
   'osobiy-remont': {
     title: 'Особый ремонт',
     subtitle: 'Ролик для компании по ремонту недвижимости',
+    companyDesc: 'компания по ремонту недвижимости',
     description: `<p>Ролик для компании по ремонту недвижимости.</p>`,
     detailedDescription: `
       <p>Ролик для компании «Особый ремонт», специализирующейся на ремонте недвижимости. Мы создали образ, который говорит о надёжности и уюте.</p>
@@ -50,6 +54,7 @@ const projectsData = {
   'example-1': {
     title: 'Проект 5',
     subtitle: 'Ещё один проект студии',
+    companyDesc: 'студия дизайна',
     description: `<p>Демонстрационный проект, показывающий, как выглядит обычная карточка в сетке 3 колонок.</p>`,
     detailedDescription: `<p>Демонстрационный проект. Здесь будет подробное описание проекта студии.</p>`,
     competencies: ['Моушн-дизайн', 'Рекламные ролики']
@@ -57,6 +62,7 @@ const projectsData = {
   'example-2': {
     title: 'Проект 6',
     subtitle: 'Широкий проект на 2 колонки',
+    companyDesc: 'продуктовая компания',
     description: `<p>Демонстрационный проект, показывающий, как выглядит широкая карточка на 2/3 ширины.</p>`,
     detailedDescription: `<p>Демонстрационный проект. Здесь будет подробное описание проекта студии.</p>`,
     competencies: ['Моушн-дизайн', 'Рекламные ролики']
@@ -64,6 +70,7 @@ const projectsData = {
   'example-3': {
     title: 'Проект 7',
     subtitle: 'Завершающий ряд сетки',
+    companyDesc: 'технологический стартап',
     description: `<p>Демонстрационный проект, завершающий ряд в сетке 3 колонок.</p>`,
     detailedDescription: `<p>Демонстрационный проект. Здесь будет подробное описание проекта студии.</p>`,
     competencies: ['Моушн-дизайн', 'Рекламные ролики']
@@ -76,6 +83,7 @@ export function initProjects() {
   const modalVideo = document.getElementById('modal-video');
   const modalLogo = document.getElementById('modal-logo');
   const modalTitle = document.getElementById('modal-title');
+  const modalCompanyDesc = document.getElementById('modal-company-desc');
   const modalShortDesc = document.getElementById('modal-short-desc');
   const modalDescription = document.getElementById('modal-description');
   const modalCompetencies = document.getElementById('modal-competencies');
@@ -93,6 +101,7 @@ export function initProjects() {
       if (!data) return;
 
       modalTitle.textContent = data.title;
+      modalCompanyDesc.textContent = data.companyDesc || '';
       modalShortDesc.textContent = data.description.replace(/<[^>]*>/g, '');
       modalDescription.innerHTML = data.detailedDescription || data.description;
 

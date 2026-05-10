@@ -163,6 +163,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   -webkit-backdrop-filter: blur(16px);
 }
 
+#desktop-nav-pill { padding-right: 10px; }
+#desktop-nav-pill.menu-open { padding-right: 20px; }
+
 .header-right-pill {
   background: transparent;
   backdrop-filter: none;

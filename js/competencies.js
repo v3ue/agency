@@ -1,8 +1,7 @@
 function initializeCompetencies() {
   const textItems = document.querySelectorAll('.competency-text-item');
-  const cardSets = document.querySelectorAll('.card-set');
 
-  if (!textItems.length || !cardSets.length) return;
+  if (!textItems.length) return;
 
   let currentIndex = 0;
   let hoverTimer = null;
@@ -12,9 +11,6 @@ function initializeCompetencies() {
   function setActive(index) {
     textItems.forEach(item => {
       item.classList.toggle('active', parseInt(item.dataset.index, 10) === index);
-    });
-    cardSets.forEach(set => {
-      set.classList.toggle('active', parseInt(set.dataset.set, 10) === index);
     });
     currentIndex = index;
   }
@@ -26,7 +22,7 @@ function initializeCompetencies() {
         const next = (currentIndex + 1) % textItems.length;
         setActive(next);
       }
-    }, 3000);
+    }, 1500);
   }
 
   function stopRotation() {

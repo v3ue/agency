@@ -19,11 +19,11 @@
         <!-- DESKTOP NAV -->
         <div class="desktop-nav-wrapper desktop-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
           <div class="nav-left-wrapper relative">
-            <div id="desktop-nav-pill" class="header-left-pill h-[65px] flex items-center rounded-lg" style="padding-left: 20px; padding-right: 20px;">
-              <div class="nav-menu-trigger flex items-center gap-4">
+            <div id="desktop-nav-pill" class="header-left-pill h-[60px] flex items-center rounded-lg" style="padding-left: 14px;">
+              <div class="nav-menu-trigger flex items-center gap-3">
                 <img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]">
                 <button id="nav-menu-open-desktop" aria-expanded="false" aria-haspopup="true" class="nav-menu-open-button">
-                  <span class="nav-menu-open-label">Меню</span>
+                  <span class="nav-menu-open-label" style="padding-bottom: 1px;">Меню</span>
                   <span class="nav-menu-open-dot" aria-hidden="true"></span>
                 </button>
               </div>
@@ -36,19 +36,23 @@
                   <a class="nav-menu-link" href="#process-heading">Процесс</a>
                   <a class="nav-menu-link" href="#cta">Контакты</a>
                 </nav>
+                <div class="mt-2 pt-2 border-t border-[#151515]/10">
+                  <a href="project.html" class="nav-menu-link flex items-center justify-between group">
+                    Презентация
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-          <div id="header-right-pill" class="header-right-pill h-[65px] flex items-center gap-4 rounded-lg backdrop-blur-md" style="padding-left: 20px; padding-right: 20px;">
+          <div id="header-right-pill" class="header-right-pill h-[60px] flex items-center gap-4 rounded-lg backdrop-blur-md" style="padding-left: 20px; padding-right: 12px;">
             <a href="mailto:hi@1220.ru" class="flex items-center gap-3 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-mail.svg" alt="" class="w-7 h-7">
               hi@1220.ru
             </a>
-            <a href="tel:+79169950270" class="flex items-center gap-3 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="tel:+79169950270" class="flex items-center gap-3 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200" style="margin-right: 2px;">
               <img src="./static/icons/icon-phone.svg" alt="" class="w-6 h-6">
               +7 (916) 995 02 70
             </a>
-            <div class="w-2"></div>
             <a href="#cta" id="nav-cta-btn" class="group bg-[#151515] text-[#f8f8f8] text-sm md:text-base tracking-normal px-5 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
           </div>
         </div>
@@ -72,6 +76,11 @@
               <a class="nav-menu-link" href="#process-heading">Процесс</a>
               <a class="nav-menu-link" href="#cta">Контакты</a>
             </nav>
+            <div class="mb-4">
+              <a href="project.html" class="nav-menu-link flex items-center justify-between group">
+                Презентация
+              </a>
+            </div>
             <div class="nav-menu-contacts">
               <a href="tel:+79169950270" class="mobile-contact">
                 +7 (916) 995 02 70
@@ -110,6 +119,7 @@
 
         </section>
 
+        <!--
         <section class="logos-strip animate-fade-in mt-8" data-delay="0.35s">
          <div class="logos-track">
               <img src="./static/icons/logo-1.svg" alt="Клиент 1" class="logo-img">
@@ -130,6 +140,7 @@
               <img src="./static/icons/logo-8.svg" alt="Клиент 8" class="logo-img">
            </div>
        </section>
+        -->
 
          <section id="about" aria-label="О студии" class="section-about">
           <div>
@@ -165,6 +176,12 @@
             <p class="project-info-desc" id="project-info-desc"></p>
           </div>
         </section>
+        <div class="flex justify-center px-5 mt-2 mb-10">
+          <a href="project.html" class="group inline-flex items-center gap-2 text-[#151515] text-xl border-b border-[#151515] pb-px transition-all duration-300 hover:gap-3">
+            Смотреть все проекты
+            <span class="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+          </a>
+        </div>
         <section aria-labelledby="competencies-heading"
                  class="competencies-section pt-[120px] md:pt-[140px] pb-20 md:pb-32 px-5 md:px-10 max-w-[1600px] mx-auto">
 
@@ -178,31 +195,6 @@
             <!-- Визуальные карточки -->
             <div class="competencies-visuals mx-auto">
               <div class="card-set active" data-set="0">
-                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-              </div>
-              <div class="card-set" data-set="1">
-                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-              </div>
-              <div class="card-set" data-set="2">
-                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-              </div>
-              <div class="card-set" data-set="3">
-                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-              </div>
-              <div class="card-set" data-set="4">
-                <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
-                <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
-                <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
-              </div>
-              <div class="card-set" data-set="5">
                 <div class="visual-card card-1"><img src="./static/images/5rcly-2@2x.png" alt=""></div>
                 <div class="visual-card card-2"><img src="./static/images/screenshot-2026-04-29-at-05-26-09-1@2x.png" alt=""></div>
                 <div class="visual-card card-3"><img src="./static/images/screenshot-2026-04-29-at-05-27-36-1@2x.png" alt=""></div>
@@ -227,7 +219,7 @@
           class="py-16 md:py-28 px-5 md:px-10 max-w-[1600px] mx-auto">
           <p
             class="text-body text-[#151515] text-center tracking-h1 leading-[1.05] max-w-[900px] mx-auto mb-14 content-series-text">
-            От точечного ролика&nbsp;до цельной серии контента&nbsp;в едином визуальном стиле</p>
+            От точечного ролика до&nbsp;цельной серии контента в&nbsp;едином визуальном стиле</p>
         </div>
         <div class="w-screen -ml-[calc(50vw-50%)]">
           <img class="w-full h-auto object-cover md:w-full" alt="Group"

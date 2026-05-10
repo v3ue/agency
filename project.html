@@ -17,15 +17,15 @@
 </head>
 <body>
   <div id="app">
-    <main class="site-main pt-24 md:pt-28 bg-[#f8f8f8]" aria-label="Студия 12/20">
+    <main class="site-main pt-24 md:pt-28 bg-[#f8f8f8]" aria-label="Студия 12/20" style="margin-top: 0;">
       <header class="site-header">
         <div class="desktop-nav-wrapper desktop-only fixed top-5 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-[1560px] items-center justify-between">
           <div class="nav-left-wrapper relative">
-            <div id="desktop-nav-pill" class="header-left-pill has-bg h-[65px] flex items-center rounded-lg" style="padding-left: 20px; padding-right: 20px;">
-              <div class="nav-menu-trigger flex items-center gap-4">
+            <div id="desktop-nav-pill" class="header-left-pill has-bg h-[60px] flex items-center rounded-lg" style="padding-left: 14px;">
+              <div class="nav-menu-trigger flex items-center gap-3">
                 <a href="./index.html"><img src="./static/icons/logo.svg" alt="Студия 12/20" class="h-[40px]"></a>
                 <button id="nav-menu-open-desktop" aria-expanded="false" aria-haspopup="true" class="nav-menu-open-button">
-                  <span class="nav-menu-open-label">Меню</span>
+                  <span class="nav-menu-open-label" style="padding-bottom: 1px;">Меню</span>
                   <span class="nav-menu-open-dot" aria-hidden="true"></span>
                 </button>
               </div>
@@ -38,19 +38,23 @@
                   <a class="nav-menu-link" href="index.html#process-heading">Процесс</a>
                   <a class="nav-menu-link" href="index.html#cta">Контакты</a>
                 </nav>
+                <div class="mt-2 pt-2 border-t border-[#151515]/10">
+                  <a href="project.html" class="nav-menu-link flex items-center justify-between group">
+                    Презентация
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-          <div id="header-right-pill" class="header-right-pill has-bg h-[65px] flex items-center gap-4 rounded-lg hidden" style="padding-left: 20px; padding-right: 20px;">
+          <div id="header-right-pill" class="header-right-pill has-bg h-[60px] flex items-center gap-4 rounded-lg hidden" style="padding-left: 20px; padding-right: 12px;">
             <a href="mailto:hi@1220.ru" class="flex items-center gap-3 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
               <img src="./static/icons/icon-mail.svg" alt="" class="w-7 h-7">
               hi@1220.ru
             </a>
-            <a href="tel:+79169950270" class="flex items-center gap-3 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200">
+            <a href="tel:+79169950270" class="flex items-center gap-3 text-[#191919] text-lg tracking-normal hover:opacity-70 transition-opacity duration-200" style="margin-right: 2px;">
               <img src="./static/icons/icon-phone.svg" alt="" class="w-6 h-6">
               +7 (916) 995 02 70
             </a>
-            <div class="w-2"></div>
             <a href="index.html#cta" class="group bg-[#151515] text-[#f8f8f8] text-sm md:text-base tracking-normal px-5 py-3 whitespace-nowrap transition-all duration-300 hover:bg-[#2a2a2a] hover:scale-[1.04] active:scale-[0.97] rounded-btn">Обсудить проект</a>
           </div>
         </div>
@@ -72,6 +76,11 @@
               <a class="nav-menu-link" href="index.html#process-heading">Процесс</a>
               <a class="nav-menu-link" href="index.html#cta">Контакты</a>
             </nav>
+            <div class="mb-4">
+              <a href="project.html" class="nav-menu-link flex items-center justify-between group">
+                Презентация
+              </a>
+            </div>
             <div class="nav-menu-contacts flex flex-col gap-4">
               <a href="tel:+79169950270" class="mobile-contact">+7 (916) 995 02 70</a>
               <a href="mailto:hi@1220.ru" class="mobile-contact">hi@1220.ru</a>
@@ -95,9 +104,9 @@
               </video>
               <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-8 left-8 right-8 text-white flex items-center gap-3">
-                <img src="./static/icons/icon-mail.svg" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
+                <img src="./static/icons/logo_yanta.png" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
                 <div>
-                  <h3 class="text-[1.75rem] text-heading leading-tight">Янта</h3>
+                  <h3 class="text-2xl text-heading leading-tight">Янта</h3>
                   <p class="mt-1 text-sm text-white/70">Рекламный ролик про кетчуп</p>
                 </div>
               </div>
@@ -107,15 +116,15 @@
           <!-- 2. Обычная карточка (1/3) -->
             <article class="project-card group cursor-pointer" data-project="isoform">
             <div class="relative overflow-hidden rounded-3xl aspect-[4/5] lg:aspect-[0.871] bg-black">
-              <img src="./static/images/4lg5t-1.jpg" alt="Изофом" class="w-full h-full object-cover">
+              <img src="./static/images/projects/4lg5t-1.jpg" alt="Изофом" class="w-full h-full object-cover">
               <video muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-[1.01]">
                 <source src="./static/videos/Изофом.mov" type="video/quicktime">
               </video>
               <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-8 left-8 right-8 text-white flex items-center gap-3">
-                <img src="./static/icons/icon-mail.svg" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
+                <img src="./static/icons/logo_izofom.png" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
                 <div>
-                  <h3 class="text-[1.75rem] text-heading leading-tight">Изофом</h3>
+                  <h3 class="text-2xl text-heading leading-tight">Изофом</h3>
                   <p class="mt-1 text-sm text-white/70">Серия объясняющих роликов</p>
                 </div>
               </div>
@@ -131,9 +140,9 @@
               </video>
               <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-8 left-8 right-8 text-white flex items-center gap-3">
-                <img src="./static/icons/icon-mail.svg" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
+                <img src="./static/icons/logo_project.png" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
                 <div>
-                  <h3 class="text-[1.75rem] text-heading leading-tight">C-Tea</h3>
+                  <h3 class="text-2xl text-heading leading-tight">C-Tea</h3>
                   <p class="mt-1 text-sm text-white/70">Рекламный ролик для чайного бренда</p>
                 </div>
               </div>
@@ -149,9 +158,9 @@
               </video>
               <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-8 left-8 right-8 text-white flex items-center gap-3">
-                <img src="./static/icons/icon-mail.svg" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
+                <img src="./static/icons/logo_yanta.png" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
                 <div>
-                  <h3 class="text-[1.75rem] text-heading leading-tight">Особый ремонт</h3>
+                  <h3 class="text-2xl text-heading leading-tight">Особый ремонт</h3>
                   <p class="mt-1 text-sm text-white/70">Ролик для компании по ремонту недвижимости</p>
                 </div>
               </div>
@@ -167,9 +176,9 @@
               </video>
               <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-8 left-8 right-8 text-white flex items-center gap-3">
-                <img src="./static/icons/icon-mail.svg" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
+                <img src="./static/icons/logo_izofom.png" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
                 <div>
-                  <h3 class="text-[1.75rem] text-heading leading-tight">Проект 5</h3>
+                  <h3 class="text-2xl text-heading leading-tight">Проект 5</h3>
                   <p class="mt-1 text-sm text-white/70">Ещё один проект студии</p>
                 </div>
               </div>
@@ -185,9 +194,9 @@
               </video>
               <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-8 left-8 right-8 text-white flex items-center gap-3">
-                <img src="./static/icons/icon-mail.svg" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
+                <img src="./static/icons/logo_project.png" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
                 <div>
-                  <h3 class="text-[1.75rem] text-heading leading-tight">Проект 6</h3>
+                  <h3 class="text-2xl text-heading leading-tight">Проект 6</h3>
                   <p class="mt-1 text-sm text-white/70">Широкий проект на 2 колонки</p>
                 </div>
               </div>
@@ -203,9 +212,9 @@
               </video>
               <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute bottom-8 left-8 right-8 text-white flex items-center gap-3">
-                <img src="./static/icons/icon-mail.svg" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
+                <img src="./static/icons/logo_yanta.png" alt="" class="w-12 h-12 rounded-lg bg-white/20 shrink-0">
                 <div>
-                  <h3 class="text-[1.75rem] text-heading leading-tight">Проект 7</h3>
+                  <h3 class="text-2xl text-heading leading-tight">Проект 7</h3>
                   <p class="mt-1 text-sm text-white/70">Завершающий ряд сетки</p>
                 </div>
               </div>

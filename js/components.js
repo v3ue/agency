@@ -14,6 +14,7 @@ function initDesktopMenu() {
     menuPanelDesktop.setAttribute('aria-hidden', String(!open));
     if (menuOpenDesktop) menuOpenDesktop.setAttribute('aria-expanded', String(open));
     if (desktopDot) desktopDot.style.opacity = open ? '0' : '1';
+    if (desktopPill) desktopPill.classList.toggle('menu-open', open);
     if (open) clearTimeout(desktopCloseTimer);
   };
 

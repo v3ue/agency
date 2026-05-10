@@ -163,6 +163,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   -webkit-backdrop-filter: blur(16px);
 }
 
+#desktop-nav-pill { padding-right: 10px; transition: padding-right 0.35s cubic-bezier(0.76, 0, 0.24, 1), background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease; }
+#desktop-nav-pill.menu-open { padding-right: 24px; }
+
 .header-right-pill {
   background: transparent;
   backdrop-filter: none;
@@ -275,7 +278,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .nav-menu-panel--mobile .nav-menu-link {
   font-size: 1.5rem;
   line-height: 1.15;
-  letter-spacing: -0.02em;
 }
 .nav-menu-contacts {
   display: flex;
@@ -324,8 +326,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   position: relative;
   padding: 12px;
   font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: -0.04em;
   text-align: left;
   border-radius: var(--radius-sm);
 }

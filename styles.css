@@ -805,13 +805,13 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   font-weight: 500;
   color: var(--color-text-muted);
   cursor: pointer;
-  transition: color 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: color 0.15s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .competency-text-item::after {
   content: ' \2022 ';
   color: var(--color-text-muted);
-  transition: color 0.4s ease;
+  transition: color 0.15s ease;
 }
 
 .competency-text-item:last-child::after {

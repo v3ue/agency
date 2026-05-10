@@ -43,7 +43,7 @@ function initializeCompetencies() {
     hoverTimer = setTimeout(() => {
       setActive(index);
       hoverTimer = null;
-    }, 350);
+    }, 150);
   }
 
   function onItemLeave() {

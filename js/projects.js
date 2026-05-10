@@ -111,12 +111,14 @@ export function initProjects() {
       modalVideo.src = source?.src || '';
       modalVideo.load();
 
+      document.querySelector('.site-header')?.classList.add('modal-open');
       modal.style.display = 'flex';
       animate({ targets: modal, opacity: [0, 1], duration: 300, easing: 'easeOutQuad' });
     });
   });
 
   const closeModal = () => {
+    document.querySelector('.site-header')?.classList.remove('modal-open');
     modal.style.display = 'none';
     modalVideo.pause();
     modalVideo.removeAttribute('src');

@@ -163,8 +163,8 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   -webkit-backdrop-filter: blur(16px);
 }
 
-#desktop-nav-pill { padding-right: 10px; transition: padding-right 0.35s cubic-bezier(0.76, 0, 0.24, 1), background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease; }
-#desktop-nav-pill.menu-open { padding-right: 24px; }
+#desktop-nav-pill { width: 236px; transition: width 0.35s cubic-bezier(0.76, 0, 0.24, 1), background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease; }
+#desktop-nav-pill.menu-open { width: 280px; }
 
 .header-right-pill {
   background: transparent;
@@ -349,7 +349,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 }
 
 /* Menu trigger */
-.nav-menu-trigger { gap: 0.75rem; }
 .nav-menu-open-button {
   display: inline-flex;
   align-items: center;
@@ -362,7 +361,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
+  transition: margin-right 0.35s cubic-bezier(0.76, 0, 0.24, 1);
 }
+#desktop-nav-pill.menu-open .nav-menu-open-button { margin-right: -10px; }
 .nav-menu-open-label { color: #6b6b6b; }
 .nav-menu-open-dot {
   width: 4px;
@@ -371,7 +372,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   background: var(--color-text);
   transition: all 0.24s ease;
 }
-.nav-menu-trigger:hover .nav-menu-open-dot {
+.nav-menu-open-button:hover .nav-menu-open-dot {
   width: 6px;
   height: 6px;
 }

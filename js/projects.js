@@ -76,7 +76,7 @@ export function initProjects() {
   const modalVideo = document.getElementById('modal-video');
   const modalLogo = document.getElementById('modal-logo');
   const modalTitle = document.getElementById('modal-title');
-  const modalSubtitle = document.getElementById('modal-subtitle');
+  const modalShortDesc = document.getElementById('modal-short-desc');
   const modalDescription = document.getElementById('modal-description');
   const modalCompetencies = document.getElementById('modal-competencies');
   const closeBtn = document.getElementById('modal-close');
@@ -93,7 +93,7 @@ export function initProjects() {
       if (!data) return;
 
       modalTitle.textContent = data.title;
-      modalSubtitle.textContent = data.subtitle;
+      modalShortDesc.textContent = data.description.replace(/<[^>]*>/g, '');
       modalDescription.innerHTML = data.detailedDescription || data.description;
 
       const cardLogo = card.querySelector('.shrink-0');

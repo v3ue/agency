@@ -275,7 +275,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 .nav-menu-panel--mobile .nav-menu-link {
   font-size: 1.5rem;
   line-height: 1.15;
-  letter-spacing: -0.02em;
 }
 .nav-menu-contacts {
   display: flex;
@@ -325,7 +324,6 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   padding: 12px;
   font-size: 1.125rem;
   font-weight: 500;
-  letter-spacing: -0.04em;
   text-align: left;
   border-radius: var(--radius-sm);
 }

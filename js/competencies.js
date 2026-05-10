@@ -22,7 +22,7 @@ function initializeCompetencies() {
         const next = (currentIndex + 1) % textItems.length;
         setActive(next);
       }
-    }, 3000);
+    }, 1500);
   }
 
   function stopRotation() {
@@ -43,7 +43,7 @@ function initializeCompetencies() {
     hoverTimer = setTimeout(() => {
       setActive(index);
       hoverTimer = null;
-    }, 150);
+    }, 350);
   }
 
   function onItemLeave() {

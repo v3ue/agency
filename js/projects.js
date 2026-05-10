@@ -89,6 +89,13 @@ export function initProjects() {
   const modalCompetencies = document.getElementById('modal-competencies');
   const closeBtn = document.getElementById('modal-close');
 
+  const wrap = document.querySelector('.modal-video-wrap');
+  modalVideo.addEventListener('loadedmetadata', () => {
+    if (wrap && modalVideo.videoWidth) {
+      wrap.style.aspectRatio = String(modalVideo.videoWidth / modalVideo.videoHeight);
+    }
+  });
+
   cards.forEach(card => {
     const video = card.querySelector('video');
 
@@ -118,6 +125,8 @@ export function initProjects() {
 
       const source = card.querySelector('video source');
       modalVideo.src = source?.src || '';
+      const wrap = document.querySelector('.modal-video-wrap');
+      if (wrap) wrap.style.aspectRatio = '';
       modalVideo.load();
 
       document.querySelector('.site-header')?.classList.add('modal-open');

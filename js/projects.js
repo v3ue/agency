@@ -90,9 +90,26 @@ export function initProjects() {
   const closeBtn = document.getElementById('modal-close');
 
   const wrap = document.querySelector('.modal-video-wrap');
+  let posterSrc = '';
   modalVideo.addEventListener('loadedmetadata', () => {
     if (wrap && modalVideo.videoWidth) {
       wrap.style.aspectRatio = String(modalVideo.videoWidth / modalVideo.videoHeight);
+      if (modalVideo.videoWidth > modalVideo.videoHeight) {
+        wrap.style.maxHeight = 'none';
+        wrap.style.backgroundColor = '';
+        wrap.style.boxShadow = '';
+        wrap.classList.remove('blur-bg');
+      } else {
+        wrap.style.maxHeight = '85vh';
+        wrap.style.backgroundColor = '';
+        wrap.style.boxShadow = '';
+        if (posterSrc) {
+          wrap.style.setProperty('--blur-bg-img', `url(${posterSrc})`);
+          wrap.classList.add('blur-bg');
+        } else {
+          wrap.classList.remove('blur-bg');
+        }
+      }
     }
   });
 
@@ -125,10 +142,19 @@ export function initProjects() {
 
       const source = card.querySelector('video source');
       modalVideo.src = source?.src || '';
+      const posterImg = card.querySelector('.relative > img');
+      posterSrc = posterImg?.src || '';
       const wrap = document.querySelector('.modal-video-wrap');
-      if (wrap) wrap.style.aspectRatio = '';
+      if (wrap) {
+        wrap.style.aspectRatio = '';
+        wrap.style.maxHeight = '85vh';
+        wrap.style.backgroundColor = '';
+        wrap.style.boxShadow = '';
+        wrap.classList.remove('blur-bg');
+      }
       modalVideo.load();
 
+      history.pushState({ modalOpen: true }, '');
       document.querySelector('.site-header')?.classList.add('modal-open');
       document.body.style.overflow = 'hidden';
       modal.style.display = 'flex';
@@ -145,7 +171,19 @@ export function initProjects() {
     modalVideo.load();
   };
 
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  const closeWithHistory = () => {
+    if (history.state?.modalOpen) {
+      history.back();
+    } else {
+      closeModal();
+    }
+  };
+
+  closeBtn.addEventListener('click', closeWithHistory);
+  modal.addEventListener('click', e => { if (e.target === modal) closeWithHistory(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWithHistory(); });
+
+  window.addEventListener('popstate', () => {
+    if (modal.style.display === 'flex') closeModal();
+  });
 }

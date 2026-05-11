@@ -67,6 +67,10 @@ function buildShowcase(showcase) {
         <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
           <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
         </video>
+        <button class="hero-sound-toggle project-sound-toggle" type="button" aria-label="Включить звук" aria-pressed="false">
+          <span>Звук</span>
+          <span class="hero-sound-toggle-state" aria-hidden="true">Выкл</span>
+        </button>
       </div>
     `;
 
@@ -94,6 +98,10 @@ function buildMobile(mobileContainer) {
         <video muted loop playsinline preload="metadata" poster="${project.poster}" class="project-video">
           <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
         </video>
+        <button class="hero-sound-toggle project-sound-toggle" type="button" aria-label="Включить звук" aria-pressed="false">
+          <span>Звук</span>
+          <span class="hero-sound-toggle-state" aria-hidden="true">Выкл</span>
+        </button>
       </div>
     `;
 
@@ -187,6 +195,51 @@ function setupPlayback(container) {
   container.querySelectorAll('.project-video').forEach((video) => observer.observe(video));
 }
 
+/** Sound toggle for generated project videos */
+function setupSoundToggles(container) {
+  container.querySelectorAll('.project-sound-toggle').forEach((toggle) => {
+    const video = toggle.closest('.project-video-container')?.querySelector('.project-video');
+    const state = toggle.querySelector('.hero-sound-toggle-state');
+
+    if (!video) return;
+
+    const sync = () => {
+      const isMuted = video.muted || video.volume === 0;
+
+      toggle.classList.toggle('is-on', !isMuted);
+      toggle.setAttribute('aria-pressed', String(!isMuted));
+      toggle.setAttribute('aria-label', isMuted ? 'Включить звук' : 'Выключить звук');
+
+      if (state) state.textContent = isMuted ? 'Выкл' : 'Вкл';
+    };
+
+    sync();
+
+    toggle.addEventListener('click', () => {
+      const shouldUnmute = video.muted || video.volume === 0;
+
+      if (shouldUnmute) {
+        container.querySelectorAll('.project-video').forEach((item) => {
+          if (item !== video) item.muted = true;
+        });
+      }
+
+      video.muted = !shouldUnmute;
+
+      if (shouldUnmute && video.paused) {
+        video.play().catch(() => {
+          video.muted = true;
+        }).finally(sync);
+        return;
+      }
+
+      sync();
+    });
+
+    video.addEventListener('volumechange', sync);
+  });
+}
+
 /** Scroll-based: скрывает превью когда вышли за пределы секции (в обе стороны) */
 function setupVisibility({ info, sidebar, showcase }) {
   if (!info || !showcase) return;
@@ -231,6 +284,7 @@ function render() {
     requestAnimationFrame(() => {
       setupActiveObserver(showcase);
       setupPlayback(showcase);
+      setupSoundToggles(showcase);
       setupVisibility(getElements());
     });
   } else {
@@ -241,6 +295,7 @@ function render() {
 
     buildMobile(mobileContainer);
     setupPlayback(mobileContainer);
+    setupSoundToggles(mobileContainer);
   }
 }
 

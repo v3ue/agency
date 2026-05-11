@@ -15,7 +15,7 @@
 
 /* === RESET === */
 *, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; height: 100%; font-family: var(--font-body); }
+html, body { margin: 0; padding: 0; height: 100%; font-family: var(--font-body); scroll-padding-top: 90px; }
 a { text-decoration: none; }
 button, input, select, textarea { appearance: none; background: transparent; border: 0; outline: none; }
 button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
@@ -464,6 +464,26 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   animation: logo-pulse 3s infinite alternate ease-in-out;
 }
 
+/* Modal video blurred background */
+.modal-video-wrap.blur-bg {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(0 round 16px);
+}
+.modal-video-wrap.blur-bg::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background: var(--blur-bg-img) center/cover no-repeat;
+  filter: blur(40px);
+  border-radius: inherit;
+  z-index: 0;
+}
+.modal-video-wrap.blur-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* === PROJECTS — исправленная версия === */
 .projects-section {
   background: #F8F8F8;
@@ -489,6 +509,7 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
 }
 
 .project-video-container {
+  position: relative;
   background: #000;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -516,6 +537,11 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   width: 100%;
   height: auto;
   display: block;
+}
+
+.project-sound-toggle {
+  right: 14px;
+  bottom: 14px;
 }
 
 .projects-mobile {
@@ -852,8 +878,10 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   margin-left: 2.5rem;
   min-height: 420px;
   border-radius: 16px;
-  background-size: cover;
-  background-position: center;
+  background-color: #f2f2f2;
+  background-repeat: no-repeat;
+  background-size: 86% auto;
+  background-position: center 14%;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
@@ -922,7 +950,9 @@ button:focus-visible { outline: 2px solid #4a90e2; outline-offset: 2px; }
   .process-step {
     max-width: calc(73% - 1.5rem);
     margin-left: calc(27% + 1.5rem);
-    min-height: 480px;
+    min-height: 460px;
+    background-size: 76% auto;
+    background-position: center 12%;
   }
   .process-step-dot { left: calc(-1.5rem - 5.5px); }
   .process-step-content { padding: 3rem 2.5rem; gap: 1rem; }
@@ -1462,6 +1492,37 @@ main { z-index: 1; }
   position: relative;
 }
 
+.hero-sound-toggle {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 14px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-normal);
+  background: rgba(248, 248, 248, 0.82);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.hero-sound-toggle:hover { background: rgba(248, 248, 248, 0.95); }
+.hero-sound-toggle:active { transform: scale(0.97); }
+.hero-sound-toggle.is-on {
+  color: var(--color-text-inverse);
+  background: rgba(21, 21, 21, 0.78);
+}
+
+.hero-sound-toggle-state { color: currentColor; opacity: 0.62; }
+
 /* About */
 .about-text { font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.4; font-weight: 500; }
 
@@ -1575,6 +1636,13 @@ main { z-index: 1; }
   .hero-banner {
     height: 46vh;
   }
+  .hero-sound-toggle {
+    right: 12px;
+    bottom: 12px;
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: 0.85rem;
+  }
   .section-hero .animate-fade-in {
     margin-top: 48px;
   }
@@ -1590,8 +1658,9 @@ main { z-index: 1; }
   }
 
   .process-step {
-    min-height: 420px;
-    background-position: center 20%;
+    min-height: 380px;
+    background-size: 92% auto;
+    background-position: center 14%;
   }
 
   .section-cta {
@@ -1612,10 +1681,15 @@ main { z-index: 1; }
     position: relative;
     bottom: auto;
     right: auto;
-    margin-top: 0.75rem;
-    justify-content: flex-start;
+    align-self: center;
+    justify-content: center;
+    margin-top: 2rem;
   }
-  .cta-phone {
+  .cta-phone,
+  .cta-email {
+    max-width: 100%;
+    font-size: clamp(1.5rem, 7.2vw, 2.5rem);
+    letter-spacing: -0.05em;
     white-space: nowrap;
   }
 
@@ -1637,6 +1711,9 @@ main { z-index: 1; }
   .cta-contacts .items-center {
     align-items: flex-start !important;
     text-align: left;
+  }
+  .cta-contacts {
+    width: 100%;
   }
   .cta-contacts span {
     display: block;

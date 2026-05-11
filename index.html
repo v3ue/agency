@@ -109,9 +109,13 @@
           </div>
            <div>
              <div class="mt-10 animate-fade-in" data-delay="0.2s">
-                <div id="hero-banner" class="hero-banner">
-                  <video id="hero-banner-video" class="w-full h-full object-cover" autoplay muted loop playsinline src="./static/videos/gussi rem.mp4"></video>
-                </div>
+                 <div id="hero-banner" class="hero-banner">
+                   <video id="hero-banner-video" class="w-full h-full object-cover" autoplay muted loop playsinline src="./static/videos/gussi rem.mp4"></video>
+                   <button id="hero-sound-toggle" class="hero-sound-toggle" type="button" aria-label="Включить звук" aria-pressed="false">
+                     <span>Звук</span>
+                     <span class="hero-sound-toggle-state" aria-hidden="true">Выкл</span>
+                   </button>
+                 </div>
              </div>
            </div>
 
@@ -224,7 +228,7 @@
             src="./static/images/group-3.png">
         </div>
       </section>
-<section aria-labelledby="process-heading" class="py-20 md:py-28 px-5 md:px-10 max-w-[1600px] mx-auto">
+<section aria-labelledby="process-heading" class="py-20 md:py-28 px-5 md:px-10 max-w-[1600px] mx-auto" style="scroll-margin-top: 100px;">
   <div class="flex flex-col lg:flex-row gap-12 lg:gap-24">
     
     <!-- Левая колонка -->
@@ -316,34 +320,34 @@
           <article class="relative bg-[#f1f1f1] rounded-2xl p-10 flex flex-col xl:col-span-5 transition-opacity duration-300 group-hover/testimonials-grid:opacity-40 group-hover/testimonials-grid:hover:opacity-100">
             <div class="flex justify-between items-start mb-8">
               <span class="text-[110px] leading-none text-[#151515]/10 font-light text-heading" aria-hidden="true">„</span>
-              <img src="./static/images/avatars/ekaterina.jpg"
-                   alt="Екатерина Смирнова"
-                   class="w-24 h-24 rounded-2xl object-cover shrink-0"
-                   loading="lazy">
+               <img src="./static/images/avatars/ekaterina.jpg"
+                    alt="Ксения"
+                    class="w-24 h-24 rounded-2xl object-cover shrink-0"
+                    loading="lazy">
             </div>
             <p class="text-xl md:text-2xl leading-tight text-[#151515] flex-1 mb-12">
-              Нашу идею превратили в мощный визуальный язык. Они не просто делают красиво — они понимают суть продукта и делают его по-настоящему живым.
+              Еще раз большое спасибо, приятно было с вами сотрудничать. Все мои пожелания учтены в полной мере. Все очень понравилось. И насчет сдвига сроков из-за высокой нагрузки — ничего страшного, главное, что заранее предупредили и успели к празднику!
             </p>
             <div class="mt-auto">
-              <div class="text-base font-medium text-[#151515]">Екатерина Смирнова</div>
-              <div class="text-sm text-[#151515]/60">Founder &amp; CEO, Flow Studio</div>
+              <div class="text-base font-medium text-[#151515]">Ксения</div>
+              <div class="text-sm text-[#151515]/60">Частный проект</div>
             </div>
           </article>
 
           <article class="relative bg-[#f1f1f1] rounded-2xl p-10 flex flex-col xl:col-span-7 transition-opacity duration-300 group-hover/testimonials-grid:opacity-40 group-hover/testimonials-grid:hover:opacity-100">
             <div class="flex justify-between items-start mb-8">
               <span class="text-[110px] leading-none text-[#151515]/10 font-light text-heading" aria-hidden="true">„</span>
-              <img src="./static/images/avatars/dmitry.jpg"
-                   alt="Дмитрий Воронин"
-                   class="w-24 h-24 rounded-2xl object-cover shrink-0"
-                   loading="lazy">
+               <img src="./static/images/avatars/dmitry.jpg"
+                    alt="Альбина"
+                    class="w-24 h-24 rounded-2xl object-cover shrink-0"
+                    loading="lazy">
             </div>
             <p class="text-xl md:text-2xl leading-tight text-[#151515] flex-1 mb-12">
-              От первого брифа до финального результата — всё на высшем уровне. Благодарю студию, наш бренд получил характер и стал узнаваемым с первого взгляда.
+              Я много про себя поняла, пока мы с вами сотрудничали — мне нет конца и краю сомнений. И поняла, что создать ролик не так просто. Думала, что поменять одно на другое — как вырезать кусочек текста и вставить новый — почему нет? Ваша работа, коммуникация, интеллигентность, предложения, которые вы вносили — мне все это очень понравилось.
             </p>
             <div class="mt-auto">
-              <div class="text-base font-medium text-[#151515]">Дмитрий Воронин</div>
-              <div class="text-sm text-[#151515]/60">Product Director, Astra</div>
+              <div class="text-base font-medium text-[#151515]">Альбина</div>
+              <div class="text-sm text-[#151515]/60">Образовательный центр особенных детей</div>
             </div>
           </article>
 
@@ -431,18 +435,18 @@
               <div class="form-field">
                 <label for="cta-message">О проекте</label>
                 <textarea id="cta-message" rows="1"></textarea>
-                <button type="button" class="submit-btn">
-                  <span>Отправить</span>
-                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M25 13L5 13" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M14 3L25 13L14 23" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
                 <div class="line-bg"></div>
                 <div class="line-gradient"></div>
                 <p class="error-msg"></p>
               </div>
+              <button type="button" class="submit-btn">
+                <span>Отправить</span>
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M25 13L5 13" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M14 3L25 13L14 23" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
             </div>
           </form>
 
-          <div class="flex flex-col gap-8 items-center mt-32 fade-up-d4">
+          <div class="cta-contacts flex flex-col gap-8 items-center mt-32 fade-up-d4">
             <div class="flex flex-col gap-6 items-start md:items-center">
               <a href="tel:+79169950270" class="text-white font-medium tracking-[-0.03em] hover:opacity-70 transition-opacity cta-phone" style="white-space: nowrap;">
                 +7 (916) 995 02 70</a>

@@ -2,6 +2,7 @@
 const heroVideoBtn = document.getElementById('hero-video-btn');
 const heroBanner = document.getElementById('hero-banner');
 const heroBannerVideo = document.getElementById('hero-banner-video');
+const heroSoundToggle = document.getElementById('hero-sound-toggle');
 
 if (heroBanner && heroVideoBtn && heroBannerVideo) {
   const btnSizes = new Map();
@@ -78,4 +79,35 @@ if (heroBanner && heroVideoBtn && heroBannerVideo) {
       window.openVideoModal(heroBannerVideo.src, heroBannerVideo);
     }
   });
+}
+
+if (heroBannerVideo && heroSoundToggle) {
+  const state = heroSoundToggle.querySelector('.hero-sound-toggle-state');
+
+  const syncSoundToggle = () => {
+    const isMuted = heroBannerVideo.muted || heroBannerVideo.volume === 0;
+
+    heroSoundToggle.classList.toggle('is-on', !isMuted);
+    heroSoundToggle.setAttribute('aria-pressed', String(!isMuted));
+    heroSoundToggle.setAttribute('aria-label', isMuted ? 'Включить звук' : 'Выключить звук');
+
+    if (state) state.textContent = isMuted ? 'Выкл' : 'Вкл';
+  };
+
+  syncSoundToggle();
+
+  heroSoundToggle.addEventListener('click', () => {
+    heroBannerVideo.muted = !heroBannerVideo.muted;
+
+    if (!heroBannerVideo.muted && heroBannerVideo.paused) {
+      heroBannerVideo.play().catch(() => {
+        heroBannerVideo.muted = true;
+      }).finally(syncSoundToggle);
+      return;
+    }
+
+    syncSoundToggle();
+  });
+
+  heroBannerVideo.addEventListener('volumechange', syncSoundToggle);
 }

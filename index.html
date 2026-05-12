@@ -111,10 +111,17 @@
              <div class="mt-10 animate-fade-in" data-delay="0.2s">
                  <div id="hero-banner" class="hero-banner">
                    <video id="hero-banner-video" class="w-full h-full object-cover" autoplay muted loop playsinline src="./static/videos/gussi rem.mp4"></video>
-                   <button id="hero-sound-toggle" class="hero-sound-toggle" type="button" aria-label="Включить звук" aria-pressed="false">
-                     <span>Звук</span>
-                     <span class="hero-sound-toggle-state" aria-hidden="true">Выкл</span>
-                   </button>
+                    <button id="hero-sound-toggle" class="hero-sound-toggle" type="button" aria-label="Включить звук" aria-pressed="false">
+                      <svg class="sound-icon sound-icon-off" viewBox="0 0 24 24" aria-hidden="true">
+                        <path class="sound-speaker" d="M6 9.25H9.65L14.25 5.65v12.7l-4.6-3.6H6v-5.5Z"/>
+                        <path class="sound-slash" d="M5.75 5.75 18.25 18.25"/>
+                      </svg>
+                      <svg class="sound-icon sound-icon-on" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4.75 9.25H8.4L13 5.65v12.7l-4.6-3.6H4.75v-5.5Z"/>
+                        <path d="M16.25 9.35c.72.68 1.1 1.62 1.1 2.65s-.38 1.97-1.1 2.65"/>
+                        <path d="M18.65 7.25A6.55 6.55 0 0 1 20.5 12a6.55 6.55 0 0 1-1.85 4.75"/>
+                      </svg>
+                    </button>
                  </div>
              </div>
            </div>
@@ -178,11 +185,22 @@
             <p class="project-info-desc" id="project-info-desc"></p>
           </div>
         </section>
-        <div class="flex justify-center px-5 mt-2 mb-10">
-          <a href="project.html" class="group inline-flex items-center gap-2 text-[#151515] text-xl border-b border-[#151515] pb-px transition-all duration-300 hover:gap-3">
-            Смотреть все проекты
-            <span class="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
-          </a>
+        <div class="projects-more">
+          <div class="projects-more-copy">
+            <h2>Больше работ — в отдельной подборке</h2>
+            <p>Собрали проекты, которые показывают разные задачи, стили и форматы.</p>
+            <a href="project.html" class="projects-more-link" aria-label="Перейти к подборке проектов">
+              Перейти
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="projects-more-preview" aria-hidden="true">
+            <span><img src="./static/images/4lg5t-1.jpg" alt=""></span>
+            <span><img src="./static/images/frame-12@2x.png" alt=""></span>
+            <span><img src="./static/images/hf-20260428-171201-db32a14f-5f28-4856-bad4-6b4aef3c6ff0-1.png" alt=""></span>
+            <span><img src="./static/images/6l06a-1.png" alt=""></span>
+            <em>4+</em>
+          </div>
         </div>
         <section aria-labelledby="competencies-heading"
                  class="competencies-section pt-[120px] md:pt-[140px] pb-20 md:pb-32 px-5 md:px-10 max-w-[1600px] mx-auto">

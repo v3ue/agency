@@ -14,6 +14,15 @@ let activeId = -1;
 let isUserInteracting = false;
 let resizeTimeout = null;
 
+function isProjectsSectionActive(section) {
+  if (!section) return false;
+
+  const rect = section.getBoundingClientRect();
+  const vh = window.innerHeight;
+
+  return rect.top <= 0 && rect.bottom >= vh;
+}
+
 /** Root DOM elements (queried once) */
 function getElements() {
   return {
@@ -68,8 +77,15 @@ function buildShowcase(showcase) {
           <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
         </video>
         <button class="hero-sound-toggle project-sound-toggle" type="button" aria-label="Включить звук" aria-pressed="false">
-          <span>Звук</span>
-          <span class="hero-sound-toggle-state" aria-hidden="true">Выкл</span>
+          <svg class="sound-icon sound-icon-off" viewBox="0 0 24 24" aria-hidden="true">
+            <path class="sound-speaker" d="M6 9.25H9.65L14.25 5.65v12.7l-4.6-3.6H6v-5.5Z"/>
+            <path class="sound-slash" d="M5.75 5.75 18.25 18.25"/>
+          </svg>
+          <svg class="sound-icon sound-icon-on" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.75 9.25H8.4L13 5.65v12.7l-4.6-3.6H4.75v-5.5Z"/>
+            <path d="M16.25 9.35c.72.68 1.1 1.62 1.1 2.65s-.38 1.97-1.1 2.65"/>
+            <path d="M18.65 7.25A6.55 6.55 0 0 1 20.5 12a6.55 6.55 0 0 1-1.85 4.75"/>
+          </svg>
         </button>
       </div>
     `;
@@ -99,8 +115,15 @@ function buildMobile(mobileContainer) {
           <source src="${project.video}" type="${project.video.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'}">
         </video>
         <button class="hero-sound-toggle project-sound-toggle" type="button" aria-label="Включить звук" aria-pressed="false">
-          <span>Звук</span>
-          <span class="hero-sound-toggle-state" aria-hidden="true">Выкл</span>
+          <svg class="sound-icon sound-icon-off" viewBox="0 0 24 24" aria-hidden="true">
+            <path class="sound-speaker" d="M6 9.25H9.65L14.25 5.65v12.7l-4.6-3.6H6v-5.5Z"/>
+            <path class="sound-slash" d="M5.75 5.75 18.25 18.25"/>
+          </svg>
+          <svg class="sound-icon sound-icon-on" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.75 9.25H8.4L13 5.65v12.7l-4.6-3.6H4.75v-5.5Z"/>
+            <path d="M16.25 9.35c.72.68 1.1 1.62 1.1 2.65s-.38 1.97-1.1 2.65"/>
+            <path d="M18.65 7.25A6.55 6.55 0 0 1 20.5 12a6.55 6.55 0 0 1-1.85 4.75"/>
+          </svg>
         </button>
       </div>
     `;
@@ -143,10 +166,16 @@ function setupActiveObserver(showcase) {
   const cards = showcase.querySelectorAll('.project-card');
   if (!cards.length) return;
 
-  const { info, sidebar } = getElements();
+  const { info, sidebar, section } = getElements();
 
   function pickActiveCard() {
     if (isUserInteracting) return;
+
+    if (!isProjectsSectionActive(section)) {
+      info?.classList.remove('visible');
+      sidebar?.classList.remove('visible');
+      return;
+    }
 
     const vh = window.innerHeight;
     let bestCard = null;
@@ -242,23 +271,11 @@ function setupSoundToggles(container) {
 
 /** Scroll-based: скрывает превью когда вышли за пределы секции (в обе стороны) */
 function setupVisibility({ info, sidebar, showcase }) {
-  if (!info || !showcase) return;
-
-  const cards = showcase.querySelectorAll('.project-card');
-  if (!cards.length) return;
-
-  const firstCard = cards[0];
-  const lastCard = cards[cards.length - 1];
+  const { section } = getElements();
+  if (!info || !showcase || !section) return;
 
   function updateVisibility() {
-    const vh = window.innerHeight;
-    const firstRect = firstCard.getBoundingClientRect();
-    const lastRect = lastCard.getBoundingClientRect();
-
-    const scrolledAbove = firstRect.top > vh * 0.5;
-    const scrolledBelow = lastRect.bottom < vh * 0.5;
-
-    if (scrolledAbove || scrolledBelow) {
+    if (!isProjectsSectionActive(section)) {
       info.classList.remove('visible');
       sidebar?.classList.remove('visible');
     }

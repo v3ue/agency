@@ -15,6 +15,19 @@ function initPageInteractions() {
     observer.observe(el);
   });
 
+  document.querySelectorAll('.projects-more').forEach(el => {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    observer.observe(el);
+  });
+
   // CTA section background transition
   const ctaSection = document.getElementById('cta');
   if (ctaSection) {
